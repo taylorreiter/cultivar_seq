@@ -1,0 +1,44 @@
+# ubuntu/images/hvm/ubuntu-wily-15.10-amd64-server-20160222 (ami-05384865)
+
+# ssh into IP address 
+ssh ubuntu@XXXXX -i /path/to/pem
+
+# At launch:
+
+set -x
+set -e
+
+sudo apt-get -y update
+sudo apt-get -y install r-base python3-matplotlib libzmq3-dev python3.5-dev texlive-latex-extra texlive-latex-recommended python3-virtualenv
+
+
+tmux new # create new
+# control-b d
+tmux a # reattach
+
+# Install relevant software SRA toolkit
+wget http://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.8.1-3/sratoolkit.2.8.1-3-ubuntu64.tar.gz
+tar -xzf sratoolkit.current-ubuntu64.tar.gz
+export PATH=$PATH:/directory/sratoolkit.2.8.1-3-ubuntu64/bin
+# sudo apt-get install sra-toolkit # installs too old of a system to diable cache
+
+# disable cache
+./vdb-config --interactive-mode 'textual'
+6
+Y # then press enter
+
+# download files
+cd ~
+mkdir cultivars
+nano sra-download-for-trinity.sh
+
+for accession in SRR926281 SRR926282 SRR926283 SRR926284 SRR926285 SRR926286 SRR926287
+do
+~/sratoolkit.2.8.1-3-ubuntu64/bin/fastq-dump.2.8.1-3 --defline-seq '@$sn[_$rn]/$ri' ${accession} --gzip
+done 
+
+tmux new
+sh sra-download-for-trinity.sh
+
+
+
