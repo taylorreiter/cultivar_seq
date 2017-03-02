@@ -1,0 +1,8 @@
+study_accession	run_accession	scientific_name	instrument_model	library_layout	library_strategy	read_count	base_count	fastq_bytes	fastq_ftp
+PRJNA209941	SRR926281	Olea europaea	Illumina Genome Analyzer IIx	PAIRED	RNA-Seq	159978483	16157826783	11504071626	ftp.sra.ebi.ac.uk/vol1/fastq/SRR926/SRR926281/SRR926281.fastq.gz
+PRJNA209941	SRR926282	Olea europaea	Illumina Genome Analyzer IIx	SINGLE	RNA-Seq	31176658	3148842458	2311846194	ftp.sra.ebi.ac.uk/vol1/fastq/SRR926/SRR926282/SRR926282.fastq.gz
+PRJNA209941	SRR926283	Olea europaea	Illumina Genome Analyzer IIx	SINGLE	RNA-Seq	32000187	3232018887	2484800079	ftp.sra.ebi.ac.uk/vol1/fastq/SRR926/SRR926283/SRR926283.fastq.gz
+PRJNA209941	SRR926284	Olea europaea	Illumina Genome Analyzer IIx	SINGLE	RNA-Seq	32216464	3253862864	2472811137	ftp.sra.ebi.ac.uk/vol1/fastq/SRR926/SRR926284/SRR926284.fastq.gz
+PRJNA209941	SRR926285	Olea europaea	Illumina Genome Analyzer IIx	SINGLE	RNA-Seq	32216464	3253862864	2472808648	ftp.sra.ebi.ac.uk/vol1/fastq/SRR926/SRR926285/SRR926285.fastq.gz
+PRJNA209941	SRR926286	Olea europaea	Illumina Genome Analyzer IIx	SINGLE	RNA-Seq	31865453	3218410753	2375251596	ftp.sra.ebi.ac.uk/vol1/fastq/SRR926/SRR926286/SRR926286.fastq.gz
+PRJNA209941	SRR926287	Olea europaea	Illumina Genome Analyzer IIx	SINGLE	RNA-Seq	32719721	3304691821	2456742058	ftp.sra.ebi.ac.uk/vol1/fastq/SRR926/SRR926287/SRR926287.fastq.gz
