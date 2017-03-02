@@ -40,5 +40,69 @@ done
 tmux new
 sh sra-download-for-trinity.sh
 
+sudo apt-get update
+sudo apt-get -y install screen git curl gcc make g++ python-dev unzip default-jre \
+           pkg-config libncurses5-dev r-base-core r-cran-gplots \
+           python-matplotlib python-pip python-virtualenv sysstat fastqc \
+           trimmomatic fastx-toolkit bowtie samtools blast2
+
+# set variable for thread number
+THREADS=4
+
+# Install khmer
+cd ${HOME}
+mkdir -p projects/eelpond
+python3 -m virtualenv projects/eelpond/env
+source ${HOME}/projects/eelpond/env/bin/activate
+mkdir -p src
+cd src
+git clone --branch v1.3 https://github.com/ged-lab/khmer.git
+cd khmer
+make install
+
+# Link data downloaded from SRA into working directory
+cd ${HOME}
+mkdir -p projects/eelpond/raw
+cd projects/eelpond/raw
+
+ln -fs ${HOME}/cultivars/*.fastq.gz .
+
+# Install dropbox
+wget -O dropbox.tar.gz "http://www.dropbox.com/download/?plat=lnx.x86_64"
+tar -xvzf dropbox.tar.gz
+~/.dropbox-dist/dropboxd &
+# copy and paste link and login
+
+mkdir -p ${HOME}/Dropbox/fastqc
+cd ${HOME}/projects/eelpond/raw/
+fastqc --threads ${THREADS:-1} *.fastq.gz --outdir=${HOME}/Dropbox/fastqc
+
+# Build Illumina adapter file
+cd ~/projects/eelpond
+nano Illumina-adaptors.fa
+
+# see file in repo
+# https://github.com/taylorreiter/IGI_preproposal/blob/master/computational_pilot/RNA-seq/Illumina-adaptors.fa
+--------------------------------------------------------------------
+# Run pipeline on one file to ensure it works
+
+# Trimming!
+mkdir ${HOME}/projects/eelpond/trimming_temp
+mkdir ${HOME}/projects/eelpond/trimmed
+
+cd ${HOME}/projects/eelpond/trimming_temp
 
 
+TrimmomaticSE ~/projects/eelpond/raw/SRR926282.fastq.gz ~/projects/eelpond/trimmed/SRR926282_trim.fastq.gz ILLUMINACLIP:${HOME}/projects/eelpond/Illumina-adaptors.fa:2:30:10 LEADING:2 TRAILING:2 SLIDINGWINDOW:4:2 MINLEN:25
+
+# make it hard to mess files up
+cd ../trimmed
+chmod u-w *
+
+# clear the temporary files
+cd ../trimming_temp
+rm *
+
+# single end data digital normalization
+normalize-by-median.py --cutoff 20 --loadtable normC20k20.ct \
+  --savetable normC20k20.ct ../trimmed/*fastq.gz
