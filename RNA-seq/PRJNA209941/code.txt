@@ -11,6 +11,9 @@ set -e
 sudo apt-get -y update
 sudo apt-get -y install r-base python3-matplotlib libzmq3-dev python3.5-dev texlive-latex-extra texlive-latex-recommended python3-virtualenv
 
+sudo apt-get -y update
+sudo apt-get -y install r-base python-matplotlib libzmq3-dev python2.7-dev texlive-latex-extra texlive-latex-recommended python-virtualenv
+
 
 tmux new # create new
 # control-b d
@@ -52,13 +55,13 @@ THREADS=4
 # Install khmer
 cd ${HOME}
 mkdir -p projects/eelpond
-python3 -m virtualenv projects/eelpond/env
+python2.7 -m virtualenv projects/eelpond/env
 source ${HOME}/projects/eelpond/env/bin/activate
 mkdir -p src
 cd src
 git clone --branch v1.3 https://github.com/ged-lab/khmer.git
 cd khmer
-make install
+sudo make install
 
 # Link data downloaded from SRA into working directory
 cd ${HOME}
@@ -103,6 +106,37 @@ chmod u-w *
 cd ../trimming_temp
 rm *
 
+# Remember to source khmer:
+source ${HOME}/projects/eelpond/env/bin/activate
+
 # single end data digital normalization
-normalize-by-median.py --cutoff 20 --loadtable normC20k20.ct \
-  --savetable normC20k20.ct ../trimmed/*fastq.gz
+cd ${HOME}/projects/eelpond/
+mkdir diginorm
+cd diginorm
+#normalize-by-median.py --cutoff 20 --loadtable normC20k20.ct \
+#  --savetable normC20k20.ct ../trimmed/*fastq.gz
+
+normalize-by-median.py --ksize 20 --cutoff 20 --n_tables 4 \
+  --min-tablesize 13e8 --savetable normC20k20.ct \
+  ../trimmed/*fastq.gz
+
+cd ${HOME}/projects/eelpond
+mkdir abundfilt
+cd abundfilt
+filter-abund.py --variable-coverage ../diginorm/normC20k20.ct \
+  --threads ${THREADS:-1} ../diginorm/*.keep
+  
+# Trinity install  
+mkdir -p ${HOME}/src
+cd ${HOME}/src
+
+wget https://github.com/trinityrnaseq/trinityrnaseq/archive/v2.0.4.tar.gz \
+  -O trinity.tar.gz
+tar xzf trinity.tar.gz
+cd trinityrnaseq*/
+make |& tee trinity-build.log
+
+
+cd ${HOME}/projects/eelpond
+${HOME}/src/trinityrna*/Trinity --seqType fq --max_memory 10G --CPU ${THREADS:-2} --single ./abundfilt/*SRR
+
