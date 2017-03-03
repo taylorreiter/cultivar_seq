@@ -120,6 +120,7 @@ normalize-by-median.py --ksize 20 --cutoff 20 --n_tables 4 \
   --min-tablesize 13e8 --savetable normC20k20.ct \
   ../trimmed/*fastq.gz
 
+# trim erroneous k-mers
 cd ${HOME}/projects/eelpond
 mkdir abundfilt
 cd abundfilt
@@ -130,13 +131,33 @@ filter-abund.py --variable-coverage ../diginorm/normC20k20.ct \
 mkdir -p ${HOME}/src
 cd ${HOME}/src
 
-wget https://github.com/trinityrnaseq/trinityrnaseq/archive/v2.0.4.tar.gz \
-  -O trinity.tar.gz
-tar xzf trinity.tar.gz
+wget https://github.com/trinityrnaseq/trinityrnaseq/archive/Trinity-v2.4.0.tar.gz
+tar xzf Trinity-v2.4.0.tar.gz
 cd trinityrnaseq*/
-make |& tee trinity-build.log
+make
+make plugins
 
+# Install java 1.8
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java8-installer
 
+# Install bowtie2
+sudo apt-get install bowtie2
+
+# test trinity
+#cd sample_data/test_Trinity_Assembly/
+#./runMe.sh
+
+# Run trinity
 cd ${HOME}/projects/eelpond
-${HOME}/src/trinityrna*/Trinity --seqType fq --max_memory 10G --CPU ${THREADS:-2} --single ./abundfilt/*SRR
+${HOME}/src/trinityrna*/Trinity --seqType fq --max_memory 10G --CPU ${THREADS:-2} --single ~/projects/eelpond/abundfilt/*abundfilt
 
+# failed. Try:
+${HOME}/src/trinityrna*/Trinity --seqType fq --max_memory 15.5G --CPU ${THREADS:-2} --single ~/projects/eelpond/trimmed/SRR926282_trim.fastq.gz
+
+           # Memory needed: 1GB of RAM per 1 million reads
+           # Timing: ½ - 1 hours per 1 million reads (does not include trimming or normalization)
+
+# failed. Upgrade instance, try:
+${HOME}/src/trinityrna*/Trinity --seqType fq --max_memory 31G --CPU ${THREADS:-2} --single ~/projects/eelpond/trimmed/SRR926282_trim.fastq.gz
