@@ -1,3 +1,4 @@
+# Install everything
 sudo apt-get update && \
 sudo apt-get -y install screen git curl gcc make g++ python-dev unzip \
         default-jre pkg-config libncurses5-dev r-base-core r-cran-gplots \
@@ -5,6 +6,7 @@ sudo apt-get -y install screen git curl gcc make g++ python-dev unzip \
         trimmomatic bowtie samtools blast2 wget bowtie2 openjdk-8-jre \
         hmmer ruby
 
+# Install khmer
 cd ~/
 python2.7 -m virtualenv pondenv
 source pondenv/bin/activate
@@ -14,13 +16,23 @@ git clone --branch v2.0 https://github.com/dib-lab/khmer.git
 cd khmer
 make install
 
-## RUN THIS EVERY TIME NEW SESSION/TERMINAL IS STARTED
-source ~/pondenv/bin/activate
-
-(see old protocol code for trinity installation & dependencies)
+# Install trinity
+cd ${HOME}
+wget https://github.com/trinityrnaseq/trinityrnaseq/archive/Trinity-v2.3.2.tar.gz \
+ -O trinity.tar.gz
+tar xzf trinity.tar.gz
+cd trinityrnaseq*/
+make |& tee trinity-build.log
 
 echo export PATH=$PATH:$(pwd) >> ~/pondenv/bin/activate
 source ~/pondenv/bin/activate
+
+# Set default java to 1.8
+
+## RUN THIS EVERY TIME NEW SESSION/TERMINAL IS STARTED
+source ~/pondenv/bin/activate
+
+
 
 # Transrate
 cd
@@ -84,4 +96,44 @@ printf "I see $(ls -1 *.fastq.gz | wc -l) files here.\n"
 
 # Skipping fastqc, already complete (see old code)
 
+# Copy trimmed sequence to that directory
+cp ~/projects/eelpond/trimmed/SRR* .
+
 #
+set -u
+printf "\nMy QC-trimmed files are in $PROJECT/quality/, and consist of $(ls -1 ${PROJECT}/quality/*trim.fastq.gz | wc -l) files\n\n"
+set +u
+
+# digital normalization
+cd ${PROJECT}
+mkdir -p diginorm
+cd diginorm
+ln -s ../quality/*_trim.fastq.gz .
+
+# normalize by median
+normalize-by-median.py -k 20 -C 20 -M 4e9 \
+ --savegraph normC20k20.ct *_trim.fastq.gz
+ 
+filter-abund.py -V -Z 18 normC20k20.ct *.keep
+ 
+# rename
+for file in *.abundfilt
+do
+  newfile=${file%%.fastq.gz.keep}.keep.abundfilt.fq
+  mv ${file} ${newfile}
+  gzip ${newfile}
+done
+
+# Make sure PROJECT directory is still set and files are there
+set -u
+printf "\nMy diginormed files are in $PROJECT/diginorm/, and consist of $(ls -1 ${PROJECT}/diginorm/*.keep.abundfilt.fq.gz | wc -l) files\n\n"
+set +u
+
+# Make directory for assembly
+cd ${PROJECT}
+mkdir -p assembly
+cd assembly
+
+# Run Trinity
+Trinity --single ../diginorm/*keep.abundfilt.fq.gz --seqType fq --max_memory 15G --CPU 2
+ 
