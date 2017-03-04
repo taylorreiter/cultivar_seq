@@ -152,3 +152,49 @@ ln -s ../cultivars/*.fastq.gz .
 
 # check to make sure it worked
 printf "I see $(ls -1 *.fastq.gz | wc -l) files here.\n"
+
+# Move adapter file
+mv ~/projects/eelpond/Illumina-adaptors.fa Illumina-adaptors.fa
+
+# trimming!
+# Skip the file that is already trimmed:
+
+for filename in SRR926283.fastq.gz  SRR926285.fastq.gz  SRR926287.fastq.gz SRR926284.fastq.gz  SRR926286.fastq.gz
+do
+     # first, make the base by removing fastq.gz
+     base=$(basename $filename .fastq.gz)
+     echo $base
+
+     # finally, run Trimmomatic
+     TrimmomaticSE ${base}.fastq.gz ${base}qc.fq.gz ILLUMINACLIP:Illumina-adaptors.fa:2:40:15 LEADING:2 TRAILING:2 SLIDINGWINDOW:4:2 MINLEN:25
+done
+
+# rename pre-trimmed file
+echo mv SRR926282_trim.fastq.gz SRR926282qc.fq.gz
+
+# make it hard to mess files up
+chmod u-w ${PROJECT}/quality/*qc.fq.gz
+
+# make sure data is in the right place
+set -u
+printf "\nMy QC-trimmed files are in $PROJECT/quality/, and consist of $(ls -1 ${PROJECT}/quality/*qc.fq.gz | wc -l) files\n\n"
+set +u
+
+# digital normalization
+cd ${PROJECT}
+mkdir -p diginorm
+cd diginorm
+ln -s ../quality/*qc.fq.gz .
+
+ normalize-by-median.py --ksize 20 --cutoff 20 -M 15e9 --savegraph normC20k20.ct *qc.fq.gz
+ 
+ # Filter erroneous kmers
+  filter-abund.py -V -Z 18 normC20k20.ct *.keep
+ 
+# rename
+for file in *.abundfilt
+do
+  newfile=${file%%.fastq.gz.keep}.keep.abundfilt.fq
+  mv ${file} ${newfile}
+  gzip ${newfile}
+done
