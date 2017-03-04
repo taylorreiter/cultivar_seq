@@ -136,4 +136,19 @@ cd assembly
 
 # Run Trinity
 Trinity --single ../diginorm/*keep.abundfilt.fq.gz --seqType fq --max_memory 15G --CPU 2
+ # ^C @ 51%. preform pipeline on the rest of the samples, upgrade instance size, and continue.
  
+ ------------------------------------------------------
+# Make sure all files are in the right place
+set -u
+printf "\nMy raw data is in $PROJECT/cultivars/, and consists of $(ls -1 ${PROJECT}/cultivars/*.fastq.gz | wc -l) files\n\n"
+set +u
+
+# navigate to quality directory
+cd quality
+
+# link data to new workspace
+ln -s ../cultivars/*.fastq.gz .
+
+# check to make sure it worked
+printf "I see $(ls -1 *.fastq.gz | wc -l) files here.\n"
