@@ -1,0 +1,8 @@
+# Align to reference genome. Write reads out that don't align. Run Trinity on these these reads. Annotate these for fungi and bacteria. 
+# Goal to downsize number of transcripts that need to be annotated. 
+# Runon qc'd reads from eelpond protocol
+
+# Install HISAT2 
+wget ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/downloads/hisat2-2.0.5-Linux_x86_64.zip
+
+# Install samtools
