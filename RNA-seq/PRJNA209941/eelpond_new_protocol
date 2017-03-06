@@ -432,8 +432,31 @@ prokka Trinity.fasta --metagenome --cpus 3 --centre C --locustag L
         # Defaults:
         # --metagenome      Improve gene predictions for highly fragmented genomes (default OFF)
         # --evalue [n.n]    Similarity e-value cut-off (default '1e-06')
-  
 
+# Annotaiton somewhat successful--skip for now, move on to Salmon
+cd ${PROJECT}
+mkdir -p quant
+cd quant
+ln -s ${PROJECT}/assembly/trinity_out_dir/Trinity.fasta .
+
+# Index transcriptome
+salmon index --index nema --transcripts Trinity.fasta --type quasi
+
+# Link to qc'd reads
+ln -s ../quality/*qc.fq.gz .
+  
+# Run Salmon
+for file in *qc.fq.gz
+do
+  salmon quant -i nema -p 2 -l IU -r <(gunzip -c ${file}) -o ${file}quant
+done
+
+# look at one file
+head -20 0Hour_ATCACG_L002_R1_001.extract.quant/quant.sf
+
+# Grab & run script to process files
+curl -L -O https://raw.githubusercontent.com/dib-lab/eel-pond/master/gather-counts.py
+python ./gather-counts.py
 
 
 
