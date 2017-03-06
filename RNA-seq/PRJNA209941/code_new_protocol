@@ -32,8 +32,6 @@ source ~/pondenv/bin/activate
 ## RUN THIS EVERY TIME NEW SESSION/TERMINAL IS STARTED
 source ~/pondenv/bin/activate
 
-
-
 # Transrate
 cd
 curl -LO https://bintray.com/artifact/download/blahah/generic/transrate-1.0.3-linux-x86_64.tar.gz
@@ -157,7 +155,7 @@ printf "I see $(ls -1 *.fastq.gz | wc -l) files here.\n"
 mv ~/projects/eelpond/Illumina-adaptors.fa Illumina-adaptors.fa
 
 # trimming!
-# Skip the file that is already trimmed:
+# Skip the file that was already trimmed in the test run:
 
 for filename in SRR926283.fastq.gz  SRR926285.fastq.gz  SRR926287.fastq.gz SRR926284.fastq.gz  SRR926286.fastq.gz
 do
@@ -169,7 +167,7 @@ do
      TrimmomaticSE ${base}.fastq.gz ${base}qc.fq.gz ILLUMINACLIP:Illumina-adaptors.fa:2:40:15 LEADING:2 TRAILING:2 SLIDINGWINDOW:4:2 MINLEN:25
 done
 
-# rename pre-trimmed file
+# rename pre-trimmed file to match naming of other files
 echo mv SRR926282_trim.fastq.gz SRR926282qc.fq.gz
 
 # make it hard to mess files up
@@ -187,14 +185,258 @@ cd diginorm
 ln -s ../quality/*qc.fq.gz .
 
  normalize-by-median.py --ksize 20 --cutoff 20 -M 15e9 --savegraph normC20k20.ct *qc.fq.gz
- 
- # Filter erroneous kmers
-  filter-abund.py -V -Z 18 normC20k20.ct *.keep
+
+# Filter erroneous kmers
+filter-abund.py -V -Z 18 normC20k20.ct *.keep
  
 # rename
 for file in *.abundfilt
 do
-  newfile=${file%%.fastq.gz.keep}.keep.abundfilt.fq
+  newfile=${file%%.fq.gz.keep.abundfilt}.keep.abundfilt.fq
   mv ${file} ${newfile}
   gzip ${newfile}
 done
+
+# Change instance size 
+
+# Scared that files will all be deleted, make a copy
+for infile in *qc.keep.abundfilt.fq.gz; do cp ${infile} ~/backup/${infile}; done 
+
+# upgrade to m4.4xlarge
+# source env
+
+# Reset $PROJECT
+export PROJECT=/mnt/work
+
+set -u
+printf "\nMy diginormed files are in $PROJECT/diginorm/, and consist of $(ls -1 ${PROJECT}/diginorm/*.keep.abundfilt.fq.gz | wc -l) files\n\n"
+set +u
+
+# cd into directory made during practice run
+cd /mnt/work/assembly
+
+# concatenate all files into a single file
+
+gunzip -c ../diginorm/*qc.keep.abundfilt.fq.gz > cultivars.fq
+
+
+# Run Trinity
+Trinity --single cultivars.fq --seqType fq --max_memory 62G --CPU 13 
+
+# Failed, upgraded to 200 gb of hard drive space, ran again
+# Complete...Yay!!
+
+# Rating assembly
+# get reads together
+cd ${PROJECT}
+mkdir -p evaluation
+cd evaluation
+
+# cat ../quality/*qc.fq.gz > cat_qual.fq.gz
+
+# Remove pipes from names to keep transrate happy
+sed 's_|_-_g' ${PROJECT}/assembly/trinity_out_dir/Trinity.fasta > Trinity.fixed.fasta
+
+# just kidding...transrate can only be run on paired- end data
+# Use detonate instead
+
+http://deweylab.biostat.wisc.edu/detonate/detonate-1.11.tar.gz
+tar xvf detonate-1.11.tar.gz
+cd detonate-1.11/
+#make
+NEED_CMAKE=yes make
+
+# Run RSEM eval
+# note that annoyingly, fastq files must be unzipped for this to work.
+#~/detonate-1.11/rsem-eval/rsem-eval-calculate-score -p 13 \
+#                               --transcript-length-parameters ~/detonate-1.11/rsem-eval/rsem-eval-estimate-transcript-length-distribution \                               /mnt/work/assembly/cat_qual.fq \
+#                               /mnt/work/assembly/trinity_out_dir/Trinity.fasta \
+#                               Trinity_rsem_eval \
+#                               101
+
+# Failed. Try again later. 
+# Downsized instance to m4.xlarge.
+
+# Run BUSCO for eukaryota
+BUSCO.py \
+  -i /mnt/work/assembly/trinity_out_dir/Trinity.fasta \
+  -o nema_busco_eukaryota -l /home/ubuntu/busco/eukaryota_odb9 \
+  -m tran --cpu 2
+  
+# check output
+cat run_nema_busco_eukaryota/short_summary_nema_busco_eukaryota.txt
+
+	C:4.6%[S:1.3%,D:3.3%],F:77.6%,M:17.8%,n:303
+
+	14	Complete BUSCOs (C)
+	4	Complete and single-copy BUSCOs (S)
+	10	Complete and duplicated BUSCOs (D)
+	235	Fragmented BUSCOs (F)
+	54	Missing BUSCOs (M)
+	303	Total BUSCO groups searched
+
+# Run BUSCO for fungi
+wget http://busco.ezlab.org/datasets/fungi_odb9.tar.gz
+BUSCO.py \
+  -i /mnt/work/assembly/trinity_out_dir/Trinity.fasta \
+  -o nema_busco_fungi -l /home/ubuntu/busco/fungi_odb9 \
+  -m tran --cpu 2
+
+# output
+	C:2.0%[S:0.3%,D:1.7%],F:67.2%,M:30.8%,n:290
+
+	6	Complete BUSCOs (C)
+	1	Complete and single-copy BUSCOs (S)
+	5	Complete and duplicated BUSCOs (D)
+	195	Fragmented BUSCOs (F)
+	89	Missing BUSCOs (M)
+	290	Total BUSCO groups searched
+
+# on the off chance some cute little bacteria got in
+# Run BUSCO for bacteria
+wget http://busco.ezlab.org/datasets/bacteria_odb9.tar.gz
+BUSCO.py \
+  -i /mnt/work/assembly/trinity_out_dir/Trinity.fasta \
+  -o nema_busco_bacteria -l /home/ubuntu/busco/bacteria_odb9 \
+  -m tran --cpu 2
+  
+# output
+	C:2.0%[S:0.0%,D:2.0%],F:41.2%,M:56.8%,n:148
+
+	3	Complete BUSCOs (C)
+	0	Complete and single-copy BUSCOs (S)
+	3	Complete and duplicated BUSCOs (D)
+	61	Fragmented BUSCOs (F)
+	84	Missing BUSCOs (M)
+	148	Total BUSCO groups searched
+
+# Install things
+cd ~
+sudo apt-get -y install python3-dev python-numpy ruby hmmer unzip \
+    infernal ncbi-blast+ liburi-escape-xs-perl emboss liburi-perl \
+    build-essential libsm6 libxrender1 libfontconfig1 \
+    parallel libx11-dev
+sudo gem install crb-blast
+
+# miniconda
+curl -LO https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh
+(opened new terminal)
+# source ~/.bashrc
+
+# Create conda environment
+conda create -y -n dammit anaconda python=3.6
+source activate dammit
+
+# install shmlast
+conda install -y --file <(curl https://raw.githubusercontent.com/camillescott/shmlast/master/environment.txt)
+pip install --upgrade pip
+pip install shmlast
+
+# install last
+cd
+curl -LO http://last.cbrc.jp/last-658.zip
+unzip last-658.zip
+pushd last-658 && make && make install prefix=~ && popd
+
+# install proper version of GNU parallel
+cd
+(wget -O - pi.dk/3 || curl pi.dk/3/ || fetch -o - http://pi.dk/3) | bash
+sudo cp /home/ubuntu/bin/parallel /usr/bin/parallel
+
+# Transdecoder
+cd
+curl -LO https://github.com/TransDecoder/TransDecoder/archive/2.0.1.tar.gz
+tar -xvzf 2.0.1.tar.gz
+cd TransDecoder-2.0.1; make
+
+# Busco
+cd
+git clone https://gitlab.com/ezlab/busco.git
+
+# Export everything to the path
+echo export PATH=$HOME/last-658/src:$PATH >> /home/ubuntu/miniconda3/bin/activate
+echo export PATH=$HOME/last-658/scripts:$PATH >> /home/ubuntu/miniconda3/bin/activate
+echo export PATH=$HOME/busco:$PATH >> /home/ubuntu/miniconda3/bin/activate
+echo export PATH=$HOME/TransDecoder-2.0.1:$PATH >> /home/ubuntu/miniconda3/bin/activate
+
+# Proper version of matplotlib
+pip install https://pypi.python.org/packages/source/m/matplotlib/matplotlib-1.5.1.tar.gz
+
+# Intall dammit from branch/1.0
+pip install https://github.com/camillescott/dammit/archive/refactor/1.0.zip
+
+# Install databases. Start with fungi
+dammit databases --install --busco-group fungi
+
+# dammit databases: error: argument --busco-group: invalid choice: 'fungi_odb9' (choose from 'metazoa', 'bacteria', 'saccharomycetales', 'basidiomycota', 'actinopterygii', 'sordariomyceta', 'eurotiomycetes', 'clostridia', 'bacteroidetes', 'rhizobiales', 'enterobacteriales', 'diptera', 'arthropoda', 'vertebrata', 'deltaepsilonsub', 'endopterygota', 'insecta', 'aves', 'fungi', 'proteobacteria', 'embryophyta', 'mammalia', 'betaproteobacteria', 'tenericutes', 'eukaryota', 'gammaproteobacteria', 'alveolata_stramenophiles', 'pezizomycotina', 'euarchontoglires', 'microsporidia', 'nematoda', 'firmicutes', 'protists', 'saccharomyceta', 'bacillales', 'laurasiatheria', 'spirochaetes', 'cyanobacteria', 'dikarya', 'ascomycota', 'lactobacillales', 'hymenoptera', 'tetrapoda', 'actinobacteria')
+(dammit) ubuntu@ip-172-31-31-125:~$ dammit databases --install --busco-group bacteria
+
+# Error
+(dammit) ubuntu@ip-172-31-31-125:~$ dammit databases --install --busco-group eukaryota
+# dammit
+## a tool for easy de novo transcriptome annotation
+
+by Camille Scott
+
+**v1.0.dev0**, 2016
+
+## submodule: databases
+Traceback (most recent call last):
+  File "/home/ubuntu/miniconda3/envs/dammit/bin/dammit", line 9, in <module>
+    app.DammitApp(arg_src=sys.argv[1:]).run()
+  File "/home/ubuntu/miniconda3/envs/dammit/lib/python3.5/site-packages/dammit/app.py", line 41, in run
+    self.args.func()
+  File "/home/ubuntu/miniconda3/envs/dammit/lib/python3.5/site-packages/dammit/app.py", line 253, in handle_databases
+    with_uniref=self.args.full)
+  File "/home/ubuntu/miniconda3/envs/dammit/lib/python3.5/site-packages/dammit/databases.py", line 133, in build_default_pipeline
+    register_orthodb_tasks(handler, config['last']['lastdb'], databases)
+  File "/home/ubuntu/miniconda3/envs/dammit/lib/python3.5/site-packages/dammit/databases.py", line 201, in register_orthodb_tasks
+    params=params))
+  File "/home/ubuntu/miniconda3/envs/dammit/lib/python3.5/site-packages/dammit/tasks/last.py", line 46, in task
+    exc = self.deps()
+  File "/home/ubuntu/miniconda3/envs/dammit/lib/python3.5/site-packages/dammit/tasks/last.py", line 35, in deps
+    raise InstallationError('lastdb not found.')
+dammit.tasks.utils.InstallationError: lastdb not found.
+
+# Switching gears
+# conda install -c bioconda infernal=1.1.2
+
+# Again
+cd ${PROJECT}
+mkdir -p annotation
+cd annotation
+ln -s ${PROJECT}/assembly/trinity_out_dir/Trinity.fasta .
+
+# didn't work. Same error as above. 
+dammit annotate Trinity.fasta --busco-group eukaryota --n_threads 2 | tee dammit_Trinity_outfile.log
+
+# Try with Prokka
+# https://2016-metagenomics-sio.readthedocs.io/en/latest/prokka_tutorial.html
+cd ~/
+wget http://www.vicbioinformatics.com/prokka-1.11.tar.gz
+tar -xvzf prokka-1.11.tar.gz
+
+# dependencies
+sudo apt-get install bioperl libdatetime-perl libxml-simple-perl libdigest-md5-perl
+sudo perl -MCPAN -e shell
+sudo perl -MCPAN -e 'install "XML::Simple"'
+
+export PATH=$PATH:$HOME/prokka-1.11/bin
+prokka --setupdb
+
+# Run prokka
+# --centre and --locustag are a work around. See https://github.com/tseemann/prokka/issues/135
+prokka Trinity.fasta --metagenome --cpus 3 --centre C --locustag L
+        
+        # Defaults:
+        # --metagenome      Improve gene predictions for highly fragmented genomes (default OFF)
+        # --evalue [n.n]    Similarity e-value cut-off (default '1e-06')
+  
+
+
+
+
+
+
+
