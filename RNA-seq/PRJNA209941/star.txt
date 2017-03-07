@@ -25,13 +25,15 @@ mkdir star
 cd star
 mkdir genome
 cd genome
-wget ftp://climb.genomics.cn/pub/10.5524/100001_101000/100201/Oe6.scaffolds.fa.gz
+# wget ftp://climb.genomics.cn/pub/10.5524/100001_101000/100201/Oe6.scaffolds.fa.gz # broken link
+wget http://denovo.cnag.cat/genomes/olive/download/Oe6/Oe6.scaffolds.fa.gz
 
 # Get olive annotation file
 cd ${PROJECT}/star
 mkdir genes
 cd genes
 wget ftp://climb.genomics.cn/pub/10.5524/100001_101000/100201/OE6A.func.desc.gff3.gz
+
 
 # Install things
 cd ~ 
@@ -41,16 +43,24 @@ sudo apt-get install rna-star
 # note star needs unzipped files
 cd ${PROJECT}/star/
 mkdir index
-STAR --runThreadN 14 --runMode genomeGenerate --genomeDir /mnt/work/star/index --genomeFastaFiles /mnt/work/star/genome/Oe6.scaffolds.fa.gz --sjdbGTFfile /mnt/work/star/genes/OE6A.func.desc.gff3.gz --sjdbGTFtagExonParentTranscript Parent --genomeChrBinNbits = 17
+STAR --runThreadN 14 --runMode genomeGenerate --genomeDir /mnt/work/star/index --genomeFastaFiles /mnt/work/star/genome/Oe6.scaffolds.fa --sjdbGTFfile /mnt/work/star/genes/OE6A.func.desc.gff3 --sjdbGTFtagExonParentTranscript Parent --genomeChrBinNbits = 17
 
 # --genomeChrBinNbits = min(18, log2(1.31E9/11000)) = 17
 
 # Align reads
-STAR --readFilesCommand gunzip
---runThreadN NumberOfThreads
---genomeDir /path/to/genomeDir
---readFilesIn /path/to/file1,/path/to/file2... [/path/to/read2 ]
---outFileNamePrefix /path/to/output/dir/prefix
---outSAMtype BAM Unsorted
---quantMode GeneCounts
---outReadsUnmapped Fastx
+mkdir alignments
+
+cd /mnt/work/quality
+for infile in *qc.fq
+do
+base_file=$(basename $infile qc.fq)
+STAR --runThreadN 14 --genomeDir /mnt/work/star/index --readFilesIn ${infile} --outFileNamePrefix /mnt/work/star/alignments/${base_file} --outSAMtype BAM Unsorted --quantMode GeneCounts --outReadsUnmapped Fastx
+done
+
+
+# Retry STAR install. Re-index.
+wget https://github.com/alexdobin/STAR/archive/2.5.2b.tar.gz
+tar -xzf 2.5.2b.tar.gz
+cd STAR-2.5.2b
+
+
