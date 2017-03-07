@@ -1,0 +1,43 @@
+# run star...less RAM to index, accepts gff3 files as annotation. 
+# Olive genome stats
+
+# Scaffolds 1,318,652,350 bp (11,038 total scaffolds)
+# N10 1,088,680 (94) N10
+# N50 443,100 (901)
+# N90 110,965 (3099)
+
+# Alex Dobin quote:
+# "I have problems generating a new genome. My genome is more than 300,000 contigs and ~300MB in size. 
+
+# This is indeed RAM problem. STAR bins genome sequence in a way that each chromosome (contig) starts at a new bin, which creates an overhead of Nchromosomes*BinSize, where BinSize=2^genomeChrBinNbits. By default, --genomeChrBinNbits = 18,
+# so BinSize=2^18~256kb, so with 300,000 contigs you would need ~75GB of RAM - that's what likely killed your job.
+# 32 GB recommended is recommended for 3 GB human genome.
+
+# Therefore use m4.4xlarge
+
+# Install things
+sudo apt-get update
+sudo apt-get install g++
+sudo apt-get install make
+
+
+# Generate index file
+STAR --runThreadN NumberOfThreads
+--runMode genomeGenerate
+--genomeDir /path/to/genomeDir
+--genomeFastaFiles /path/to/genome/fasta1 /path/to/genome/fasta2 ...
+--sjdbGTFfile /path/to/annotations.gtf
+--sjdbOverhang ReadLength-1
+--sjdbGTFtagExonParentTranscript Parent
+--genomeChrBinNbits = min(18, log2(GenomeLength/NumberOfReferences))
+
+# Align reads
+STAR
+--readFilesCommand gunzip
+--runThreadN NumberOfThreads
+--genomeDir /path/to/genomeDir
+--readFilesIn /path/to/file1,/path/to/file2... [/path/to/read2 ]
+--outFileNamePrefix /path/to/output/dir/prefix
+--outSAMtype BAM Unsorted
+--quantMode GeneCounts
+--outReadsUnmapped Fastx
