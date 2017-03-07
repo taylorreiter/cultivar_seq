@@ -14,11 +14,29 @@
 # 32 GB recommended is recommended for 3 GB human genome.
 
 # Therefore use m4.4xlarge
+# note I upgraded the instance from eelpond protocols. If software is missing, this is why.
+
+# Define project space
+PROJECT=/mnt/work/
+
+# Get olive genome
+cd $PROJECT
+mkdir star
+cd star
+mkdir genome
+cd genome
+wget ftp://climb.genomics.cn/pub/10.5524/100001_101000/100201/Oe6.scaffolds.fa.gz
+
+# Get olive annotation file
+cd $PROJECT/star
+mkdir genes
+cd genes
+wget ftp://climb.genomics.cn/pub/10.5524/100001_101000/100201/OE6A.func.desc.gff3.gz
 
 # Install things
-sudo apt-get update
-sudo apt-get install g++
-sudo apt-get install make
+cd ~
+wget https://github.com/alexdobin/STAR/blob/master/bin/Linux_x86_64/STAR
+export PATH="$HOME/STAR/bin:$PATH"
 
 
 # Generate index file
