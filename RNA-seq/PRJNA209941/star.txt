@@ -43,7 +43,7 @@ sudo apt-get install rna-star
 # note star needs unzipped files
 cd ${PROJECT}/star/
 mkdir index
-STAR --runThreadN 14 --runMode genomeGenerate --genomeDir /mnt/work/star/index --genomeFastaFiles /mnt/work/star/genome/Oe6.scaffolds.fa --sjdbGTFfile /mnt/work/star/genes/OE6A.func.desc.gff3 --sjdbGTFtagExonParentTranscript Parent --genomeChrBinNbits = 17
+$HOME/STAR-2.5.2b/bin/Linux_x86_64_static/STAR --runThreadN 14 --runMode genomeGenerate --genomeDir /mnt/work/star/index --genomeFastaFiles /mnt/work/star/genome/Oe6.scaffolds.fa --sjdbGTFfile /mnt/work/star/genes/OE6A.func.desc.gff3 --sjdbGTFtagExonParentTranscript Parent --genomeChrBinNbits = 17
 
 # --genomeChrBinNbits = min(18, log2(1.31E9/11000)) = 17
 
@@ -54,7 +54,7 @@ cd /mnt/work/quality
 for infile in *qc.fq
 do
 base_file=$(basename $infile qc.fq)
-STAR --runThreadN 14 --genomeDir /mnt/work/star/index --readFilesIn ${infile} --outFileNamePrefix /mnt/work/star/alignments/${base_file} --outSAMtype BAM Unsorted --quantMode GeneCounts --outReadsUnmapped Fastx
+$HOME/STAR-2.5.2b/bin/Linux_x86_64_static/STAR --runThreadN 14 --genomeDir /mnt/work/star/index --readFilesIn ${infile} --outFileNamePrefix /mnt/work/star/alignments/${base_file} --outSAMtype BAM Unsorted --quantMode GeneCounts --outReadsUnmapped Fastx
 done
 
 
@@ -63,4 +63,6 @@ wget https://github.com/alexdobin/STAR/archive/2.5.2b.tar.gz
 tar -xzf 2.5.2b.tar.gz
 cd STAR-2.5.2b
 
+export PATH=$HOME/STAR-2.5.2b/bin/Linux_x86_64/:$PATH
 
+# Remove all old star files, remake directories
