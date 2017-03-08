@@ -8,39 +8,51 @@
 # note I upgraded the instance from eelpond protocols. If software is missing, this is why.
 
 # Define project space
-PROJECT = /mnt/work
+export $PROJECT = /mnt/work/
 
 # make directory to store executables
 mkdir $HOME/hisat_bin
-$ export PATH=$HOME/hisat_bin:$PATH
+export PATH=$HOME/hisat_bin:$PATH
 
 # Install HISAT2 
 wget ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/downloads/hisat2-2.0.5-Linux_x86_64.zip
-unzip hisat2-2.0.1-beta-OSX_x86_64.zip
-cp hisat2-2.0.1-beta/hisat2* hisat2-2.0.1-beta/*.py $HOME/hisat_bin
+unzip hisat2-2.0.5-Linux_x86_64.zip
+cp hisat2-2.0.5/hisat* hisat2-2.0.5/*.py $HOME/hisat_bin
 
 # Install samtools
 wget https://github.com/samtools/samtools/releases/download/1.3.1/samtools-1.3.1.tar.bz2
 tar jxvf samtools-1.3.1.tar.bz2
 cd samtools-1.3.1
 make
-cd .
+cd ..
 cp samtools-1.3.1/samtools $HOME/hisat_bin
 
 # Get olive genome
-cd $PROJECT
+cd /mnt/work/
 mkdir hisat
 cd hisat
-mkdir genone
+mkdir genome
 cd genome
-wget ftp://climb.genomics.cn/pub/10.5524/100001_101000/100201/Oe6.scaffolds.fa.gz
+cp /mnt/work/star/genome/Oe6.scaffolds.fa Oe6.scaffolds.fa
 
 # Get olive annotation file
 cd $PROJECT/hisat
 mkdir genes
 cd genes
-wget 
+cp /mnt/work/star/genes/...
+# try another annotation file as well
+wget ftp://climb.genomics.cn/pub/10.5524/100001_101000/100201/oe6_proteins.gff3.gz
+gunzip oe6_proteins.gff3.gz
 
+# get program to convert gff to gtf
+# currently broken
+cd ~
+wget http://genometools.org/pub/genometools-1.5.9.tar.gz
+tar jxvf genometools-1.5.9.tar.gz
+cd genometools-1.5.9
+make
+cd ..
+cp genometools-1.5.9 $Home/hisat_bin
 
 # Prep for indexing
 extract_splice_sites.py cd $PROJECT/hisat/genes/chrX.gtf > olive.ss 
