@@ -49,8 +49,14 @@ cd busco
 echo "export PATH=$PATH:$(pwd)" >> ~/pondenv/bin/activate
 curl -OL http://busco.ezlab.org/datasets/metazoa_odb9.tar.gz
 curl -OL http://busco.ezlab.org/datasets/eukaryota_odb9.tar.gz
+curl -OL http://busco.ezlab.org/v2/datasets/embryophyta_odb9.tar.gz
+curl -OL http://busco.ezlab.org/datasets/fungi_odb9.tar.gz
+curl -OL http://busco.ezlab.org/datasets/bacteria_odb9.tar.gz
+tar -xzvf embryophyta_odb9.tar.gz
 tar -xzvf metazoa_odb9.tar.gz
 tar -xzvf eukaryota_odb9.tar.gz
+tar -xzvf fungi_odb9.tar.gz
+tar -xzvf bacteria_odb9.tar.gz
 source ~/pondenv/bin/activate
 
 # Salmon
@@ -274,9 +280,21 @@ cat run_nema_busco_eukaryota/short_summary_nema_busco_eukaryota.txt
 	235	Fragmented BUSCOs (F)
 	54	Missing BUSCOs (M)
 	303	Total BUSCO groups searched
+	
+# Run BUSCO for plants
+cd ~/busco
+wget http://busco.ezlab.org/v2/datasets/embryophyta_odb9.tar.gz
+tar -xzvf embryophyta_odb9.tar.gz
+cd /mnt/work/evaluation
+BUSCO.py \
+  -i /mnt/work/assembly/trinity_out_dir/Trinity.fasta \
+  -o nema_busco_embryophyta -l /home/ubuntu/busco/embryophyta_odb9 \
+  -m tran --cpu 2
 
 # Run BUSCO for fungi
 wget http://busco.ezlab.org/datasets/fungi_odb9.tar.gz
+wget http://busco.ezlab.org/datasets/bacteria_odb9.tar.gz
+/mnt/work/evaluation
 BUSCO.py \
   -i /mnt/work/assembly/trinity_out_dir/Trinity.fasta \
   -o nema_busco_fungi -l /home/ubuntu/busco/fungi_odb9 \
