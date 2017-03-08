@@ -41,21 +41,32 @@ mkdir genes
 cd genes
 cp /mnt/work/star/genes/...
 # try another annotation file as well
-wget ftp://climb.genomics.cn/pub/10.5524/100001_101000/100201/oe6_proteins.gff3.gz
-gunzip oe6_proteins.gff3.gz
+# wget ftp://climb.genomics.cn/pub/10.5524/100001_101000/100201/oe6_proteins.gff3.gz
+# gunzip oe6_proteins.gff3.gz
+# Try:
+oe6_geneid.gff3
 
 # get program to convert gff to gtf
-# currently broken
 cd ~
 wget http://genometools.org/pub/genometools-1.5.9.tar.gz
-tar jxvf genometools-1.5.9.tar.gz
+tar -xvf genometools-1.5.9.tar.gz
 cd genometools-1.5.9
-make
+make cairo=no
+sudo make cairo=no install
 cd ..
-cp genometools-1.5.9 $Home/hisat_bin
+cp genometools-1.5.9/scripts/* $HOME/hisat_bin
+
+# convert gff to gtf
+oe6_geneid.gff3
+gt gff3_to_gtf /mnt/work/star/genes/oe6_geneid.gff3 > /mnt/work/hisat/genes/oe6_geneid.gtf
 
 # Prep for indexing
-extract_splice_sites.py cd $PROJECT/hisat/genes/chrX.gtf > olive.ss 
-extract_exons.py $PROJECT/hisat/genes/chrX.gtf > olive.exon
-hisat2-build --ss olive.ss --exon olive.exon chrX_data/genome/chrX.fa chrX_tran
+$HOME/hisat_bin/extract_splice_sites.py /mnt/work/hisat/genes/oe6_geneid.gtf > olive.ss 
+$HOME/hisat_bin/extract_exons.py /mnt/work/hisat/genes/oe6_geneid.gtf > olive.exon
+
+# update instance to an r4.16xlarge:	cpu 64 ecu 195 ram 488 GB. If it breaks, I quit.
+# index genome
+$HOME/hisat_bin/hisat2-build --ss olive.ss --exon olive.exon /mnt/work/hisat/genome/Oe6.scaffolds.fa olive_index
+
+# run alignments with output of unaligned fastq files.
 
