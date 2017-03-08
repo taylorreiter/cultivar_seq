@@ -43,8 +43,15 @@ sudo apt-get install rna-star
 # note star needs unzipped files
 cd ${PROJECT}/star/
 mkdir index
-$HOME/STAR-2.5.2b/bin/Linux_x86_64_static/STAR --runThreadN 14 --runMode genomeGenerate --genomeDir /mnt/work/star/index --genomeFastaFiles /mnt/work/star/genome/Oe6.scaffolds.fa --sjdbGTFfile /mnt/work/star/genes/OE6A.func.desc.gff3 --sjdbGTFtagExonParentTranscript Parent --genomeChrBinNbits = 17
+$HOME/STAR-2.5.2b/bin/Linux_x86_64_static/STAR --runThreadN 14 --runMode genomeGenerate --genomeDir /mnt/work/star/index --genomeFastaFiles /mnt/work/star/genome/Oe6.scaffolds.fa --sjdbGTFfile /mnt/work/star/genes/oe6_proteins.gff3 --sjdbGTFtagExonParentTranscript Parent --genomeChrBinNbits = 17
 
+# fatal error with gff oe6_proteins.gff3; no exons. Try:
+cd /mnt/work/star/genes
+wget ftp://climb.genomics.cn/pub/10.5524/100001_101000/100201/oe6_geneid.gff3.gz
+gunzip oe6_geneid.gff3.gz
+
+cd /mnt/work/star/
+$HOME/STAR-2.5.2b/bin/Linux_x86_64_static/STAR --runThreadN 14 --runMode genomeGenerate --genomeDir /mnt/work/star/index --genomeFastaFiles /mnt/work/star/genome/Oe6.scaffolds.fa --sjdbGTFfile /mnt/work/star/genes/oe6_geneid.gff3 --sjdbGTFtagExonParentTranscript Parent --genomeChrBinNbits = 17
 # --genomeChrBinNbits = min(18, log2(1.31E9/11000)) = 17
 
 # Align reads
@@ -56,6 +63,8 @@ do
 base_file=$(basename $infile qc.fq)
 $HOME/STAR-2.5.2b/bin/Linux_x86_64_static/STAR --runThreadN 14 --genomeDir /mnt/work/star/index --readFilesIn ${infile} --outFileNamePrefix /mnt/work/star/alignments/${base_file} --outSAMtype BAM Unsorted --quantMode GeneCounts --outReadsUnmapped Fastx
 done
+
+# still failed. 
 
 
 # Retry STAR install. Re-index.
