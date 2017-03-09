@@ -68,5 +68,158 @@ $HOME/hisat_bin/extract_exons.py /mnt/work/hisat/genes/oe6_geneid.gtf > olive.ex
 # index genome
 $HOME/hisat_bin/hisat2-build --ss olive.ss --exon olive.exon /mnt/work/hisat/genome/Oe6.scaffolds.fa olive_index
 
-# run alignments with output of unaligned fastq files.
+cd /mnt/work/hisat
+mkdir index
+for infile in *ht2
+do
+mv $infile /mnt/work/hisat/index/${infile}
+done
 
+mkdir alignments
+mkdir unaligned
+
+# run alignments with output of unaligned fastq files.
+cd /mnt/work/quality/
+for f in *qc.fq 
+do
+$HOME/hisat_bin/hisat2 -p 3 -x /mnt/work/hisat/index/olive_index -U ${f}  -S /mnt/work/hisat/alignments/${f}.sam --met-file /mnt/work/hisat/alignments/${f}.met --un-gz /mnt/work/hisat/unaligned/unaligned_${f}.gz
+done
+
+# Ran out of space, add another 100 gb
+cd /mnt/work/quality/
+
+$HOME/hisat_bin/hisat2 -p 3 -x /mnt/work/hisat/index/olive_index -U SRR926287qc.fq -S /mnt/work/hisat/alignments/SRR926287qc.fq.sam --met-file /mnt/work/hisat/alignments/SRR926287qc.fq.met --un-gz /mnt/work/hisat/unaligned/unaligned_SRR926287qc.fq.gz
+
+
+# Digital normalization of unaligned reads
+cd /mnt/work/hisat/unaligned
+mkdir -p diginorm
+cd diginorm
+ln -s ../*fq.gz .
+
+# Fix python
+mkdir ~/.localpython
+cd ~/src
+wget http://www.python.org/ftp/python/2.7.1/Python-2.7.1.tgz
+tar -zxvf Python-2.7.1.tgz
+cd Python-2.7.1
+
+make clean
+./configure --prefix=/home/${USER}/.localpython
+make
+make install
+
+# Restart bc of problems with python 2.7
+rm -rf miniconda3/ get-pip.py ncbi-blast-2.3.0+ ncbi-blast-2.3.0+-x64-linux.tar.gz parallel-20170222 parallel-20170222.tar.bz2 perl5/ pondenv prokka-1.11 prokka-1.11 Salmon-0.7.2_linux_x86_64 Salmon-0.7.2_linux_x86_64 share src STAR-2.5.2b/ TransDecoder-2.0.1/ transrate-1.0.3-linux-x86_64 transrate-1.0.3-linux-x86_64.tar.gz trinityrnaseq-Trinity-v2.3.2/ trinity.tar.gz busco detonate-1.11 last-658 last-658.zip miniconda Miniconda3-latest-Linux-x86_64.sh prokka-1.11.tar.gz parallel-20170222.tar.bz2.sig Salmon-0.7.2_linux_x86_64.tar.gz detonate-1.11.tar.gz 
+
+cd /usr/bin
+rm x86_64-linux-gnu-python3.4-config x86_64-linux-gnu-python3.4m-config
+x86_64-linux-gnu-python3.5-config x86_64-linux-gnu-python3.5m-config x86_64-linux-gnu-python3-config x86_64-linux-gnu-python3m-config
+py3clean
+py3compile
+py3rsa-decrypt
+py3rsa-decrypt-bigfile
+py3rsa-encrypt
+py3rsa-encrypt-bigfile
+py3rsa-keygen
+py3rsa-priv2pub
+py3rsa-sign
+py3rsa-verify
+py3versions
+pybuild
+pyclean
+pycompile
+pydoc
+pydoc2.7
+pydoc3
+pydoc3.4
+pydoc3.5
+pygettext
+pygettext2.7
+pygettext3
+pygettext3.4
+pygettext3.5
+python
+python2
+python2.7
+python2.7-config
+python2-config
+python2-pbr
+python3
+python3.4
+python3.4-config
+python3.4m
+python3.4m-config
+python3.5
+python3.5-config
+python3.5m
+python3.5m-config
+python3-config
+python3-jsondiff
+python3-jsonpatch
+python3m
+python3m-config
+python-config
+pythontex
+pythontex3
+pyversions
+dh_python2                                        
+dh_python3                                       
+dh_python3-ply                                   
+dh_python-ply pdb pdb2.7 pdb3 pdb3.4 pdb3.5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sudo apt-get update && \
+sudo apt-get -y install screen git curl gcc make g++ python-dev unzip \
+        default-jre pkg-config libncurses5-dev r-base-core r-cran-gplots \
+        python-matplotlib python-pip python-virtualenv sysstat fastqc \
+        trimmomatic bowtie samtools blast2 wget bowtie2 openjdk-8-jre \
+        hmmer ruby
+
+
+normalize-by-median.py --ksize 20 --cutoff 20 -M 15e9 --savegraph normC20k20.ct *qc.fq.gz
+
+# Filter erroneous kmers
+filter-abund.py -V -Z 18 normC20k20.ct *.keep
