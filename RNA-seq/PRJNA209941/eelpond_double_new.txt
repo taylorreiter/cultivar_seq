@@ -1,0 +1,224 @@
+sudo apt-get update && \
+sudo apt-get -y install screen git curl gcc make g++ python-dev unzip \
+        default-jre pkg-config libncurses5-dev r-base-core r-cran-gplots \
+        python-matplotlib python-pip python-virtualenv sysstat fastqc \
+        trimmomatic bowtie samtools blast2 wget bowtie2 openjdk-8-jre \
+        hmmer ruby
+        
+# Install khmer        
+cd ~/
+python2.7 -m virtualenv pondenv
+source pondenv/bin/activate
+cd pondenv
+pip install -U setuptools
+git clone --branch v2.0 https://github.com/dib-lab/khmer.git
+cd khmer
+make install
+
+source ~/pondenv/bin/activate
+
+# Install Trinity
+cd ${HOME}
+wget https://github.com/trinityrnaseq/trinityrnaseq/archive/Trinity-v2.3.2.tar.gz \
+ -O trinity.tar.gz
+tar xzf trinity.tar.gz
+cd trinityrnaseq*/
+make |& tee trinity-build.log
+
+echo export PATH=$PATH:$(pwd) >> ~/pondenv/bin/activate
+source ~/pondenv/bin/activate
+
+# Set Java
+sudo update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+
+# Install transrate
+cd
+curl -LO https://bintray.com/artifact/download/blahah/generic/transrate-1.0.3-linux-x86_64.tar.gz
+tar -zxf transrate-1.0.3-linux-x86_64.tar.gz
+echo 'export PATH=$PATH:"$HOME/transrate-1.0.3-linux-x86_64"' >> ~/pondenv/bin/activate
+curl -LO ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.3.0/ncbi-blast-2.3.0+-x64-linux.tar.gz
+tar -zxf ncbi-blast-2.3.0+-x64-linux.tar.gz
+echo 'export PATH="$HOME/ncbi-blast-2.3.0+/bin:$PATH"' >> ~/pondenv/bin/activate
+source ~/pondenv/bin/activate
+
+# install BUSCO
+cd
+git clone https://gitlab.com/ezlab/busco.git
+cd busco
+echo "export PATH=$PATH:$(pwd)" >> ~/pondenv/bin/activate
+echo 'export PATH=$PATH:$HOME/busco' >> $HOME/.bashrc
+wget http://busco.ezlab.org/v2/datasets/fungi_odb9.tar.gz
+wget http://busco.ezlab.org/v2/datasets/embryophyta_odb9.tar.gz
+wget http://busco.ezlab.org/v2/datasets/saccharomyceta_odb9.tar.gz
+wget http://busco.ezlab.org/v2/datasets/saccharomycetales_odb9.tar.gz
+wget http://busco.ezlab.org/v2/datasets/bacteria_odb9.tar.gz
+# wget http://busco.ezlab.org/v2/datasets/proteobacteria_odb9.tar.gz
+# wget http://busco.ezlab.org/v2/datasets/rhizobiales_odb9.tar.gz
+# wget http://busco.ezlab.org/v2/datasets/betaproteobacteria_odb9.tar.gz
+# wget http://busco.ezlab.org/v2/datasets/gammaproteobacteria_odb9.tar.gz
+# wget http://busco.ezlab.org/v2/datasets/enterobacteriales_odb9.tar.gz
+# wget http://busco.ezlab.org/v2/datasets/deltaepsilonsub_odb9.tar.gz
+# wget http://busco.ezlab.org/v2/datasets/actinobacteria_odb9.tar.gz
+# wget http://busco.ezlab.org/v2/datasets/cyanobacteria_odb9.tar.gz
+# wget http://busco.ezlab.org/v2/datasets/firmicutes_odb9.tar.gz
+# wget http://busco.ezlab.org/v2/datasets/clostridia_odb9.tar.gz
+# wget http://busco.ezlab.org/v2/datasets/lactobacillales_odb9.tar.gz
+# wget http://busco.ezlab.org/v2/datasets/bacillales_odb9.tar.gz
+# wget http://busco.ezlab.org/v2/datasets/bacteroidetes_odb9.tar.gz
+# wget http://busco.ezlab.org/v2/datasets/spirochaetes_odb9.tar.gz
+# wget http://busco.ezlab.org/v2/datasets/tenericutes_odb9.tar.gz
+# tar -xzvf tenericutes_odb9.tar.gz
+# tar -xzvf spirochaetes_odb9.tar.gz
+# tar -xzvf bacteroidetes_odb9.tar.gz
+#tar -xzvf bacillales_odb9.tar.gz
+#tar -xzvf lactobacillales_odb9.tar.gz
+#tar -xzvf clostridia_odb9.tar.gz
+#tar -xzvf firmicutes_odb9.tar.gz
+#tar -xzvf cyanobacteria_odb9.tar.gz
+#tar -xzvf actinobacteria_odb9.tar.gz
+#tar -xzvf deltaepsilonsub_odb9.tar.gz
+tar -xzvf fungi_odb9.tar.gz
+tar -xzvf embryophyta_odb9.tar.gz
+tar -xzvf saccharomyceta_odb9.tar.gz
+tar -xzvf saccharomycetales_odb9.tar.gz
+tar -xzvf bacteria_odb9.tar.gz
+#tar -xzvf proteobacteria_odb9.tar.gz
+#tar -xzvf rhizobiales_odb9.tar.gz
+#tar -xzvf betaproteobacteria_odb9.tar.gz
+#tar -xzvf gammaproteobacteria_odb9.tar.gz
+#tar -xzvf enterobacteriales_odb9.tar.gz
+source ~/pondenv/bin/activate
+
+# Install salmon
+cd
+curl -LO https://github.com/COMBINE-lab/salmon/releases/download/v0.7.2/Salmon-0.7.2_linux_x86_64.tar.gz
+tar -xvzf Salmon-0.7.2_linux_x86_64.tar.gz
+cd Salmon*/bin
+echo export PATH=$PATH:$(pwd) >> ~/pondenv/bin/activate
+source ~/pondenv/bin/activate
+
+# export project
+export PROJECT=/mnt/work
+----------------------------------------------------------------------
+# diginorm hisat unaligned files
+cd /mnt/work/hisat/unaligned
+mkdir -p diginorm
+cd diginorm
+ln -s ../unaligned/*qc.fq.gz .
+
+# normalization
+normalize-by-median.py --ksize 20 --cutoff 20 -M 15e9 --savegraph normC20k20.ct *qc.fq.gz
+
+# trim erroneous kmers
+filter-abund.py -V -Z 18 normC20k20.ct *.keep && \
+  rm *.keep normC20k20.ct
+
+# Rename
+for file in *.abundfilt
+do
+  newfile=${file%%.fq.gz.keep.abundfilt}.abundfilt.fq
+  mv ${file} ${newfile}
+  gzip ${newfile}
+done
+----------------------------------------------------------------------
+# Trinity
+cd /mnt/work/hisat/unaligned/
+mkdir -p assembly
+
+# upgrade to m4.4xlarge
+source ~/pondenv/bin/activate
+
+
+# lsblk
+# sudo mount /dev/xvdf1 /mnt/
+
+
+# Reset $PROJECT
+export PROJECT=/mnt/work
+
+cd /mnt/work/hisat/unaligned/assembly
+
+gunzip -c ../diginorm/*qc.abundfilt.fq.gz > cultivars.fq
+
+Trinity --single cultivars.fq --seqType fq --max_memory 62G --CPU 13 
+----------------------------------------------------------------------
+# Run dammit
+
+# Install things
+cd ~
+sudo apt-get -y install ruby hmmer unzip \
+    infernal ncbi-blast+ liburi-escape-xs-perl emboss liburi-perl \
+    build-essential libsm6 libxrender1 libfontconfig1 \
+    parallel libx11-dev
+sudo gem install crb-blast
+
+# Install proper version of new paralell
+cd
+(wget -O - pi.dk/3 || curl pi.dk/3/ || fetch -o - http://pi.dk/3) | bash
+sudo cp /home/ubuntu/bin/parallel /usr/bin/parallel
+
+# Transdecoder
+cd
+curl -LO https://github.com/TransDecoder/TransDecoder/archive/2.0.1.tar.gz
+tar -xvzf 2.0.1.tar.gz
+cd TransDecoder-2.0.1; make
+export PATH=$HOME/TransDecoder-2.0.1:$PATH
+
+# Last
+cd
+curl -LO http://last.cbrc.jp/last-658.zip
+unzip last-658.zip
+cd last-658
+make
+export PATH=$HOME/last-658/src:$PATH
+export PATH=$HOME/last-658/scripts:$PATH
+
+# Install busco
+cd
+curl -LO http://busco.ezlab.org/v1/files/BUSCO_v1.22.tar.gz
+tar -xvzf BUSCO_v1.22.tar.gz
+chmod +x BUSCO_v1.22/*.py
+export PATH=$HOME/BUSCO_v1.22:$PATH
+cd
+
+# To add to path permenently
+echo 'export PATH=$PATH:$HOME/TransDecoder-2.0.1' >> $HOME/.bashrc
+echo 'export PATH=$PATH:$HOME/last-658/src' >> $HOME/.bashrc
+echo 'export PATH=$HOME/BUSCO_v1.22:$PATH' >> $HOME/.bashrc
+
+
+# Install miniconda
+cd ~
+curl -LO https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh -b
+source ~/.bashrc
+
+# create environment for dammit
+cd ~
+~/miniconda3/bin/conda create -y -n dammit anaconda python=3.5
+source ~/miniconda3/bin/activate dammit
+
+# Install things with python dependencies
+
+# conda install -y --file <(curl https://raw.githubusercontent.com/camillescott/shmlast/master/environment.txt)
+pip install --upgrade pip
+pip install shmlast
+
+# Install matplot lib
+pip install https://pypi.python.org/packages/source/m/matplotlib/matplotlib-1.5.1.tar.gz
+
+# Install dammit from refractor branch 1.0
+sudo pip install -U setuptools
+sudo pip install dammit
+
+# Build databases
+dammit databases --install --busco-group eukaryota
+
+# Make directory for annotations
+cd /mnt/work/hisat/unaligned/
+mkdir -p annotation
+cd annotation
+ln -s /mnt/work/hisat/unaligned/assembly/trinity_out_dir/Trinity.fasta .
+
+# run dammit
+dammit annotate Trinity.fasta --busco-group eukaryota --n_threads 2 | tee dammit_Trinity_outfile.log
