@@ -1,4 +1,5 @@
 # Kraken output
+# minikraken db 
 
 ubuntu@ip-172-31-24-124:/mnt/work/hisat/unaligned/kraken$ for infile in *qc.fq.gz
 > do
