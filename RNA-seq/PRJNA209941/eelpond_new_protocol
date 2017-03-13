@@ -1,3 +1,4 @@
+# NB this protocol failed because of dual installation of python. Instance was terminated, and new instance was started. Output files up to dammit were fine, and were saved and still used.
 # Install everything
 sudo apt-get update && \
 sudo apt-get -y install screen git curl gcc make g++ python-dev unzip \
