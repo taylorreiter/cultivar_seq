@@ -1,0 +1,29 @@
+ubuntu@ip-172-31-24-124:/mnt/work/hisat/unaligned/kraken$ for infile in *qc.fq.gz
+> do
+> kraken --preload --db ~/Kraken_db_install_scripts/downloads/kraken_fungi_080416 --fastq-input --gzip-compressed ${infile} > ${infile}_kraken.out
+> done
+
+Loading database... complete.
+4779963 sequences (479.82 Mbp) processed in 88.792s (3230.0 Kseq/m, 324.23 Mbp/m).
+  132282 sequences classified (2.77%)
+  4647681 sequences unclassified (97.23%)
+Loading database... complete.
+5190098 sequences (523.08 Mbp) processed in 96.505s (3226.8 Kseq/m, 325.21 Mbp/m).
+  95591 sequences classified (1.84%)
+  5094507 sequences unclassified (98.16%)
+Loading database... complete.
+6317048 sequences (636.83 Mbp) processed in 116.974s (3240.2 Kseq/m, 326.65 Mbp/m).
+  267790 sequences classified (4.24%)
+  6049258 sequences unclassified (95.76%)
+Loading database... complete.
+6317048 sequences (636.83 Mbp) processed in 117.594s (3223.2 Kseq/m, 324.93 Mbp/m).
+  267790 sequences classified (4.24%)
+  6049258 sequences unclassified (95.76%)
+Loading database... complete.
+4052910 sequences (406.47 Mbp) processed in 74.648s (3257.6 Kseq/m, 326.71 Mbp/m).
+  74309 sequences classified (1.83%)
+  3978601 sequences unclassified (98.17%)
+Loading database... complete.
+4374376 sequences (437.90 Mbp) processed in 80.266s (3269.9 Kseq/m, 327.34 Mbp/m).
+  74732 sequences classified (1.71%)
+  4299644 sequences unclassified (98.29%)
