@@ -300,18 +300,29 @@ kraken-build --build --db kraken_fungi_080416
 
 kraken-build --build --db kraken_bvfpa_080416
 
-#
-
-Creating k-mer set (step 1 of 6)...
-Found jellyfish v1.1.11
-Hash size not specified, using '161607432'
-...
-
-# run on unaligned fastq reads
+# run fungi on unaligned fastq reads
 cd /mnt/work/hisat/unaligned
 for infile in *qc.fq.gz
 do
 kraken --preload --db ~/Kraken_db_install_scripts/downloads/kraken_fungi_080416 --fastq-input --gzip-compressed ${infile} > ${infile}_kraken.out
 done
 
+# run bvfpa on unaligned fastq reads
+cd /mnt/work/hisat/unaligned/
+for infile in *qc.fq.gz
+do
+kraken --preload --db ~/Kraken_db_install_scripts/downloads/kraken_bvfpa_080416 --fastq-input --gzip-compressed ${infile} > ${infile}_kraken_bvfpa.out
+done
+
+# This database returned no results...try Kaiju
+cd ~
+git clone https://github.com/bioinformatics-centre/kaiju.git
+cd kaiju/src
+make
+
+# make a database with bacteria, archaea, viruses, and eukaryotes
+cd /mnt/work/
+mkdir kaijudb_e
+cd kaijudb_e
+~/kaiju/bin/makeDB.sh -e
 
