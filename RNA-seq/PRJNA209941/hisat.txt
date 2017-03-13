@@ -109,117 +109,13 @@ make clean
 make
 make install
 
-# Restart bc of problems with python 2.7
-rm -rf miniconda3/ get-pip.py ncbi-blast-2.3.0+ ncbi-blast-2.3.0+-x64-linux.tar.gz parallel-20170222 parallel-20170222.tar.bz2 perl5/ pondenv prokka-1.11 prokka-1.11 Salmon-0.7.2_linux_x86_64 Salmon-0.7.2_linux_x86_64 share src STAR-2.5.2b/ TransDecoder-2.0.1/ transrate-1.0.3-linux-x86_64 transrate-1.0.3-linux-x86_64.tar.gz trinityrnaseq-Trinity-v2.3.2/ trinity.tar.gz busco detonate-1.11 last-658 last-658.zip miniconda Miniconda3-latest-Linux-x86_64.sh prokka-1.11.tar.gz parallel-20170222.tar.bz2.sig Salmon-0.7.2_linux_x86_64.tar.gz detonate-1.11.tar.gz 
+# Deleted instance, restarted a new one with new software. 
 
-cd /usr/bin
-rm x86_64-linux-gnu-python3.4-config x86_64-linux-gnu-python3.4m-config
-x86_64-linux-gnu-python3.5-config x86_64-linux-gnu-python3.5m-config x86_64-linux-gnu-python3-config x86_64-linux-gnu-python3m-config
-py3clean
-py3compile
-py3rsa-decrypt
-py3rsa-decrypt-bigfile
-py3rsa-encrypt
-py3rsa-encrypt-bigfile
-py3rsa-keygen
-py3rsa-priv2pub
-py3rsa-sign
-py3rsa-verify
-py3versions
-pybuild
-pyclean
-pycompile
-pydoc
-pydoc2.7
-pydoc3
-pydoc3.4
-pydoc3.5
-pygettext
-pygettext2.7
-pygettext3
-pygettext3.4
-pygettext3.5
-python
-python2
-python2.7
-python2.7-config
-python2-config
-python2-pbr
-python3
-python3.4
-python3.4-config
-python3.4m
-python3.4m-config
-python3.5
-python3.5-config
-python3.5m
-python3.5m-config
-python3-config
-python3-jsondiff
-python3-jsonpatch
-python3m
-python3m-config
-python-config
-pythontex
-pythontex3
-pyversions
-dh_python2                                        
-dh_python3                                       
-dh_python3-ply                                   
-dh_python-ply pdb pdb2.7 pdb3 pdb3.4 pdb3.5
+# Convert sam to bam format to save space
+for infile in *.sam
+do
+samtools view -bS ${infile} > ${infile}.bam
+done
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-sudo apt-get update && \
-sudo apt-get -y install screen git curl gcc make g++ python-dev unzip \
-        default-jre pkg-config libncurses5-dev r-base-core r-cran-gplots \
-        python-matplotlib python-pip python-virtualenv sysstat fastqc \
-        trimmomatic bowtie samtools blast2 wget bowtie2 openjdk-8-jre \
-        hmmer ruby
-
-
-normalize-by-median.py --ksize 20 --cutoff 20 -M 15e9 --savegraph normC20k20.ct *qc.fq.gz
-
-# Filter erroneous kmers
-filter-abund.py -V -Z 18 normC20k20.ct *.keep
