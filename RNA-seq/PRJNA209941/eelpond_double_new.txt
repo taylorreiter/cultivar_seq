@@ -251,10 +251,67 @@ ln -s /mnt/work/hisat/unaligned/*qc.fq.gz .
 for infile in *qc.fq.gz
 do
 kraken --preload --db ~/minikraken_20141208 --fastq-input --gzip-compressed ${infile} > ${infile}_kraken.out
-
-# see file kraken.out
+done
 
 for infile in *qc.fq.gz
 do
 kraken-translate --db ~/minikraken_20141208 ${infile}_kraken.out > ${infile}_labels
 done
+
+
+mkdir minikraken_run
+for infile in *kraken.out; do mv $infile minikraken_run/$infile; done
+for infile in *labels; do mv $infile minikraken_run/$infile; done
+
+# download fungi
+# per http://www.opiniomics.org/building-a-kraken-database-with-new-ftp-structure-and-no-gi-numbers/
+
+git clone https://github.com/mw55309/Kraken_db_install_scripts.git
+mkdir downloads
+cd downloads
+perl ~/Kraken_db_install_scripts/download_fungi.pl
+perl ~/Kraken_db_install_scripts/download_bacteria.pl
+perl ~/Kraken_db_install_scripts/download_archaea.pl
+perl ~/Kraken_db_install_scripts/download_protozoa.pl
+perl ~/Kraken_db_install_scripts/download_viral.pl
+
+kraken-build --download-taxonomy --db kraken_fungi_080416
+kraken-build --download-taxonomy --db kraken_bvfpa_080416
+
+# for each branch add all .fna to the directory (here, only fungi, but loop would incorporate the other possibilities)
+for dir in fungi; do
+        for fna in `ls $dir/*.fna`; do
+                kraken-build --add-to-library $fna --db kraken_fungi_080416
+        done
+done
+
+for dir in fungi protozoa archaea viral bacteria; do
+        for fna in `ls $dir/*.fna`; do
+                kraken-build --add-to-library $fna --db kraken_bvfpa_080416
+        done
+done
+
+# install dependency
+brew install jellyfish-1.1
+brew link --force jellyfish-1.1
+
+# build database (upgrade to mn m4.2xlarge with 32 gb ram)
+kraken-build --build --db kraken_fungi_080416
+
+kraken-build --build --db kraken_bvfpa_080416
+
+#
+
+Creating k-mer set (step 1 of 6)...
+Found jellyfish v1.1.11
+Hash size not specified, using '161607432'
+...
+
+# run on unaligned fastq reads
+cd /mnt/work/hisat/unaligned
+for infile in *qc.fq.gz
+do
+kraken --preload --db ~/Kraken_db_install_scripts/downloads/kraken_fungi_080416 --fastq-input --gzip-compressed ${infile} > ${infile}_kraken.out
+done
+
+
