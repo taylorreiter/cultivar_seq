@@ -1,0 +1,18 @@
+# Install KRAKEN
+# http://angus.readthedocs.io/en/2016/kraken_species_identification.html
+cd ~
+sudo apt-get -y update
+sudo apt-get -y install bioperl ruby build-essential curl git python-setuptools wget
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
+export PATH="$HOME/.linuxbrew/bin:$PATH"
+export PATH="$HOME/.linuxbrew/bin:$PATH"
+brew tap homebrew/science
+brew install kraken
+
+# Install miniKRAKEN database
+# MiniKraken DB (2.7 GB): A pre-built 4 GB database constructed from complete bacterial, archaeal, and viral genomes in RefSeq (as of Dec. 8, 2014). 
+# This can be used by users without the computational resources needed to build a Kraken database.
+cd $HOME
+curl https://ccb.jhu.edu/software/kraken/dl/minikraken.tgz | tar zxvf -
+export KRAKEN_DEFAULT_DB=$HOME/minikraken_20141208
+export KRAKEN_NUM_THREADS=$(getconf _NPROCESSORS_ONLN)
