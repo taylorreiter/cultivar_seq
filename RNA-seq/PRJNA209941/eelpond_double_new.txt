@@ -326,3 +326,5 @@ mkdir kaijudb_e
 cd kaijudb_e
 ~/kaiju/bin/makeDB.sh -e
 
+gunzip unaligned_SRR926282qc.fq.gz
+~/kaiju/bin/kaiju -t /mnt/work/kaijudb_e/nodes.dmp -f /mnt/work/kaijudb_e/kaiju_db.fmi -i /mnt/work/hisat/unaligned/unaligned_SRR926282qc.fq 
