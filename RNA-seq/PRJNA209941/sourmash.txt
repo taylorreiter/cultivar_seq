@@ -23,6 +23,8 @@ sudo apt-get -y install screen git curl gcc make g++ python-dev unzip \
 # Install khmer        
 pip install khmer
 
+# check that trim-low-abund.py is functional
+
 # Install sourmash
 pip install sourmash
 
@@ -31,7 +33,9 @@ mkdir sourmash_SBTs
 wget http://spacegraphcats.ucdavis.edu.s3.amazonaws.com/microbe-sbt-k21-2016-11-27.tar.gz
 wget http://spacegraphcats.ucdavis.edu.s3.amazonaws.com/microbe-sbt-k31-2016-11-27.tar.gz
 wget http://spacegraphcats.ucdavis.edu.s3.amazonaws.com/microbe-sbt-k51-2016-11-27.tar.gz
-
+tar -xzvf microbe-sbt-k21-2016-11-27.tar.gz
+tar -xzvf microbe-sbt-k31-2016-11-27.tar.gz
+tar -xzvf microbe-sbt-k51-2016-11-27.tar.gz
 
 # mount the directory
 lsblk
