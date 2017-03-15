@@ -14,5 +14,23 @@
 
 # Commence!
 
+sudo apt-get update && \
+sudo apt-get -y install screen git curl gcc make g++ python-dev unzip \
+        default-jre pkg-config libncurses5-dev r-base-core r-cran-gplots \
+        python-matplotlib python-pip python-virtualenv sysstat fastqc \
+        trimmomatic bowtie samtools blast2 wget bowtie2 openjdk-8-jre \
+        hmmer ruby
+        
+# Install khmer        
+cd ~/
+pip install -U setuptools
+git clone --branch v2.0 https://github.com/dib-lab/khmer.git
+cd khmer
+make install
+
+# Install sourmash
 pip install sourmash
+
+# Install 
+wget -O http://spacegraphcats.ucdavis.edu.s3.amazonaws.com/microbe-sbt-k21-2016-11-27.tar.gz
     
