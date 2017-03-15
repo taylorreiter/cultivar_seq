@@ -32,5 +32,12 @@ make install
 pip install sourmash
 
 # Install 
-wget -O http://spacegraphcats.ucdavis.edu.s3.amazonaws.com/microbe-sbt-k21-2016-11-27.tar.gz
+mkdir sourmash_SBTs
+wget http://spacegraphcats.ucdavis.edu.s3.amazonaws.com/microbe-sbt-k21-2016-11-27.tar.gz
+wget http://spacegraphcats.ucdavis.edu.s3.amazonaws.com/microbe-sbt-k31-2016-11-27.tar.gz
+wget http://spacegraphcats.ucdavis.edu.s3.amazonaws.com/microbe-sbt-k51-2016-11-27.tar.gz
+
+# mount the directory
+
+lsblk
     
