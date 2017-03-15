@@ -4,7 +4,6 @@
 # Actual file containing the SBT signatures
 # http://spacegraphcats.ucdavis.edu.s3.amazonaws.com/2017-01-18-microbial-wgs-sigs.tar.gz
 
-
 # Outline
     # Unmount AWS instance with data. 
     # Create new AWS instance. 
@@ -22,11 +21,7 @@ sudo apt-get -y install screen git curl gcc make g++ python-dev unzip \
         hmmer ruby
         
 # Install khmer        
-cd ~/
-pip install -U setuptools
-git clone --branch v2.0 https://github.com/dib-lab/khmer.git
-cd khmer
-make install
+pip install khmer
 
 # Install sourmash
 pip install sourmash
@@ -37,7 +32,14 @@ wget http://spacegraphcats.ucdavis.edu.s3.amazonaws.com/microbe-sbt-k21-2016-11-
 wget http://spacegraphcats.ucdavis.edu.s3.amazonaws.com/microbe-sbt-k31-2016-11-27.tar.gz
 wget http://spacegraphcats.ucdavis.edu.s3.amazonaws.com/microbe-sbt-k51-2016-11-27.tar.gz
 
-# mount the directory
 
+# mount the directory
 lsblk
+sudo mount /dev/xvdf1 /mnt/
+
+# Trim low abundance k-mers using khmer
+trim-low-abund.py -k 21 -C 2 --variable-coverage --gzip /mnt/work/hisat/unaligned/*.fastq.gz
+
+# Compute signatures on fastq files
+
     
