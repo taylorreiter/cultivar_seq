@@ -33,19 +33,42 @@ nosetests khmer --attr '!known_failing,!huge'
 
 # check that trim-low-abund.py is functional
 
-# Install sourmash
-cd ~
-python2.7 -m virtualenv sourmashEnv
-source sourmashEnv/bin/activate
-pip install sourmash
-source sourmashEnv/bin/activate
 
+# cd ~
+# python2.7 -m virtualenv sourmashEnv
+# source sourmashEnv/bin/activate
+# pip install sourmash
+# source sourmashEnv/bin/activate
+
+# Install sourmash
 cd ~
 python2.7 -m virtualenv sourmashEnv2
 source sourmashEnv2/bin/activate
 git clone https://github.com/dib-lab/sourmash.git
 cd sourmash
 make install
+source sourmashEnv2/bin/activate
+
+# Install khmer inside sourmashEnv2
+# source sourmashEnv2/bin/activate
+# pip2 install khmer
+# source sourmashEnv2/bin/activate
+# nosetests khmer --attr '!known_failing,!huge'
+# pip2 install khmer[tests]
+# nosetests khmer --attr '!known_failing,!huge'
+# Just kidding...this version of khmer is not new enough
+pip uninstall khmer
+
+# Install from source code
+cd ~/sourmashEvn2
+pip install -U setuptools
+git clone https://github.com/dib-lab/khmer.git
+cd khmer
+make install
+
+# install numpy
+deactivate
+pip install numpy 
 source sourmashEnv2/bin/activate
 
 # Install 
@@ -77,6 +100,14 @@ for infile in *abundtrim
         sourmash compute -k 21,31,51 -o sourmash_compute_sigs_${infile} --track-abundance --scaled 10000 ${infile}
 done
 
+# Rename files
+mv sourmash_compute_sigs_unaligned_SRR926282qc.fq.gz.abundtrim unaligned_SRR926282qc.fq.sig
+mv sourmash_compute_sigs_unaligned_SRR926283qc.fq.gz.abundtrim unaligned_SRR926283qc.fq.sig
+mv sourmash_compute_sigs_unaligned_SRR926284qc.fq.gz.abundtrim unaligned_SRR926284qc.fq.sig
+mv sourmash_compute_sigs_unaligned_SRR926285qc.fq.gz.abundtrim unaligned_SRR926285qc.fq.sig
+mv sourmash_compute_sigs_unaligned_SRR926286qc.fq.gz.abundtrim unaligned_SRR926286qc.fq.sig
+mv sourmash_compute_sigs_unaligned_SRR926287qc.fq.gz.abundtrim unaligned_SRR926287qc.fq.sig
+
 # Run SBT gather on sourmash signatures from fastq files, against signature databases downloaded above
 for k_size in 21 31 51
  do
@@ -90,12 +121,29 @@ for k_size in 21 31 51
 done
 
 # Alternate:
-for k_size in 21 31 51
- do
-   for infile in sourmash_compute_sigs*
-     do
-        sourmash sbt_gather -k ${k_size} ${infile} /path/to/sig/file/one --threshold=0.001 -o k${k_size}_<what_sig_file_used>_${infile}.txt
-   done 
+mkdir sourmash_sbt_gather
+cd sourmash_sbt_gather
+ln -s ../sourmash_signatures/*sig .
+
+for infile in *.sig
+  do
+    sourmash sbt_gather -k 31 ~/sourmash_SBTs/microbes.k31.sbt.json ${infile} --threshold=0.001 -o microbesk31_${infile}.txt
+ done
+ 
+for infile in *.sig
+  do
+    sourmash sbt_gather -k 51 ~/sourmash_SBTs/microbes.k51.sbt.json ${infile} --threshold=0.001 -o microbesk51_${infile}.txt
  done
 
-    
+for infile in *.sig
+  do
+    sourmash sbt_gather -k 21 ~/sourmash_SBTs/microbes.sbt.json ${infile} --threshold=0.001 -o microbesk21_${infile}.txt
+ done
+ 
+ 
+ # Install and load dropbox
+ deactivate # exit sourmashEnv2
+ cd ~
+ wget -O dropbox.tar.gz "http://www.dropbox.com/download/?plat=lnx.x86_64"
+ tar -xvzf dropbox.tar.gz
+ ~/.dropbox-dist/dropboxd &
