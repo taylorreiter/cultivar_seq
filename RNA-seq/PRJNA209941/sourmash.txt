@@ -20,13 +20,33 @@ sudo apt-get -y install screen git curl gcc make g++ python-dev unzip \
         trimmomatic bowtie samtools blast2 wget bowtie2 openjdk-8-jre \
         hmmer ruby
         
-# Install khmer        
-pip install khmer
+# Install khmer 
+# NB must source the environment to use khmer
+cd ~
+python2.7 -m virtualenv khmerEnv
+source khmerEnv/bin/activate
+pip2 install khmer
+source khmerEnv/bin/activate
+nosetests khmer --attr '!known_failing,!huge'
+pip2 install khmer[tests]
+nosetests khmer --attr '!known_failing,!huge'
 
 # check that trim-low-abund.py is functional
 
 # Install sourmash
+cd ~
+python2.7 -m virtualenv sourmashEnv
+source sourmashEnv/bin/activate
 pip install sourmash
+source sourmashEnv/bin/activate
+
+cd ~
+python2.7 -m virtualenv sourmashEnv2
+source sourmashEnv2/bin/activate
+git clone https://github.com/dib-lab/sourmash.git
+cd sourmash
+make install
+source sourmashEnv2/bin/activate
 
 # Install 
 mkdir sourmash_SBTs
@@ -42,8 +62,20 @@ lsblk
 sudo mount /dev/xvdf1 /mnt/
 
 # Trim low abundance k-mers using khmer
-trim-low-abund.py -k 21 -C 2 --variable-coverage --gzip /mnt/work/hisat/unaligned/*.fastq.gz
+# https://khmer.readthedocs.io/en/v2.0/user/scripts.html
+mkdir trim-low-abund
+cd trim-low-abund
+ln -s ../*qc.fq.gz .
+trim-low-abund.py -k 21 -C 3 -M 3e10 --variable-coverage --gzip *qc.fq.gz
 
 # Compute signatures on fastq files
+mkdir sourmash_signatures
+cd sourmash_signatures
+ln -s ../trim-low-abund/*abundtrim .
+for infile in *abundtrim
+    do
+        sourmash compute -k 21,31,51 -o sourmash_compute_sigs_${infile} --track-abundance --scaled 10000 ${infile}
+done
+
 
     
