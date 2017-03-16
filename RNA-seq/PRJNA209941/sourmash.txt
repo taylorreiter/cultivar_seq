@@ -77,5 +77,25 @@ for infile in *abundtrim
         sourmash compute -k 21,31,51 -o sourmash_compute_sigs_${infile} --track-abundance --scaled 10000 ${infile}
 done
 
+# Run SBT gather on sourmash signatures from fastq files, against signature databases downloaded above
+for k_size in 21 31 51
+ do
+   for sig in <path to sig files>
+     do
+        for infile in sourmash_compute_sigs*
+          do
+            sourmash sbt_gather -k ${k_size} ${infile} ${sig} --threshold=0.001 -o k${k_size}_${sig}_${infile}.txt
+          done 
+      done
+done
+
+# Alternate:
+for k_size in 21 31 51
+ do
+   for infile in sourmash_compute_sigs*
+     do
+        sourmash sbt_gather -k ${k_size} ${infile} /path/to/sig/file/one --threshold=0.001 -o k${k_size}_<what_sig_file_used>_${infile}.txt
+   done 
+ done
 
     
