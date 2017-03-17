@@ -1,3 +1,5 @@
+NB met files are in the hisat directory and provide more robust alignment statistics. 
+
 31134756 reads; of these:
   31134756 (100.00%) were unpaired; of these:
     4779963 (15.35%) aligned 0 times
