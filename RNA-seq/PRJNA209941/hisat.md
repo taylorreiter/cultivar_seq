@@ -77,7 +77,7 @@ convert gff to gtf
 oe6_geneid.gff3
 gt gff3_to_gtf /mnt/work/hisat/genes/oe6_geneid.gff3 > /mnt/work/hisat/genes/oe6_geneid.gtf
 ```
-######Note to self: some of these files may be in /mnt/work/star/genes
+###### Note to self: some of these files may be in /mnt/work/star/genes
 
 Prep for indexing
 ```
