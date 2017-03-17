@@ -1,3 +1,4 @@
+# This file is marked as depracated because it is an old version of the eelpond protocol. It is maintained in this directory is case there is some niblet of code that is important in this document that accidentally did not make it into the eelpond directory.
 # ubuntu/images/hvm/ubuntu-wily-15.10-amd64-server-20160222 (ami-05384865)
 
 # ssh into IP address 
