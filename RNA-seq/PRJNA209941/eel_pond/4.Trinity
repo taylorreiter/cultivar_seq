@@ -1,0 +1,13 @@
+# cd into directory made during practice run
+cd /mnt/work/assembly
+
+# concatenate all files into a single file
+
+gunzip -c ../diginorm/*qc.keep.abundfilt.fq.gz > cultivars.fq
+
+
+# Run Trinity
+Trinity --single cultivars.fq --seqType fq --max_memory 62G --CPU 13 
+
+# Failed, upgraded to 200 gb of hard drive space, ran again
+# Complete...Yay!!
