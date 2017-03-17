@@ -1,7 +1,11 @@
 In my further attempt to ID things that are not olive in these samples, I am trying sourmash SBT_gather "using microbes.sbt.json". 
+
 CSV listing what is in the SBT (NB SBT stands for sequence bloom tree)
+
 https://s3-us-west-1.amazonaws.com/spacegraphcats.ucdavis.edu/sra-bacteria-wgs-360k.categories.csv.gz
+
 Actual file containing the SBT signatures
+
 http://spacegraphcats.ucdavis.edu.s3.amazonaws.com/2017-01-18-microbial-wgs-sigs.tar.gz
 
 Outline
