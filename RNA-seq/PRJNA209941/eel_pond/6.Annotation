@@ -1,0 +1,122 @@
+# Try with Prokka
+# https://2016-metagenomics-sio.readthedocs.io/en/latest/prokka_tutorial.html
+cd ~/
+wget http://www.vicbioinformatics.com/prokka-1.11.tar.gz
+tar -xvzf prokka-1.11.tar.gz
+
+# dependencies
+sudo apt-get install bioperl libdatetime-perl libxml-simple-perl libdigest-md5-perl
+sudo perl -MCPAN -e shell
+sudo perl -MCPAN -e 'install "XML::Simple"'
+
+export PATH=$PATH:$HOME/prokka-1.11/bin
+prokka --setupdb
+
+# Run prokka
+# --centre and --locustag are a work around. See https://github.com/tseemann/prokka/issues/135
+prokka Trinity.fasta --metagenome --cpus 3 --centre C --locustag L
+        
+        # Defaults:
+        # --metagenome      Improve gene predictions for highly fragmented genomes (default OFF)
+        # --evalue [n.n]    Similarity e-value cut-off (default '1e-06')
+
+# Annotaiton somewhat successful--skip for now, move on to Salmon
+cd ${PROJECT}
+mkdir -p quant
+cd quant
+ln -s ${PROJECT}/assembly/trinity_out_dir/Trinity.fasta .
+
+# Index transcriptome
+salmon index --index nema --transcripts Trinity.fasta --type quasi
+
+# Link to qc'd reads
+ln -s ../quality/*qc.fq.gz .
+  
+# Run Salmon
+for file in *qc.fq.gz
+do
+  salmon quant -i nema -p 2 -l IU -r <(gunzip -c ${file}) -o ${file}quant
+done
+
+##Dammit
+# Run dammit
+
+# Install things
+cd ~
+sudo apt-get -y install ruby hmmer unzip \
+    infernal ncbi-blast+ liburi-escape-xs-perl emboss liburi-perl \
+    build-essential libsm6 libxrender1 libfontconfig1 \
+    parallel libx11-dev
+sudo gem install crb-blast
+
+# Install proper version of new paralell
+cd
+(wget -O - pi.dk/3 || curl pi.dk/3/ || fetch -o - http://pi.dk/3) | bash
+sudo cp /home/ubuntu/bin/parallel /usr/bin/parallel
+
+# Transdecoder
+cd
+curl -LO https://github.com/TransDecoder/TransDecoder/archive/2.0.1.tar.gz
+tar -xvzf 2.0.1.tar.gz
+cd TransDecoder-2.0.1; make
+export PATH=$HOME/TransDecoder-2.0.1:$PATH
+
+# Last
+cd
+curl -LO http://last.cbrc.jp/last-658.zip
+unzip last-658.zip
+cd last-658
+make
+export PATH=$HOME/last-658/src:$PATH
+export PATH=$HOME/last-658/scripts:$PATH
+
+# Install busco
+cd
+curl -LO http://busco.ezlab.org/v1/files/BUSCO_v1.22.tar.gz
+tar -xvzf BUSCO_v1.22.tar.gz
+chmod +x BUSCO_v1.22/*.py
+export PATH=$HOME/BUSCO_v1.22:$PATH
+cd
+
+# To add to path permenently
+echo 'export PATH=$PATH:$HOME/TransDecoder-2.0.1' >> $HOME/.bashrc
+echo 'export PATH=$PATH:$HOME/last-658/src' >> $HOME/.bashrc
+echo 'export PATH=$HOME/BUSCO_v1.22:$PATH' >> $HOME/.bashrc
+
+
+# Install miniconda
+cd ~
+curl -LO https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh -b
+source ~/.bashrc
+
+# create environment for dammit
+cd ~
+~/miniconda3/bin/conda create -y -n dammit anaconda python=3.5
+source ~/miniconda3/bin/activate dammit
+
+# Install things with python dependencies
+
+# conda install -y --file <(curl https://raw.githubusercontent.com/camillescott/shmlast/master/environment.txt)
+pip install --upgrade pip
+pip install shmlast
+
+# Install matplot lib
+pip install https://pypi.python.org/packages/source/m/matplotlib/matplotlib-1.5.1.tar.gz
+
+# Install dammit from refractor branch 1.0
+sudo pip install -U setuptools
+sudo pip install dammit
+
+# Build databases
+dammit databases --install --busco-group eukaryota
+
+# Make directory for annotations
+cd /mnt/work/hisat/unaligned/
+mkdir -p annotation
+cd annotation
+ln -s /mnt/work/hisat/unaligned/assembly/trinity_out_dir/Trinity.fasta .
+
+# run dammit
+dammit annotate Trinity.fasta --busco-group eukaryota --n_threads 2 | tee dammit_Trinity_outfile.log
+source deactivate dammit
