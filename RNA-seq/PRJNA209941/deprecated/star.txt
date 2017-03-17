@@ -1,3 +1,7 @@
+# Depractated. Star failed twice, likely due to memory when actually running it. Invested the upfront memory to index in hisat, and then used less memory to do alignment in hisat. 
+
+# The star index file can still be found on the volume (as of 3/17/17)
+
 # run star...less RAM to index, accepts gff3 files as annotation. 
 # Olive genome stats
 
