@@ -1,0 +1,52 @@
+Build Illumina adapter file
+```
+cd ~/projects/eelpond
+nano Illumina-adaptors.fa
+```
+
+see file that was made:
+
+https://github.com/taylorreiter/cultivar_seq/blob/master/RNA-seq/Illumina-adaptors.fa
+
+
+navigate to quality directory
+```
+cd /mnt/work/quality
+```
+
+link data to new workspace
+```
+ln -s ../cultivars/*.fastq.gz .
+```
+
+check to make sure it worked
+```
+printf "I see $(ls -1 *.fastq.gz | wc -l) files here.\n"
+```
+
+Move adapter file
+```
+mv /mnt/work/eelpond/Illumina-adaptors.fa Illumina-adaptors.fa
+```
+
+#### Trimming!
+
+Skip the file that was already trimmed in the test run:
+```
+for filename in SRR926282.fastq.gz SRR926283.fastq.gz  SRR926285.fastq.gz  SRR926287.fastq.gz SRR926284.fastq.gz  SRR926286.fastq.gz
+do
+     # first, make the base by removing fastq.gz
+     base=$(basename $filename .fastq.gz)
+     echo $base
+```
+
+finally, run Trimmomatic
+```
+     TrimmomaticSE ${base}.fastq.gz ${base}qc.fq.gz ILLUMINACLIP:Illumina-adaptors.fa:2:40:15 LEADING:2 TRAILING:2 SLIDINGWINDOW:4:2 MINLEN:25
+done
+```
+
+make it hard to mess files up
+```
+chmod u-w ${PROJECT}/quality/*qc.fq.gz
+```
