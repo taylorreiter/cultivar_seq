@@ -44,12 +44,48 @@ Test suceeded, rename file to match the output of the loop
 mv kaiju_e_test kaijudb_e_unaligned_SRR926282qc.fq.gz.out
 ```
 
+Remove dummy files used to build kaijudb
+```
+rm -rf ...
+```
+
 Loop for kaiju
 ```
 for infile in *gz
     do
         ~/kaiju/bin/kaiju -t ~/kaijudb_e/kaijudb_e/nodes.dmp -f ~/kaijudb_e/kaijudb_e/kaiju_db_nr_euk.fmi -i <(gunzip -c ${infile})> -v -o kaijudb_e_${infile}.out
 done
+```
+
+Add taxon names to kaijudv_e_out file
+```
+addTaxonNames -t nodes.dmp -n names.dmp -i kaiju.out -o kaiju.names.out
+```
+
+Make kaiju summary report
+```
+kaijuReport -t nodes.dmp -n names.dmp -i kaiju.out -r genus -o kaiju.out.summary
+```
+
+Convert files to be krona compatible
+```
+kaiju2krona -t nodes.dmp -n names.dmp -i kaiju.out -o kaiju.out.krona
+```
+
+Install krona
+```
+wget https://github.com/marbl/Krona/releases/download/v2.7/KronaTools-2.7.tar
+tar xzf KronaTools-2.7.tar.gz
+cd KronaTools-2.7.tar.gz
+./install.pl
+updateTaxonomy.sh
+updateAccessions.sh
+```
+
+
+Run krona on kaiju output
+```
+ktImportText -o kaiju.out.html kaiju.out.krona
 ```
 
 
