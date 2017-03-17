@@ -1,0 +1,38 @@
+# make sure data is in the right place
+set -u
+printf "\nMy QC-trimmed files are in $PROJECT/quality/, and consist of $(ls -1 ${PROJECT}/quality/*qc.fq.gz | wc -l) files\n\n"
+set +u
+
+# digital normalization
+cd ${PROJECT}
+mkdir -p diginorm
+cd diginorm
+ln -s ../quality/*qc.fq.gz .
+
+ normalize-by-median.py --ksize 20 --cutoff 20 -M 15e9 --savegraph normC20k20.ct *qc.fq.gz
+
+# Filter erroneous kmers
+filter-abund.py -V -Z 18 normC20k20.ct *.keep
+ 
+# rename
+for file in *.abundfilt
+do
+  newfile=${file%%.fq.gz.keep.abundfilt}.keep.abundfilt.fq
+  mv ${file} ${newfile}
+  gzip ${newfile}
+done
+
+# Change instance size 
+
+# Scared that files will all be deleted, make a copy
+for infile in *qc.keep.abundfilt.fq.gz; do cp ${infile} ~/backup/${infile}; done 
+
+# upgrade to m4.4xlarge
+# source env
+
+# Reset $PROJECT
+export PROJECT=/mnt/work
+
+set -u
+printf "\nMy diginormed files are in $PROJECT/diginorm/, and consist of $(ls -1 ${PROJECT}/diginorm/*.keep.abundfilt.fq.gz | wc -l) files\n\n"
+set +u
