@@ -307,6 +307,12 @@ do
 kraken --preload --db ~/Kraken_db_install_scripts/downloads/kraken_fungi_080416 --fastq-input --gzip-compressed ${infile} > ${infile}_kraken.out
 done
 
+# translate output files
+for infile in unaligned*
+do
+kraken-translate --db ~/kraken_fungi_080416 ${infile} > ${infile}_labels
+done
+
 # run bvfpa on unaligned fastq reads
 cd /mnt/work/hisat/unaligned/
 for infile in *qc.fq.gz
@@ -321,17 +327,18 @@ cd kaiju/src
 make
 
 # make a database with bacteria, archaea, viruses, and eukaryotes
-# (smaller worked, try larger)
-cd /mnt/work/
+# DB made on 3/16/17
+cd ~
 mkdir kaijudb_e
 cd kaijudb_e
 ~/kaiju/bin/makeDB.sh -e
 # This requires a rediculous amount of free space on the volume.
 
 gunzip unaligned_SRR926282qc.fq.gz
-~/kaiju/bin/kaiju -t ~/kaijudb_e/kaijudb_e/nodes.dmp -f ~/kaijudb_e/kaijudb_e/kaiju_db.fmi -i /mnt/work/hisat/unaligned/unaligned_SRR926282qc.fq 
+~/kaiju/bin/kaiju -t ~/kaijudb_e/kaijudb_e/nodes.dmp -f ~/kaijudb_e/kaijudb_e/kaiju_db_nr_euk.fmi -i /mnt/work/hisat/unaligned/unaligned_SRR926282qc.fq -v -o kaiju_e_test
 
 #.fmi file empty. Try smaller database first and see how it performs.
+# (NB euk .fmi file was empty because there was not enough available space on the harddrive. Allocation increased, began working)
 cd /mnt/work
 mkdir kaijudb_p
 cd kaijudb_p
@@ -339,5 +346,3 @@ cd kaijudb_p
 
 ~/kaiju/bin/kaiju -t /mnt/work/kaijudb_p/nodes.dmp -f /mnt/work/kaijudb_p/kaiju_db.fmi -i /mnt/work/hisat/unaligned/unaligned_SRR926282qc.fq 
 
-http://kaiju.binf.ku.dk/database/kaiju_index_nr_euk.tgz
-http://kaiju.binf.ku.dk/database/kaiju_index_pg.tgz
