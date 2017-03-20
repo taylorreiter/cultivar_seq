@@ -1,0 +1,2 @@
+Composition:
+0.29 NZ_LN832404.1 Escherichia coli K-12 genome assembly EcoliK12AG100, chromosome : I

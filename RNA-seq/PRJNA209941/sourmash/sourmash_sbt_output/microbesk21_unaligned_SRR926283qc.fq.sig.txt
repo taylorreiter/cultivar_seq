@@ -1,0 +1,2 @@
+Composition:
+0.14 NZ_CP014272.1 Escherichia coli K-12 strain C3026, complete genome

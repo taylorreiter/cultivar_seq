@@ -1,0 +1,2 @@
+Composition:
+0.22 NZ_CP011495.1 Escherichia coli strain NCM3722, complete genome
