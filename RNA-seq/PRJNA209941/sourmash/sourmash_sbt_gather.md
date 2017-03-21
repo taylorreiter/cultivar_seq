@@ -106,6 +106,15 @@ for infile in *abundtrim
 done
 ```
 
+Compute signatures on fastq files again, but this time use a lower scaled to facilitate flexible scaling in later analyses.
+```
+cd sourmash_signatures
+for infile in *abundtrim
+    do
+        sourmash compute -k 21,31,51 -o sourmash_compute_sigs_s500${infile} --track-abundance --scaled 500 ${infile}
+done
+```
+
 Rename files
 ```
 mv sourmash_compute_sigs_unaligned_SRR926282qc.fq.gz.abundtrim unaligned_SRR926282qc.fq.sig
@@ -114,6 +123,16 @@ mv sourmash_compute_sigs_unaligned_SRR926284qc.fq.gz.abundtrim unaligned_SRR9262
 mv sourmash_compute_sigs_unaligned_SRR926285qc.fq.gz.abundtrim unaligned_SRR926285qc.fq.sig
 mv sourmash_compute_sigs_unaligned_SRR926286qc.fq.gz.abundtrim unaligned_SRR926286qc.fq.sig
 mv sourmash_compute_sigs_unaligned_SRR926287qc.fq.gz.abundtrim unaligned_SRR926287qc.fq.sig
+```
+
+Rename the other files
+```
+mv sourmash_compute_sigs_s500unaligned_SRR926282qc.fq.gz.abundtrim unaligned_SRR926282_s500_qc.fq.sig
+mv sourmash_compute_sigs_s500unaligned_SRR926283qc.fq.gz.abundtrim unaligned_SRR926283_s500_qc.fq.sig
+mv sourmash_compute_sigs_s500unaligned_SRR926284qc.fq.gz.abundtrim unaligned_SRR926284_s500_qc.fq.sig
+mv sourmash_compute_sigs_s500unaligned_SRR926285qc.fq.gz.abundtrim unaligned_SRR926285_s500_qc.fq.sig
+mv sourmash_compute_sigs_s500unaligned_SRR926286qc.fq.gz.abundtrim unaligned_SRR926286_s500_qc.fq.sig
+mv sourmash_compute_sigs_s500unaligned_SRR926287qc.fq.gz.abundtrim unaligned_SRR926287_s500_qc.fq.sig
 ```
 
 Run SBT gather on sourmash signatures from fastq files, against signature databases downloaded above
@@ -129,6 +148,7 @@ for k_size in 21 31 51
       done
 done
 ```
+
 
 Alternate:
 ```
@@ -154,7 +174,39 @@ for infile in *.sig
     sourmash sbt_gather -k 21 ~/sourmash_SBTs/microbes.sbt.json ${infile} --threshold=0.001 -o microbesk21_${infile}.txt
  done
  ```
+And then redo because `--scaled` was changed to 500
+```
+mkdir sourmash_sbt_gather
+cd sourmash_sbt_gather
+ln -s ../sourmash_signatures/*s500_qc.fq.sig .
+```
+```
+for infile in *s500_qc.fq.sig
+  do
+    sourmash sbt_gather -k 31 ~/sourmash_SBTs/microbes.k31.sbt.json ${infile} --threshold=0.001 -o microbesk31_${infile}.txt
+ done
+ ```
  
+ 
+ 
+ 
+ 
+ 
+ Not ran yet:
+ 
+ (takes a long time to run, perhaps not necessary at the moment)
+ ```
+for infile in *.sig
+  do
+    sourmash sbt_gather -k 51 ~/sourmash_SBTs/microbes.k51.sbt.json ${infile} --threshold=0.001 -o microbesk51_${infile}.txt
+ done
+```
+```
+for infile in *.sig
+  do
+    sourmash sbt_gather -k 21 ~/sourmash_SBTs/microbes.sbt.json ${infile} --threshold=0.001 -o microbesk21_${infile}.txt
+ done
+ ```
 Install and load dropbox
 ```
 deactivate # exit sourmashEnv2
