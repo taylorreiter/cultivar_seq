@@ -1,42 +1,33 @@
-# Try with Prokka
-# https://2016-metagenomics-sio.readthedocs.io/en/latest/prokka_tutorial.html
+Annotate the transcriptome
+
+Try with Prokka (https://2016-metagenomics-sio.readthedocs.io/en/latest/prokka_tutorial.html)
+```
 cd ~/
 wget http://www.vicbioinformatics.com/prokka-1.11.tar.gz
 tar -xvzf prokka-1.11.tar.gz
+```
 
-# dependencies
+Install dependencies
+```
 sudo apt-get install bioperl libdatetime-perl libxml-simple-perl libdigest-md5-perl
 sudo perl -MCPAN -e shell
 sudo perl -MCPAN -e 'install "XML::Simple"'
-
+```
+```
 export PATH=$PATH:$HOME/prokka-1.11/bin
 prokka --setupdb
+```
+Run prokka
 
-# Run prokka
-# --centre and --locustag are a work around. See https://github.com/tseemann/prokka/issues/135
+NB --centre and --locustag are a work around. See https://github.com/tseemann/prokka/issues/135
+```
 prokka Trinity.fasta --metagenome --cpus 3 --centre C --locustag L
-        
-        # Defaults:
-        # --metagenome      Improve gene predictions for highly fragmented genomes (default OFF)
-        # --evalue [n.n]    Similarity e-value cut-off (default '1e-06')
+```        
+Defaults:
+1. --metagenome      Improve gene predictions for highly fragmented genomes (default OFF)
+2. --evalue [n.n]    Similarity e-value cut-off (default '1e-06')
 
-# Annotaiton somewhat successful--skip for now, move on to Salmon
-cd ${PROJECT}
-mkdir -p quant
-cd quant
-ln -s ${PROJECT}/assembly/trinity_out_dir/Trinity.fasta .
 
-# Index transcriptome
-salmon index --index nema --transcripts Trinity.fasta --type quasi
-
-# Link to qc'd reads
-ln -s ../quality/*qc.fq.gz .
-  
-# Run Salmon
-for file in *qc.fq.gz
-do
-  salmon quant -i nema -p 2 -l IU -r <(gunzip -c ${file}) -o ${file}quant
-done
 
 ##Dammit
 # Run dammit
