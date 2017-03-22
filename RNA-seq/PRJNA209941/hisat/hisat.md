@@ -132,7 +132,7 @@ cd diginorm
 ln -s ../*fq.gz .
 ```
 
-Note this instance had a python2 and python3 conflict because of poor installation instructions in eelpond protocol. Instance was deleted and software was reinstalled, but some software, such as hisat, was left out. Reinstall as above if needed in the future. 
+Note this instance had a python2 and python3 conflict because of poor installation instructions in eelpond protocol (or, my poor ability to follow them...). Instance was deleted and software was reinstalled, but some software, such as hisat, was left out. Reinstall as above if needed in the future. 
 
 Convert sam to bam format to save space
 ```
