@@ -1,5 +1,6 @@
-# cultivar_seq
-A folder that contains files associated with the reanalysis of publicly available olive leaf RNA-seq data.
+# olive_public_seq
+This folder contains files associated with the reanalysis of publicly available olive leaf RNA-seq data.
+
 
 Data from doi:10.1371/journal.pone.0073674.
 
