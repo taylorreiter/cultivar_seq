@@ -1,0 +1,14 @@
+```
+mkdir /mnt/work/hisat/unaligned/assembly
+cd /mnt/work/hisat/unaligned/assembly
+```
+
+Concatenate all files into a single file
+```
+gunzip -c ../diginorm/*qc.keep.abundfilt.fq.gz > cultivars.fq
+```
+
+Run Trinity
+```
+Trinity --single cultivars.fq --seqType fq --max_memory 62G --CPU 13 
+```
