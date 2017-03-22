@@ -124,14 +124,6 @@ Re-run on last file that terminated because of space problems
 $HOME/hisat_bin/hisat2 -p 3 -x /mnt/work/hisat/index/olive_index -U SRR926287qc.fq -S /mnt/work/hisat/alignments/SRR926287qc.fq.sam --met-file /mnt/work/hisat/alignments/SRR926287qc.fq.met --un-gz /mnt/work/hisat/unaligned/unaligned_SRR926287qc.fq.gz
 ```
 
-Digital normalization of unaligned reads
-```
-cd /mnt/work/hisat/unaligned
-mkdir -p diginorm
-cd diginorm
-ln -s ../*fq.gz .
-```
-
 Note this instance had a python2 and python3 conflict because of poor installation instructions in eelpond protocol (or, my poor ability to follow them...). Instance was deleted and software was reinstalled, but some software, such as hisat, was left out. Reinstall as above if needed in the future. 
 
 Convert sam to bam format to save space
