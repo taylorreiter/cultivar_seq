@@ -117,7 +117,9 @@ Install matplot lib
 pip install https://pypi.python.org/packages/source/m/matplotlib/matplotlib-1.5.1.tar.gz
 ```
 
-Install dammit from refractor branch 1.0
+Install dammit 
+
+*NB* dammit should have been installed from refractor branch 1.0 on github. If used again, uninstall and reinstall proper version.
 ```
 sudo pip install -U setuptools
 sudo pip install dammit
