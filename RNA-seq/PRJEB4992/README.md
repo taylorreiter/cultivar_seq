@@ -14,19 +14,19 @@ Data from unknown. From ENA: Ethephon induced oxidative stress in the olive leaf
 
 Relevant runs:
 
-+ SRR4236909 FAZ2-0
-+ SRR4236910 FAZ2-5
-+ SRR4236911 FAZ3-0
-+ SRR4236912 FAZ3-5
++ SRR4236909 *FAZ2-0*
++ SRR4236910 *FAZ2-5*
++ SRR4236911 *FAZ3-0*
++ SRR4236912 *FAZ3-5*
 
 #### PRJNA260808
 
 Data from Iaria et al. 2017. Leucocarpa varietal and Cassanese varietal.  From ENA: We have chosen to analyze the transcriptome of fruits at selected stages, 100 and 130 days after flowering (DAF), through RNA-seq approaches, to identify the transcripts and their corresponding expression patterns involved in the main phenotypic change in “Leucocarpa” cv, an olive variety characterized by a switch-off in skin colour at full ripeness, and “Cassanese” cv, used as control plant.
 
-+ SRR1574719 Leuc100
-+ SRR1574772 Leuc130
-+ SRR1573503 Cass100 
-+ SRR1574328 Cass130
++ SRR1574719 *Leuc100*
++ SRR1574772 *Leuc130*
++ SRR1573503 *Cass100* 
++ SRR1574328 *Cass130*
 
 House paired-end and single-end data in separate folders to make processing easier. 
 
