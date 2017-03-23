@@ -38,6 +38,7 @@ House paired-end and single-end data in separate folders to make processing easi
 2. Fastqc
 3. Split reads
 4. Trimmomatic
+5. Interleave paired-end sequences
 
 **Single-end Pre-processing**
 
@@ -49,7 +50,6 @@ House paired-end and single-end data in separate folders to make processing easi
 
 **Eel Pond**
 
-5. Interleave paired-end sequences
 6. Digital normalization
 7. Split paired end reads
 8. Concatenate with single-end reads
