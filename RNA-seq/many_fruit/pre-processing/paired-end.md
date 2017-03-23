@@ -29,7 +29,7 @@ done
 
 Split the reads with khmer
 ```
-split-paired-reads.py -1 ERR1346597_R1.fastq.gz -2 ERR1346597_R1.fastq.gz --gzip ERR1346597.fastq.gz
+split-paired-reads.py -1 ERR1346597_R1.fastq.gz -2 ERR1346597_R2.fastq.gz --gzip ERR1346597.fastq.gz
 ```
 
 
