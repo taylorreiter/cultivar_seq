@@ -110,3 +110,7 @@ do
          gzip > $output)
 done
 ```
+Make these sequences read only as well
+```
+chmod u-w *.pe.qc.fq.gz orphans.qc.fq.gz
+```
