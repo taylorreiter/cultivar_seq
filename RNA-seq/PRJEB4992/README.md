@@ -28,13 +28,14 @@ Data from Iaria et al. 2017. Leucocarpa varietal and Cassanese varietal.  From E
 
 House paired-end and single-end data in separate folders to make processing easier. 
 
-Workflow: Pre-processing
+**Workflow: Pre-processing**
+
 1. Dowload fastq file
 2. Fastqc
 3. Split reads
 4. Trimmomatic
 
-Eel Pond
+**Eel Pond**
 
 5. Interleave sequences
 6. Digital normalization
@@ -51,7 +52,7 @@ Eel Pond
     1. https://2016-metagenomics-sio.readthedocs.io/en/latest/circos_tutorial.html#visualizing-gene-coverage-and-orientation
 
  
-HISAT & Unaligned Reads
+**HISAT & Unaligned Reads**
 
 5. Align to olive reference genome with HISAT
     1. Indexed in previous analysis steps
@@ -67,7 +68,7 @@ HISAT & Unaligned Reads
     1. Index new transcriptome from unaligned reads
 12. Circos to visualize gene coverage and orientation 
 
-Sourmash
+**Sourmash**
 
 7. From trimmed low abundance kmer reads from unaligned HISAT reads, compute sourmash signatures at `--scaled 500`
 8. SBT_gather
