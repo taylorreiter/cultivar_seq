@@ -1,3 +1,5 @@
+### Data
+
 #### PRJEB4992
 
 Data from Cruz et al. 2016 olive reference genome paper. One mature olive RNA-seq run, paired-end, 80 million reads. Farga varietal.
@@ -17,7 +19,7 @@ Relevant runs:
 + SRR4236911 FAZ3-0
 + SRR4236912 FAZ3-5
 
-####
+#### PRJNA260808
 
 Data from Iaria et al. 2017. Leucocarpa varietal and Cassanese varietal.  From ENA: We have chosen to analyze the transcriptome of fruits at selected stages, 100 and 130 days after flowering (DAF), through RNA-seq approaches, to identify the transcripts and their corresponding expression patterns involved in the main phenotypic change in “Leucocarpa” cv, an olive variety characterized by a switch-off in skin colour at full ripeness, and “Cassanese” cv, used as control plant.
 
@@ -28,7 +30,9 @@ Data from Iaria et al. 2017. Leucocarpa varietal and Cassanese varietal.  From E
 
 House paired-end and single-end data in separate folders to make processing easier. 
 
-**Workflow: Pre-processing**
+### Workflow: 
+
+**Pre-processing**
 
 1. Dowload fastq file
 2. Fastqc
