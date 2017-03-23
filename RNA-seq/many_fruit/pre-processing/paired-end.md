@@ -17,6 +17,9 @@ Download paired-end fastq. Note that trinity requires some `--defline-seq` magic
 ```
 cd /mnt/work
 mkdir paired
+cd paired
+mkdir raw_data
+cd raw_data
 
 for accession in ERR1346597
 do
@@ -24,12 +27,64 @@ do
 done 
 ```
 
+Split the reads with khmer
+```
+split-paired-reads.py -1 ERR1346597_R1.fastq.gz -2 ERR1346597_R1.fastq.gz --gzip ERR1346597.fastq.gz
+```
+
+
 ### Quality control
 
 ```
-fastqc .
+fastqc *gz
 ```
 
 Trim the reads
+
+Make a directory and link in raw data
 ```
+cd /mnt/work/paired
+mkdir quality
+ln -s ../raw_data/*.fastq.gz .
+```
+Download adapter file
+```
+wget https://github.com/taylorreiter/olive_public_seq/blob/master/RNA-seq/many_fruit/pre-processing/illumina-adapters-PE-SE.fa
+```
+
+Trim
+```
+for filename in *_R1*
+do
+     # first, make the base by removing fastq.gz
+     base=$(basename $filename .fastq.gz)
+     echo $base
+
+     # now, construct the R2 filename by replacing R1 with R2
+     baseR2=${base/_R1./_R2.}
+     echo $baseR2
+
+     # finally, run Trimmomatic
+     TrimmomaticPE ${base}.fastq.gz ${baseR2}.fastq.gz \
+        ${base}.qc.fq.gz s1_se \
+        ${baseR2}.qc.fq.gz s2_se \
+        ILLUMINACLIP:illumina-adapters-PE-SE.fa:2:40:15 \
+        LEADING:2 TRAILING:2 \
+        SLIDINGWINDOW:4:2 \
+        MINLEN:25
+
+     # save the orphans
+     gzip -9c s1_se s2_se >> orphans.qc.fq.gz
+     rm -f s1_se s2_se
+done
+```
+
+Re-run FastQC
+```
+fastqc *.gz
+```
+
+Make trimmed reads read-only
+```
+chmod u-w /mnt/work/paired/quality/*.qc.fq.gz
 ```
