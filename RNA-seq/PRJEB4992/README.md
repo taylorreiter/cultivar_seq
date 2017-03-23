@@ -30,29 +30,38 @@ Data from Iaria et al. 2017. Leucocarpa varietal and Cassanese varietal.  From E
 
 House paired-end and single-end data in separate folders to make processing easier. 
 
-### Workflow: 
+### Workflow:  
 
-**Pre-processing**
+**Paired-end Pre-processing**
 
 1. Dowload fastq file
 2. Fastqc
 3. Split reads
 4. Trimmomatic
 
+**Single-end Pre-processing**
+
+1. Download fastq files
+2. fastqc
+3. multiqc
+4. Trimmomatic
+5. ... meet up with eelpond
+
 **Eel Pond**
 
-5. Interleave sequences
+5. Interleave paired-end sequences
 6. Digital normalization
-7. split reads
-8. Assemble with trinity
-9. Evaluate assembly
+7. Split paired end reads
+8. Concatenate with single-end reads
+9. Assemble with trinity
+10. Evaluate assembly
     1. Transrate
     2. Busco
-10. Annotate transcriptome with dammit
-11. Salmon
-12. Use HISAT to map reads back to transcriptome
+11. Annotate transcriptome with dammit
+12. Salmon
+13. Use HISAT to map reads back to transcriptome
     1. Index Trinity transcriptome
-12. Circos to visualize gene coverage and orientation 
+14. Circos to visualize gene coverage and orientation 
     1. https://2016-metagenomics-sio.readthedocs.io/en/latest/circos_tutorial.html#visualizing-gene-coverage-and-orientation
 
  
