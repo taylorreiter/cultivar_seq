@@ -64,7 +64,7 @@ do
      baseR2=${base/_R1./_R2.}
      echo $baseR2
 
-     # finally, run Trimmomatic
+     # finally, run Trimmomatic 
      TrimmomaticPE ${base}.fastq.gz ${baseR2}.fastq.gz \
         ${base}.qc.fq.gz s1_se \
         ${baseR2}.qc.fq.gz s2_se \
@@ -87,4 +87,26 @@ fastqc *.gz
 Make trimmed reads read-only
 ```
 chmod u-w /mnt/work/paired/quality/*.qc.fq.gz
+```
+
+### Format
+
+Interleave the sequences
+```
+for filename in *_R1*.qc.fq.gz
+do
+     # first, make the base by removing .extract.fastq.gz
+     base=$(basename $filename .qc.fq.gz)
+     echo $base
+
+     # now, construct the R2 filename by replacing R1 with R2
+     baseR2=${base/_R1/_R2}
+     echo $baseR2
+
+     # construct the output filename
+     output=${base/_R1/}.pe.qc.fq.gz
+
+     (interleave-reads.py ${base}.qc.fq.gz ${baseR2}.qc.fq.gz | \
+         gzip > $output)
+done
 ```
