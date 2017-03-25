@@ -15,6 +15,8 @@ Y
 ```
 Download paired-end fastq. Note that trinity requires some `--defline-seq` magic for functional assembly. 
 ```
+cd /mnt/
+mkdir work
 cd /mnt/work
 mkdir paired
 cd paired
