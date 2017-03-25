@@ -4,11 +4,12 @@ If not already installed, install the SRA toolkit and disable the cache.
 
 ```
 wget http://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.8.1-3/sratoolkit.2.8.1-3-ubuntu64.tar.gz
-tar -xzf sratoolkit.current-ubuntu64.tar.gz
-export PATH=$PATH:/directory/sratoolkit.2.8.1-3-ubuntu64/bin
+tar -xzf sratoolkit.2.8.1-3-ubuntu64.tar.gz
+export PATH=$PATH:~/sratoolkit.2.8.1-3-ubuntu64/bin
 ```
 
 ```
+cd ~/sratoolkit.2.8.1-3-ubuntu64/bin
 ./vdb-config --interactive-mode 'textual'
 6
 Y 
