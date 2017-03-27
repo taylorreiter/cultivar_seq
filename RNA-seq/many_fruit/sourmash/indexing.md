@@ -1,0 +1,28 @@
+
+Download SBT signatures for microbes
+
+CSV for microbes in sequence bloom tree: https://s3-us-west-1.amazonaws.com/spacegraphcats.ucdavis.edu/sra-bacteria-wgs-360k.categories.csv.gz
+```
+mkdir sourmash_SBTs
+wget http://spacegraphcats.ucdavis.edu.s3.amazonaws.com/microbe-sbt-k21-2016-11-27.tar.gz
+wget http://spacegraphcats.ucdavis.edu.s3.amazonaws.com/microbe-sbt-k31-2016-11-27.tar.gz
+wget http://spacegraphcats.ucdavis.edu.s3.amazonaws.com/microbe-sbt-k51-2016-11-27.tar.gz
+tar -xzvf microbe-sbt-k21-2016-11-27.tar.gz
+tar -xzvf microbe-sbt-k31-2016-11-27.tar.gz
+tar -xzvf microbe-sbt-k51-2016-11-27.tar.gz
+```
+
+Raw fungal genomes were collected by Luiz Irber. 
+
+See: https://github.com/luizirber/2017-jgi-download
+
+Download raw fungal genomes from Luiz
+```
+wget http://work.datasounds.org/microbial/fungi.tar.gz
+tar -xzvf fungi.tar.gz
+```
+
+Index fungal genomes
+```
+sourmash sbt_index 
+```
