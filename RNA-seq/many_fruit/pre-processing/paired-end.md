@@ -26,7 +26,7 @@ cd raw_data
 
 for accession in ERR1346597
 do
-~/sratoolkit.2.8.1-3-ubuntu64/bin/fastq-dump.2.8.1-3 --defline-seq '@$sn[_$rn]/$ri' ${accession} --gzip
+~/sratoolkit.2.8.1-3-ubuntu64/bin/fastq-dump.2.8.1-3 --defline-seq '@$sn[_$rn]/$ri' --split-files ${accession} --gzip 
 done 
 ```
 
