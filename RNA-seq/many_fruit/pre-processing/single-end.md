@@ -58,9 +58,21 @@ do
      TrimmomaticSE ${base}.fastq.gz ${base}qc.fq.gz ILLUMINACLIP:illumina-adapters-PE-SE.fa:2:40:15 LEADING:2 TRAILING:2 SLIDINGWINDOW:4:2 MINLEN:25
 done
 ```
+Run fastqc again
+```
+fastqc *qc.fq.gz
+```
+Link dropbox and export files for viewing
+
+http://ged.msu.edu/angus/tutorials-2011/installing-dropbox.html
+```
+~/.dropbox-dist/dropboxd &
+```
 Make trimmed files read only
 ```
-chmod u-w ${PROJECT}/quality/*qc.fq.gz
+chmod u-w /mnt/work/single/quality/*qc.fq.gz
 ```
 
 Consider deleting raw data. 
+
+
