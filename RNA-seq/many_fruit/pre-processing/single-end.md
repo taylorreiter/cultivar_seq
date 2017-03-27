@@ -37,6 +37,7 @@ done
 ```
 cd /mnt/work/single
 mkdir quality
+cd quality
 ln -s ../raw_data/*.fastq.gz .
 ls
 ```
