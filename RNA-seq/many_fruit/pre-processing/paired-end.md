@@ -30,9 +30,6 @@ do
 done 
 ```
 
-
-
-
 ### Quality control
 
 ```
@@ -55,19 +52,22 @@ wget https://github.com/taylorreiter/olive_public_seq/blob/master/RNA-seq/many_f
 
 Trim
 ```
-for filename in *_R1*
+for filename in *_1*
 do
      # first, make the base by removing fastq.gz
-     base=$(basename $filename .fastq.gz)
+     base=$(basename ${filename} _1.fastq.gz)
      echo $base
-
-     # now, construct the R2 filename by replacing R1 with R2
-     baseR2=${base/_R1./_R2.}
-     echo $baseR2
-
+     
+     # next construct file names
+     baseR1=${base}_1
+     echo ${baseR1}
+     
+     baseR2=${base}_2
+     echo ${baseR2}
+   
      # finally, run Trimmomatic 
-     TrimmomaticPE ${base}.fastq.gz ${baseR2}.fastq.gz \
-        ${base}.qc.fq.gz s1_se \
+     TrimmomaticPE ${baseR1}.fastq.gz ${baseR2}.fastq.gz \
+        ${baseR1}.qc.fq.gz s1_se \
         ${baseR2}.qc.fq.gz s2_se \
         ILLUMINACLIP:illumina-adapters-PE-SE.fa:2:40:15 \
         LEADING:2 TRAILING:2 \
@@ -82,7 +82,7 @@ done
 
 Re-run FastQC
 ```
-fastqc *.gz
+fastqc *qc.fq.gz
 ```
 
 Make trimmed reads read-only
