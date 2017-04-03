@@ -1,0 +1,13 @@
+Use instance with khmer and sourmash already installed. 
+
+```
+source ~/sourmashEnv2/bin/activate
+```
+
+```
+cd /mnt/work/hisat/unaligned
+lsmkdir trim-low-abund
+cd trim-low-abund
+ln -s ../*qc.fq.gz .
+ln -s ../*qc.fq.gz .
+trim-low-abund.py -k 21 -C 3 -M 15e9 --variable-coverage --ignore-pairs *.gz 
