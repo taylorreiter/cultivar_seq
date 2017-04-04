@@ -10,4 +10,4 @@ lsmkdir trim-low-abund
 cd trim-low-abund
 ln -s ../*qc.fq.gz .
 ln -s ../*qc.fq.gz .
-trim-low-abund.py -k 21 -C 3 -M 15e9 --variable-coverage --ignore-pairs *.gz 
+trim-low-abund.py -k 21 -C 3 -M 15e9 --variable-coverage --ignore-pairs *.fq
