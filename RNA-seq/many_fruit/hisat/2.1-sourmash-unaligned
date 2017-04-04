@@ -11,3 +11,17 @@ cd trim-low-abund
 ln -s ../*qc.fq.gz .
 ln -s ../*qc.fq.gz .
 trim-low-abund.py -k 21 -C 3 -M 15e9 --variable-coverage --ignore-pairs *.fq
+```
+
+Output:
+```
+read 61769140 reads, 3419718676 bp
+wrote 58900670 reads, 3216276377 bp
+looked at 32138833 reads twice (1.52 passes)
+removed 2868470 reads and trimmed 2483374 reads (8.66%)
+trimmed or removed 5.95% of bases (203442299 total)
+35969053 reads were high coverage (58.23%);
+skipped 25800087 reads/1375642756 bases because of low coverage
+fp rate estimated to be 0.002
+output in *.abundtrim
+```
