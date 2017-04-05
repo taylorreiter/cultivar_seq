@@ -25,22 +25,6 @@ sudo apt-get -y install screen git curl gcc make g++ python-dev unzip \
         trimmomatic bowtie samtools blast2 wget bowtie2 openjdk-8-jre \
         hmmer ruby
 ```
-        
-Install khmer 
-
-NB must source the environment to use khmer
-```
-cd ~
-python2.7 -m virtualenv khmerEnv
-source khmerEnv/bin/activate
-pip2 install khmer
-source khmerEnv/bin/activate
-nosetests khmer --attr '!known_failing,!huge'
-pip2 install khmer[tests]
-nosetests khmer --attr '!known_failing,!huge'
-```
-
-check that trim-low-abund.py is functional with `trim-low-abund.py`
 
 Install sourmash
 ```
@@ -53,7 +37,7 @@ make install
 source sourmashEnv2/bin/activate
 ```
 
-Install from source code
+Install khmer from source code
 ```
 cd ~/sourmashEvn2
 pip install -U setuptools
