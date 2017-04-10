@@ -49,7 +49,7 @@ mv sourmash_compute_sigs_unaligned_SRR4236911qc.fq.abundtrim        unaligned_SR
 mv sourmash_compute_sigs_unaligned_SRR4236912qc.fq.abundtrim        unaligned_SRR4236912qc.fq.abundtrim.sig
 ```
 
-Use `sbt_gather` to determine what fungi from the 1000kFG project are in these samples.
+Use `sbt_gather` to determine what fungi from the 1KFG project are in these samples.
 
 Link in signature files calculated from the unaligned reads produced by hisat: 
 
@@ -65,5 +65,13 @@ source ~/sourmashEnv2/bin/activate
 for infile in *.sig
   do
     sourmash sbt_gather -k 31 ~/sourmash_SBTs/fungal_sigs/KFG_3.27.17.sbt.json ${infile} --threshold=0.001 -o KFG_k31_${infile}.txt
+ done
+ ```
+ 
+ Repeat, this time using the index that has 1KFG, ref seq, and genbank
+ ```
+ for infile in *.sig
+  do
+    sourmash sbt_gather -k 31 ~/sourmash_SBTs/fungal_4.08.17.sbt.json  ${infile} --threshold=0.001 -o fungi_k31_${infile}.txt
  done
  ```
