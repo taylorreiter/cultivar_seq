@@ -3,7 +3,7 @@ If a volume needs to be mounted, use `sudo mount /dev/xvdf /mnt/`
 Use `pondenv` khmer to trim reads. 
 ```
 cd /mnt/work/hisat/unaligned
-lsmkdir trim-low-abund
+mkdir trim-low-abund
 cd trim-low-abund
 ln -s ../*qc.fq.gz .
 ln -s ../*qc.fq.gz .
