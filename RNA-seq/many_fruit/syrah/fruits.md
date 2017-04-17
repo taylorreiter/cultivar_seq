@@ -25,8 +25,10 @@ Run syrah
 ```
 for SRA_ID in SRR1929297 SRR1929298 SRR1929299 SRR1929300 SRR1929301 SRR1929302 SRR1929303 SRR1929304 SRR1929305 SRR1929306
 do
-  ~/sratoolkit.2.8.1-3-ubuntu64/bin/fastq-dump.2.8.1-3 -A $SRA_ID -Z | syrah -k 31 | sourmash compute - -o ${SRA_ID}_syrah.sig
+  ~/sratoolkit.2.8.1-3-ubuntu64/bin/fastq-dump.2.8.1-3 -A $SRA_ID -Z | syrah -k 31 -n 2000000 | sourmash compute - --scaled 1 -o ${SRA_ID}_syrah.sig
 done
+
+~/sratoolkit.2.8.1-3-ubuntu64/bin/fastq-dump.2.8.1-3 -A SRR1929297 -Z | syrah -k 31 -n 2000000 | sourmash compute - --scaled 1 -o SRR1929297_syrah2.sig
 ```
 
 Run sbt_gather
@@ -34,9 +36,39 @@ Run sbt_gather
 source ~/sourmashEnv2/bin/activate
 for infile in *sig
 do
-  sourmash sbt_gather -k 31 ~/sourmash_SBTs/fungal_4.13.17.sbt.json --threshold=0.001 -o fungal_k31_${infile}.txt ${infile}
+  #sourmash sbt_gather -k 31 ~/sourmash_SBTs/fungal_4.13.17.sbt.json --threshold=0.001 -o fungal_k31_${infile}.txt ${infile}
   sourmash sbt_gather -k 31 ~/sourmash_SBTs/microbes.k31.sbt.json --threshold=0.001 -o microbe_k31_${infile}.txt ${infile}
 done
+```
+```
+sourmash sbt_gather -k 31 ~/sourmash_SBTs/microbes.k31.sbt.json --threshold=0.001 -o microbe_k31_SRR1929297_syrah2.sig.txt SRR1929297_syrah2.sig
+```
+```
+ubuntu@ip-172-31-25-27:~/syrah_fruit/litchi$ head -20 *syrah2.sig
+[
+    {
+        "class": "sourmash_signature", 
+        "email": "", 
+        "filename": "-", 
+        "hash_function": "0.murmur64", 
+        "signatures": [
+            {
+                "ksize": 31, 
+                "max_hash": 0, 
+                "md5sum": "ffe8bfaa358d6915503ae05e411bae63", 
+                "mins": [
+                    194620503852, 
+                    54081059775325, 
+                    58165779653385, 
+                    63192500826163, 
+                    79531458646033, 
+                    79694603501463, 
+                    86453048602284, 
+                    90119361564959, 
+ubuntu@ip-172-31-25-27:~/syrah_fruit/litchi$ sourmash sbt_gather -k 31 ~/sourmash_SBTs/microbes.k31.sbt.json --threshold=0.001 -o microbe_k31_SRR1929297_syrah2.sig.txt SRR1929297_syrah2.sig                                                                                                       
+# running sourmash subcommand: sbt_gather
+loaded query: -... (k=31, DNA)
+query signature needs to be created with --scaled
 ```
 
 Next, repeat the same procedure for watermelon. 
