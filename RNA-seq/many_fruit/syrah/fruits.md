@@ -8,24 +8,24 @@ All analyses were run on the sourmash instance, for which installation instructi
 
 Install syrah:
 ```
-git clone https://github.com/dib-lab/syrah.git
-export PATH=~/syran/syrah:$PATH
+pip install https://github.com/dib-lab/syrah/archive/master.zip
 ```
 
 Set up folder system
 ```
-cd /mnt/work/
 mkdir syrah_fruit
 cd syrah_fruit
 mkdir litchi
 cd litchi
 ```
 
+Install SRA toolkit according to these instructions: https://github.com/taylorreiter/olive_public_seq/blob/master/RNA-seq/PRJNA209941/eel_pond/1.SRA_download.md
+
 Run syrah
 ```
 for SRA_ID in SRR1929297 SRR1929298 SRR1929299 SRR1929300 SRR1929301 SRR1929302 SRR1929303 SRR1929304 SRR1929305 SRR1929306
 do
-  dump-fastq -A $SRA_ID -Z | syrah -k 31 | sourmash compute - -o ${SRA_ID}_syrah.sig
+  ~/sratoolkit.2.8.1-3-ubuntu64/bin/fastq-dump.2.8.1-3 -A $SRA_ID -Z | syrah -k 31 | sourmash compute - -o ${SRA_ID}_syrah.sig
 done
 ```
 
@@ -51,7 +51,7 @@ Run syrah
 ```
 for SRA_ID in SRR1001435 SRR1001436 SRR1001437 SRR1001438 SRR1001439 SRR1001440 SRR1001441 SRR1001442
 do
-  dump-fastq -A $SRA_ID -Z | syrah -k 31 | sourmash compute - -o ${SRA_ID}_syrah.sig
+  ~/sratoolkit.2.8.1-3-ubuntu64/bin/fastq-dump.2.8.1-3 fastq-dump -A $SRA_ID -Z | syrah -k 31 | sourmash compute - -o ${SRA_ID}_syrah.sig
 done
 ```
 
