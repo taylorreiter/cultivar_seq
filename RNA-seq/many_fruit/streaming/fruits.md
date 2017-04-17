@@ -1,20 +1,20 @@
-In order to explore whether other fruits have microbial signatures, and whether metabolite data correlates with microbial content, syrah was used to investigate microbial content.
+In order to explore whether other fruits have microbial signatures, and whether metabolite data correlates with microbial content, khmer streaming was used to investigate microbial content.
 
 Yun et al. 2016 (DOI: 10.1038/srep19356) produced duplicate transcriptome reads for litchi fruit, as well as metabolite data, for various time points after litchi fruit were picked.
 
-As such, syrah (https://github.com/dib-lab/syrah) was used to simultaneously download the 1M reads of the 10 samples and calculate sourmash signatures. sourmash sbt_gather was then run with fungal genomes and with microbial genomes to assess the presence and amount of microbes. 
+As such, khmer streaming was used to simultaneously download the 1M reads of the 10 samples and calculate sourmash signatures. sourmash sbt_gather was then run with fungal genomes and with microbial genomes to assess the presence and amount of microbes. 
 
 All analyses were run on the sourmash instance, for which installation instructions can be found here (https://github.com/taylorreiter/olive_public_seq/tree/master/RNA-seq/many_fruit/sourmash).
 
 Install syrah:
 ```
-pip install https://github.com/dib-lab/syrah/archive/master.zip
+pip install https://github.com/dib-lab/khmer/archive/master.zip
 ```
 
 Set up folder system
 ```
-mkdir syrah_fruit
-cd syrah_fruit
+mkdir stream_fruit
+cd stream_fruit
 mkdir litchi
 cd litchi
 ```
@@ -22,13 +22,16 @@ cd litchi
 Install SRA toolkit according to these instructions: https://github.com/taylorreiter/olive_public_seq/blob/master/RNA-seq/PRJNA209941/eel_pond/1.SRA_download.md
 
 Run syrah
+loop broken (`long int too long to convert`), use single until loop is fixed.
 ```
 for SRA_ID in SRR1929297 SRR1929298 SRR1929299 SRR1929300 SRR1929301 SRR1929302 SRR1929303 SRR1929304 SRR1929305 SRR1929306
 do
-  ~/sratoolkit.2.8.1-3-ubuntu64/bin/fastq-dump.2.8.1-3 -A $SRA_ID -Z | syrah -k 31 -n 2000000 | sourmash compute - --scaled 1 -o ${SRA_ID}_syrah.sig
+  ~/sratoolkit.2.8.1-3-ubuntu64/bin/fastq-dump.2.8.1-3 -A $SRA_ID -Z | trim-low-abund.py --ignore-pairs --variable-coverage -M 7e9 -o - - | sourmash compute - --scaled 1000 -o ${SRA_ID}_abundtrim.sig
 done
-
-~/sratoolkit.2.8.1-3-ubuntu64/bin/fastq-dump.2.8.1-3 -A SRR1929297 -Z | syrah -k 31 -n 2000000 | sourmash compute - --scaled 1 -o SRR1929297_syrah2.sig
+```
+use
+```
+~/sratoolkit.2.8.1-3-ubuntu64/bin/fastq-dump.2.8.1-3 -A SRR1929297 -Z | trim-low-abund.py --ignore-pairs --variable-coverage -M 7e9 -o - - | sourmash compute - --scaled 1000 -o SRR1929297_abundtrim.sig
 ```
 
 Run sbt_gather
