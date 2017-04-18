@@ -43,8 +43,13 @@ do
   sourmash sbt_gather -k 31 ~/sourmash_SBTs/microbes.k31.sbt.json --threshold=0.001 -o microbe_k31_${infile}.txt ${infile}
 done
 ```
-
-
+```
+for infile in SRR1929301_abundtrim.sig  SRR1929302_abundtrim.sig SRR1929303_abundtrim.sig SRR1929304_abundtrim.sig SRR1929305_abundtrim.sig SRR1929306_abundtrim.sig
+do
+  sourmash sbt_gather -k 31 ~/sourmash_SBTs/fungal_4.13.17.sbt.json --threshold=0.001 -o fungal_k31_${infile}.txt ${infile}
+  sourmash sbt_gather -k 31 ~/sourmash_SBTs/microbes.k31.sbt.json --threshold=0.001 -o microbe_k31_${infile}.txt ${infile}
+done
+```
 Next, repeat the same procedure for watermelon. 
 
 ```
