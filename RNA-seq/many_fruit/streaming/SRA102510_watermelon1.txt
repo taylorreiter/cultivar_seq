@@ -1,0 +1,9 @@
+study_accession	experiment_accession	run_accession	scientific_name	instrument_model	library_layout	read_count	study_title	run_alias
+PRJNA221197	SRX358259	SRR1001435	Citrullus lanatus subsp. vulgaris	Illumina HiSeq 2000	SINGLE	10856934	Citrullus lanatus subsp. vulgaris Transcriptome or Gene expression	WM_UR_1
+PRJNA221197	SRX358259	SRR1001436	Citrullus lanatus subsp. vulgaris	Illumina HiSeq 2000	SINGLE	3395155	Citrullus lanatus subsp. vulgaris Transcriptome or Gene expression	WM_UR_2
+PRJNA221197	SRX359135	SRR1001437	Citrullus lanatus subsp. vulgaris	Illumina Genome Analyzer II	SINGLE	8115105	Citrullus lanatus subsp. vulgaris Transcriptome or Gene expression	WM_IM_1
+PRJNA221197	SRX359135	SRR1001438	Citrullus lanatus subsp. vulgaris	Illumina Genome Analyzer II	SINGLE	10047477	Citrullus lanatus subsp. vulgaris Transcriptome or Gene expression	WM_IM_2
+PRJNA221197	SRX359136	SRR1001439	Citrullus lanatus subsp. vulgaris	Illumina Genome Analyzer II	SINGLE	7652481	Citrullus lanatus subsp. vulgaris Transcriptome or Gene expression	WM_PM_1
+PRJNA221197	SRX359136	SRR1001440	Citrullus lanatus subsp. vulgaris	Illumina Genome Analyzer II	SINGLE	6574341	Citrullus lanatus subsp. vulgaris Transcriptome or Gene expression	WM_PM_2
+PRJNA221197	SRX359137	SRR1001441	Citrullus lanatus subsp. vulgaris	Illumina Genome Analyzer II	SINGLE	5739306	Citrullus lanatus subsp. vulgaris Transcriptome or Gene expression	WM_MA_1
+PRJNA221197	SRX359137	SRR1001442	Citrullus lanatus subsp. vulgaris	Illumina Genome Analyzer II	SINGLE	10871666	Citrullus lanatus subsp. vulgaris Transcriptome or Gene expression	WM_MA_2
