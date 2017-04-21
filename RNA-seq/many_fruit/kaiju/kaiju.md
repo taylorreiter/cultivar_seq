@@ -13,7 +13,7 @@ cd trim-low-abund-v
 
 link in quality trimmed reads. Do this from the `/mnt/work/sourmash/trim-low-abund` directory, because cleaned, interleaved reads are already present there.
 ```
-ln -s /mnt/work/sourmash/trim-low-abund/*abundtrim.gz .
+ln -s /mnt/work/sourmash/trim-low-abund-v/*abundtrim.fq.gz .
 ```
 
 Run kaiju!
