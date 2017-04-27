@@ -75,3 +75,6 @@ for infile in *.sig
     sourmash sbt_gather -k 31 ~/sourmash_SBTs/fungal_4.08.17.sbt.json  ${infile} --threshold=0.001 -o fungi_k31_${infile}.txt
  done
  ```
+ 
+ 
+ Andddd come to find out, there is contamination in the reference genome so all of this will probably have to be re-done.
