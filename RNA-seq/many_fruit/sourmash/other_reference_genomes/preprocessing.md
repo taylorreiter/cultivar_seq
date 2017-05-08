@@ -13,5 +13,5 @@ for URL in ftp://ftp.ensemblgenomes.org/pub/plants/release-35/fasta/arabidopsis_
 do
   NAME=$(url=$URL; echo "${url##*/}")
   echo $NAME
-  curl $URL | trim-low-abund.py -M 3e9 -o - - | sourmash compute - --scaled 1000 -o $NAME_abundtrim_s1000.sig
+  curl $URL | trim-low-abund.py -M 3e9 -o - - | sourmash compute - -k 21,31,51 --scaled 1000 -o $NAME_abundtrim_s1000.sig
 done
