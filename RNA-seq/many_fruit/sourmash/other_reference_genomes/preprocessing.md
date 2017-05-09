@@ -20,10 +20,7 @@ cd other_ref_genomes
 
 curl ftp://ftp.ensemblgenomes.org/pub/plants/release-35/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz | gunzip | sourmash compute - -k 21,31,51 --scaled 1000 -o Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz_abundtrim_s1000.sig
 
-curl ftp://ftp.ensemblgenomes.org/pub/plants/release-35/fasta/zea_mays/dna/Zea_mays.AGPv4.dna.toplevel.fa.gz | gunzip | sourmash compute - -k 21,31,51 --scaled 1000 -o Zea_mays.AGPv4.dna.toplevel.fa.gz_abundtrim_s1000.sig
-
 curl ftp://ftp.ensemblgenomes.org/pub/plants/release-35/fasta/oryza_sativa/dna/Oryza_sativa.IRGSP-1.0.dna.toplevel.fa.gz | gunzip | sourmash compute - -k 21,31,51 --scaled 1000 -o Oryza_sativa.IRGSP-1.0.dna.toplevel.fa.gz_abundtrim_s1000.sig
 
-curl ftp://ftp.ensemblgenomes.org/pub/plants/release-35/fasta/hordeum_vulgare/dna/Hordeum_vulgare.ASM32608v1.dna.toplevel.fa.gz | gunzip | sourmash compute - -k 21,31,51 --scaled 1000 -o Hordeum_vulgare.ASM32608v1.dna.toplevel.fa.gz_abundtrim_s1000.sig
 
 curl ftp://ftp.ensemblgenomes.org/pub/plants/release-35/fasta/physcomitrella_patens/dna/Physcomitrella_patens.ASM242v1.dna.toplevel.fa.gz | gunzip | sourmash compute - -k 21,31,51 --scaled 1000 -o Physcomitrella_patens.ASM242v1.dna.toplevel.fa.gz_abundtrim_s1000.sig
