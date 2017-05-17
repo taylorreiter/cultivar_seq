@@ -1,0 +1,9 @@
+cd /mnt/work/ref_genome/scaffolds/
+mkdir k21-31-51
+cd k21-31-51/
+ln -s ../fastas/*fa .
+
+for infile in *fa
+> do
+> sourmash compute -k 21,31,51 --scaled 1000 -o $infile.sig $infile
+> done
