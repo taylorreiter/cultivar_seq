@@ -2,7 +2,7 @@
 
 #### PRJEB4992
 
-Data from Cruz et al. 2016 olive reference genome paper. One mature olive RNA-seq run, paired-end, 80 million reads. Farga varietal.
+Data from Cruz et al. 2016 (DOI: 10.1186/s13742-016-0134-5) olive reference genome paper. One mature olive RNA-seq run, paired-end, 80 million reads. Farga varietal.
 
 Relevant run:
 
@@ -10,7 +10,8 @@ Relevant run:
 
 #### PRJNA342541
 
-Data from unknown. From ENA: Ethephon induced oxidative stress in the olive leaf but not in fruit abscission zone enable development of a selective abscission compound. Manzanillo varietal.
+Data from Goldental-Cohen et al. 2017 (DOI: 10.1186/s12870-017-1035-1). From ENA: Ethephon induced oxidative stress in the olive leaf but not in fruit abscission zone enable development of a selective abscission compound. Manzanillo varietal. "The fruit abscission zone 3 (FAZ3), located between the fruit and the pedicel, was found to be the active AZ in mature fruits and is sensitive to ethephon, whereas FAZ2, between the pedicel and the rachis, is the flower active AZ as well as functioning as the most ethephon induced fruit AZ. Olive fruit abscission can occur at three different locations: peduncle-branch (FAZ1), pedicel rachis (FAZ2) and fruit-pedicel (FAZ3). Mature olive fruit abscission occurs mainly in FAZ3, to a lesser degree in FAZ2 and rarely in FAZ1. The leaf and fruit AZs sampled for transcriptome profiling were excised by hand to approximately 1 mm thick from each side of the AZ region. Tissues were removed from the tree, immediately excised and frozen in liquid nitrogen. AZ enriched tissues were used to prepare six cDNA libraries from total RNA of the three analyzed AZs (LAZ, FAZ2 and FAZ3) of ‘Manzanillo’ before and 5 days after ethephon treatment, using Illumina’s TruSeq RNA library preparation kit according to the manufacturer’s instructions. Each cDNA library consisted of RNA from about 70 AZs sampled from different fruits or leaves, and was sequenced on Illumina HiSeq 2000."
+
 
 Relevant runs:
 
