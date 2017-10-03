@@ -1,2 +1,0 @@
-study_accession	run_accession	scientific_name	instrument_model	library_layout	library_strategy	read_count	experiment_title	run_alias	sra_ftp
-PRJEB4992	ERR1346597	Olea europaea subsp. europaea	Illumina HiSeq 2000	PAIRED	RNA-Seq	80148908	Illumina HiSeq 2000 paired end sequencing	ena-RUN-CNAG-03-04-2016-19:04:57:795-1	ftp.sra.ebi.ac.uk/vol1/err/ERR134/007/ERR1346597

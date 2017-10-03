@@ -1,0 +1,7 @@
+study_accession	run_accession	scientific_name	instrument_model	library_layout	library_strategy	read_count	experiment_title	run_alias	sra_ftp
+PRJNA342541	SRR4236909	Olea europaea	Illumina HiSeq 2000	SINGLE	RNA-Seq	31080547	Illumina HiSeq 2000 sequencing; abscission zones (AZs) of olive fruits and leaves	FAZ2-0	ftp.sra.ebi.ac.uk/vol1/srr/SRR423/009/SRR4236909
+PRJNA342541	SRR4236910	Olea europaea	Illumina HiSeq 2000	SINGLE	RNA-Seq	24081427	Illumina HiSeq 2000 sequencing; abscission zones (AZs) of olive fruits and leaves	FAZ2-5	ftp.sra.ebi.ac.uk/vol1/srr/SRR423/000/SRR4236910
+PRJNA342541	SRR4236911	Olea europaea	Illumina HiSeq 2000	SINGLE	RNA-Seq	35279793	Illumina HiSeq 2000 sequencing; abscission zones (AZs) of olive fruits and leaves	FAZ3-0	ftp.sra.ebi.ac.uk/vol1/srr/SRR423/001/SRR4236911
+PRJNA342541	SRR4236912	Olea europaea	Illumina HiSeq 2000	SINGLE	RNA-Seq	45866938	Illumina HiSeq 2000 sequencing; abscission zones (AZs) of olive fruits and leaves	FAZ3-5	ftp.sra.ebi.ac.uk/vol1/srr/SRR423/002/SRR4236912
+PRJNA342541	SRR4236913	Olea europaea	Illumina HiSeq 2000	SINGLE	RNA-Seq	23891472	Illumina HiSeq 2000 sequencing; abscission zones (AZs) of olive fruits and leaves	LAZ-0	ftp.sra.ebi.ac.uk/vol1/srr/SRR423/003/SRR4236913
+PRJNA342541	SRR4236914	Olea europaea	Illumina HiSeq 2000	SINGLE	RNA-Seq	26040824	Illumina HiSeq 2000 sequencing; abscission zones (AZs) of olive fruits and leaves	LAZ-5	ftp.sra.ebi.ac.uk/vol1/srr/SRR423/004/SRR4236914

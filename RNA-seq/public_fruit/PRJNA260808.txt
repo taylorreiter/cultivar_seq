@@ -1,0 +1,5 @@
+study_accession	run_accession	scientific_name	instrument_model	library_layout	library_strategy	read_count	experiment_title	run_alias	sra_ftp
+PRJNA260808	SRR1573503	Olea europaea	Illumina HiSeq 2000	SINGLE	RNA-Seq	29973073	Illumina HiSeq 2000 sequencing; Olea europaea cv Cassanese fruits at 100 Days after flovering time	Cass100	ftp.sra.ebi.ac.uk/vol1/srr/SRR157/003/SRR1573503
+PRJNA260808	SRR1574328	Olea europaea	Illumina HiSeq 2000	SINGLE	RNA-Seq	58330618	Illumina HiSeq 2000 sequencing; Olea europaea cv Cassanese fruits at 130 Days after flovering time	Cass130	ftp.sra.ebi.ac.uk/vol1/srr/SRR157/008/SRR1574328
+PRJNA260808	SRR1574719	Olea europaea	Illumina HiSeq 2000	SINGLE	RNA-Seq	30457514	Illumina HiSeq 2000 sequencing; Olea europaea cv Leucocarpa fruits at 100 Days after flovering time	Leuc100	ftp.sra.ebi.ac.uk/vol1/srr/SRR157/009/SRR1574719
+PRJNA260808	SRR1574772	Olea europaea	Illumina HiSeq 2000	SINGLE	RNA-Seq	29028339	Illumina HiSeq 2000 sequencing; Olea europaea cv Leucocarpa fruits at 130 Days after flovering time	Leuc130	ftp.sra.ebi.ac.uk/vol1/srr/SRR157/002/SRR1574772

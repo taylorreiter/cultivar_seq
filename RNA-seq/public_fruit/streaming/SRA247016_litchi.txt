@@ -1,0 +1,11 @@
+study_accession	run_accession	scientific_name	instrument_model	library_name	library_layout	library_strategy	read_count	experiment_title
+PRJNA278677	SRR1929297	Litchi chinensis	Illumina HiSeq 2000	0 day paired	PAIRED	RNA-Seq	8235846	Illumina HiSeq 2000 sequencing; Litchi chinensis Transcriptome: Sample 0 day
+PRJNA278677	SRR1929298	Litchi chinensis	Illumina HiSeq 2000	0 day single	SINGLE	RNA-Seq	42393892	Illumina HiSeq 2000 sequencing; Litchi chinensis Transcriptome: Sample 0 day
+PRJNA278677	SRR1929299	Litchi chinensis	Illumina HiSeq 2000	4 day paired	PAIRED	RNA-Seq	6633639	Illumina HiSeq 2000 sequencing; Litchi chinensis Transcriptome: Sample 4 day
+PRJNA278677	SRR1929300	Litchi chinensis	Illumina HiSeq 2000	4 day single	SINGLE	RNA-Seq	35730419	Illumina HiSeq 2000 sequencing; Litchi chinensis Transcriptome: Sample 4 day
+PRJNA278677	SRR1929301	Litchi chinensis	Illumina HiSeq 2000	"14d, 0h after cold storage paired"	PAIRED	RNA-Seq	7306256	Illumina HiSeq 2000 sequencing; Litchi chinensis Transcriptome: Sample &quot;14d, 0h after cold storage&quot;
+PRJNA278677	SRR1929302	Litchi chinensis	Illumina HiSeq 2000	"14d, 0h after cold storage single"	SINGLE	RNA-Seq	44270771	Illumina HiSeq 2000 sequencing; Litchi chinensis Transcriptome: Sample &quot;14d, 0h after cold storage&quot;
+PRJNA278677	SRR1929303	Litchi chinensis	Illumina HiSeq 2000	"14D, 24h after cold storage paired"	PAIRED	RNA-Seq	7752975	Illumina HiSeq 2000 sequencing; Litchi chinensis Transcriptome: Sample &quot;14D, 24h after cold storage&quot;
+PRJNA278677	SRR1929304	Litchi chinensis	Illumina HiSeq 2000	"14D, 24h after cold storage single"	SINGLE	RNA-Seq	38147766	Illumina HiSeq 2000 sequencing; Litchi chinensis Transcriptome: Sample &quot;14D, 24h after cold storage&quot;
+PRJNA278677	SRR1929305	Litchi chinensis	Illumina HiSeq 2000	"14D, 48h after cold storage paired"	PAIRED	RNA-Seq	8149186	Illumina HiSeq 2000 sequencing; Litchi chinensis Transcriptome: Sample &quot;14D, 48h after cold storage&quot;
+PRJNA278677	SRR1929306	Litchi chinensis	Illumina HiSeq 2000	"14D, 48h after cold storage single"	SINGLE	RNA-Seq	44554246	Illumina HiSeq 2000 sequencing; Litchi chinensis Transcriptome: Sample &quot;14D, 48h after cold storage&quot;
