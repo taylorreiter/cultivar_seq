@@ -64,14 +64,14 @@ cd ..
 ./sourmash/sourmash compare -k 5 --csv Oe6_scaffolds_k5.comp.csv *sig
 ```
 
-In R, make a cluster of distance matrix to visualize output. 
+In R, make a cluster of distance matrix to visualize output.
 ```
 Oe6_scaffolds_k4<-read.csv("Oe6_scaffolds_k4.comp.csv", header = T)
 library(qgraph)
 png('Oe6_scaffolds_k4.comp.png', width=4000, height=4000, unit='px')
 qgraph(Oe6_scaffolds_k4, layout='spring', vsize=3)
 dev.off()
-# This failed to finished in 15 hours with over 100gb ram. Exit.
+# This failed to finish in 15 hours with over 100gb ram. Exit.
 ```
 Try a different approach in R, and install fastclust package to speed up process
 ```
@@ -100,8 +100,8 @@ for(i in 1:k) {
 }
 
 #par(mfrow = c(2,2))
-#for(i in 1:k) { 
-#    plot(dends[[i]], 
+#for(i in 1:k) {
+#    plot(dends[[i]],
 #        main = paste0("Tree number ", i))
 #}
 
@@ -110,5 +110,4 @@ plot(dends[[1]], main = "Tree number 1")
 dev.off()
 ```
 
-TL;DR needs data reduction before visualization. 
-
+TL;DR needs data reduction before visualization.
