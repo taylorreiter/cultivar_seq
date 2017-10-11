@@ -1,0 +1,50 @@
+intersect_bp,f_orig_query,f_found_genome,name
+131000.0,0.010416666666666666,0.00011964038474886478,"LVWM01000001.1 Aureobasidium pullulans isolate Santander contig_1, whole genome shotgun sequence"
+41000.0,0.0012043356081894822,3.744470057025539e-05,"MSDY01000045.1 Aureobasidium sp. FSWF8-4 FSW8-bin-4-scaffold_100, whole genome shotgun sequence"
+23000.0,0.00030177912511488185,2.100556373453351e-05,Orpsp1_1_AssemblyScaffolds.fasta.gz
+22000.0,0.0011793843613633684,2.0092278354771185e-05,"LZZZ01000001.1 Ustilago cynodontis strain NBRC 9727 NODE_1, whole genome shotgun sequence"
+16000.0,0.0010852608017364173,1.4612566076197226e-05,"CAGI01000713.1 Ustilago hordei Uh4857-4 WGS project CAGI00000000 data, contig UHOR_scaffold_4.01268, whole genome shotgun sequence"
+42000.0,0.0003736793830893094,3.835798595001772e-05,Aurpu_var_pul1_AssemblyScaffolds.fasta.gz
+8000.0,0.00018777579569993427,7.306283038098613e-06,Rhich1_AssemblyScaffolds.fasta.gz
+23000.0,5.397455099920387e-05,2.100556373453351e-05,Neosp1_AssemblyScaffolds.fasta.gz
+6000.0,0.00016767270288397049,5.47971227857396e-06,"AFRD01000864.1 Periglandula ipomoeae IasaF13 contig27004, whole genome shotgun sequence"
+4000.0,4.520863786374117e-05,3.6531415190493064e-06,"AZRP01000001.1 Puccinia triticina Race 106 contig00001, whole genome shotgun sequence"
+3000.0,6.706233443986185e-05,2.73985613928698e-06,"JARA01000001.1 Rhizophagus irregularis DAOM 197198w isolate DNA1 scaffold1, whole genome shotgun sequence"
+2000.0,6.188693257418696e-05,1.8265707595246532e-06,Verda1_AssemblyScaffolds.fasta.gz
+3000.0,7.412348973389667e-05,2.73985613928698e-06,Ustsp1_AssemblyScaffolds.fasta.gz
+3000.0,5.352459455119628e-05,2.73985613928698e-06,Trapub1_AssemblyScaffolds.fasta.gz
+4000.0,5.20751965838671e-05,3.6531415190493064e-06,Lobtra1_AssemblyScaffolds.fasta.gz
+3000.0,9.262689885142645e-05,2.73985613928698e-06,"DF837572.1 Mucor ambiguus DNA, scaffold: scf_mam1_v11283, strain NBRC 6742, whole genome shotgun sequence"
+16000.0,1.5569048731122527e-05,1.4612566076197226e-05,Anasp1_AssemblyScaffolds.fasta.gz
+1000.0,2.2375869861940882e-05,9.132853797623266e-07,Bacci1_AssemblyScaffolds.fasta.gz
+1000.0,1.9574451425998788e-05,9.132853797623266e-07,Colce1_AssemblyScaffolds.fasta.gz
+2000.0,3.975985050296211e-05,1.8265707595246532e-06,Aurpu_var_nam1_AssemblyScaffolds.fasta.gz
+2000.0,3.8789759503491075e-05,1.8265707595246532e-06,Thest1_AssemblyScaffolds.fasta.gz
+1000.0,3.5486160397445e-05,9.132853797623266e-07,Theau1_AssemblyScaffolds.fasta.gz
+3000.0,3.12217053295451e-05,2.73985613928698e-06,Thaele1_AssemblyScaffolds.fasta.gz
+2000.0,2.6808932736387765e-05,1.8265707595246532e-06,Spoth2_AssemblyScaffolds.fasta.gz
+2000.0,3.0630685821055535e-05,1.8265707595246532e-06,Cocsa1_AssemblyScaffolds.fasta.gz
+3000.0,6.065384848668648e-05,2.73985613928698e-06,"LOQJ01000001.1 Saccharomyces pastorianus strain Hybrid yeast 1 sequence_1, whole genome shotgun sequence"
+1000.0,2.8535555301906177e-05,9.132853797623266e-07,Settur1_AssemblyScaffolds.fasta.gz
+2000.0,3.5847433323774016e-05,1.8265707595246532e-06,Sepmu1_AssemblyScaffolds.fasta.gz
+2000.0,8.674531575294934e-05,1.8265707595246532e-06,Sacce1_AssemblyScaffolds.fasta.gz
+1000.0,2.5462786138059226e-05,9.132853797623266e-07,"KQ503367.1 Puccinia psidii isolate Aus_3 unplaced genomic scaffold scaffold_1, whole genome shotgun sequence"
+2000.0,1.41753490679708e-05,1.8265707595246532e-06,Pucgr2_AssemblyScaffolds.fasta.gz
+2000.0,2.9801817910892563e-05,1.8265707595246532e-06,"LHTN01001748.1 Macrophomina phaseolina strain MO00014 NODE_10, whole genome shotgun sequence"
+6000.0,2.453265296109121e-05,5.47971227857396e-06,PirE2_1_AssemblyScaffolds.fasta.gz
+2000.0,2.15745075618649e-05,1.8265707595246532e-06,Phaart1_AssemblyScaffolds.fasta.gz
+3000.0,9.519548392624254e-06,2.73985613928698e-06,Melli1_AssemblyScaffolds.fasta.gz
+3000.0,5.59543859845454e-06,2.73985613928698e-06,Melap1finSC_191_AssemblyScaffolds.fasta.gz
+2000.0,3.703155088135091e-05,1.8265707595246532e-06,Ascni1_AssemblyScaffolds.fasta.gz
+2000.0,2.5568908207619536e-05,1.8265707595246532e-06,Clabul1_AssemblyScaffolds.fasta.gz
+4000.0,6.76178240584218e-05,3.6531415190493064e-06,"FMVU01002546.1 Ustilago bromivora strain UB2 genome assembly, contig: C10459, whole genome shotgun sequence"
+1000.0,3.061943109097033e-05,9.132853797623266e-07,Altal1_AssemblyScaffolds.fasta.gz
+2000.0,2.8346278133681047e-05,1.8265707595246532e-06,Aspni_NRRL3_1_AssemblyScaffolds.fasta.gz
+2000.0,2.818489289740699e-05,1.8265707595246532e-06,Aspni_bvT_1_AssemblyScaffolds.fasta.gz
+2000.0,2.1050415745710977e-05,1.8265707595246532e-06,"MKXH02000317.1 Puccinia striiformis f. sp. tritici strain 38S102 Scaffold_1, whole genome shotgun sequence"
+2000.0,3.5466023549439636e-05,1.8265707595246532e-06,"LKBF01000001.1 Aspergillus niger strain L2, whole genome shotgun sequence"
+1000.0,2.7926720285969615e-05,9.132853797623266e-07,Asplac1_AssemblyScaffolds.fasta.gz
+1000.0,3.491132523390588e-05,9.132853797623266e-07,Cypeu1_AssemblyScaffolds.fasta.gz
+2000.0,1.6245370069530183e-05,1.8265707595246532e-06,"LADC01000001.1 Puccinia triticina Race 77 isolate 77-8 contig00001, whole genome shotgun sequence"
+2000.0,1.5726484973343607e-05,1.8265707595246532e-06,"AZRO01000001.1 Puccinia triticina Race 77 contig00001, whole genome shotgun sequence"
+2000.0,1.625434803810019e-05,1.8265707595246532e-06,"LADD01000001.1 Puccinia triticina Race 77 isolate 77-9 contig00001, whole genome shotgun sequence"
