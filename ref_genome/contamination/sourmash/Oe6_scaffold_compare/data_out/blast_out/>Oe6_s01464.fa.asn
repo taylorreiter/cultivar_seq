@@ -1,0 +1,247 @@
+Blast4-archive ::= {
+  request {
+    ident "2.2.31+",
+    body queue-search {
+      program "blastn",
+      service "megablast",
+      queries bioseq-set {
+        seq-set {
+          seq {
+            id {
+              local str "Query_1"
+            },
+            descr {
+              user {
+                type str "CFastaReader",
+                data {
+                  {
+                    label str "DefLine",
+                    data str ">Oe6_s01464"
+                  }
+                }
+              },
+              title "Oe6_s01464"
+            },
+            inst {
+              repr raw,
+              mol na,
+              length 1810,
+              seq-data ncbi2na '3CFB5C33183F1FE4008000A04D3283CFB5C33183F90220
+0020134CA0F3ED70CC603E4088000804D3283CFB5C33180F902200020134EA0F3EF704C60FC7F9
+00200028134CA0F3EF70CC60FE43000CF38870CC6A8FCCF0030310C0004D83F7FD70CC081039B3
+1D10778207440C38C03404C5E410301300C8EE283248C8EF2CC7AD971F2CCAC37012CC21C20338
+234C330325E3AD5822BECFC5F4A0B7CBE4FE7FE9784DF4354373FD725DF4C444AD0C31DD4BB7F4
+0F2F4FFCFF3FFC883022820195080E01BFFC86F3BC9F28A240D3B0F3FC00C03A04CF7D0F6D341F
+7F6FF4FF5DF7F7537DFFDFDFFDFFCFDD3DFDF5F7DFDFB7FF3F74F7F7D7DF7F7EDFFCFCD3DFDF5F
+7DFDFB7FF3F74F7F7D7DF7F7EDFFCFDD3DFDF5F7DFDFB7FF3F74F7F7D7DF7F7EDFFCFDD3DFDF7D
+375FDF7FCF7F7F7DD7DF6DF4DC7F7DFD3DFDFDF7DF6DF4DD7F7DFF3DFDFDF6DFDB7D371FDF7F4F
+7F7F7DF7DB7D3713DF7F4F7F7F3DF7DF6DF4DC4F7DFD3DFDFCF7D375FDF7FCF7F7F7DB7F6DF4DC
+7F7DFD3DFDF5F7DFDFB7FF3F74F7F7D7DF7F7EDFFCFDD3DFDF5F7DFDFB7FF3F74F7F7D7DF7F7ED
+FFCCDDFDF5F7DFDFB7FF3F74F7F7D7FF7F7EDFFCFDD3DFDF5F7DFDFB7FF3F74F7F7D7DF7F7EDFF
+C0'H
+            }
+          }
+        }
+      },
+      subject database "/home/ubuntu/nt_db/nt",
+      algorithm-options {
+        {
+          name "EvalueThreshold",
+          value cutoff e-value { 1, 10, 1 }
+        },
+        {
+          name "MaskAtHash",
+          value boolean TRUE
+        },
+        {
+          name "DustFilteringLevel",
+          value integer 20
+        },
+        {
+          name "DustFilteringWindow",
+          value integer 64
+        },
+        {
+          name "DustFilteringLinker",
+          value integer 1
+        },
+        {
+          name "UngappedMode",
+          value boolean FALSE
+        },
+        {
+          name "HitlistSize",
+          value integer 500
+        },
+        {
+          name "EffectiveSearchSpace",
+          value big-integer 278705387453244
+        }
+      },
+      program-options {
+        {
+          name "LCaseMask",
+          value query-mask {
+            locations {
+              packed-int {
+                {
+                  from 31,
+                  to 43,
+                  id local str "Query_1"
+                },
+                {
+                  from 31,
+                  to 43,
+                  id local str "Query_1"
+                },
+                {
+                  from 90,
+                  to 96,
+                  id local str "Query_1"
+                },
+                {
+                  from 90,
+                  to 96,
+                  id local str "Query_1"
+                },
+                {
+                  from 143,
+                  to 149,
+                  id local str "Query_1"
+                },
+                {
+                  from 143,
+                  to 149,
+                  id local str "Query_1"
+                },
+                {
+                  from 196,
+                  to 202,
+                  id local str "Query_1"
+                },
+                {
+                  from 196,
+                  to 202,
+                  id local str "Query_1"
+                },
+                {
+                  from 248,
+                  to 260,
+                  id local str "Query_1"
+                },
+                {
+                  from 248,
+                  to 260,
+                  id local str "Query_1"
+                },
+                {
+                  from 301,
+                  to 363,
+                  id local str "Query_1"
+                },
+                {
+                  from 301,
+                  to 363,
+                  id local str "Query_1"
+                },
+                {
+                  from 726,
+                  to 742,
+                  id local str "Query_1"
+                },
+                {
+                  from 726,
+                  to 742,
+                  id local str "Query_1"
+                },
+                {
+                  from 850,
+                  to 1808,
+                  id local str "Query_1"
+                },
+                {
+                  from 850,
+                  to 1808,
+                  id local str "Query_1"
+                }
+              }
+            },
+            frame plus1
+          }
+        }
+      }
+    }
+  },
+  results {
+    alignments {
+    },
+    masks {
+      {
+        locations {
+          packed-int {
+            {
+              from 31,
+              to 43,
+              id local str "Query_1"
+            },
+            {
+              from 90,
+              to 96,
+              id local str "Query_1"
+            },
+            {
+              from 143,
+              to 149,
+              id local str "Query_1"
+            },
+            {
+              from 196,
+              to 202,
+              id local str "Query_1"
+            },
+            {
+              from 248,
+              to 260,
+              id local str "Query_1"
+            },
+            {
+              from 301,
+              to 363,
+              id local str "Query_1"
+            },
+            {
+              from 726,
+              to 742,
+              id local str "Query_1"
+            },
+            {
+              from 850,
+              to 1808,
+              id local str "Query_1"
+            }
+          }
+        },
+        frame plus1
+      }
+    },
+    ka-blocks {
+      {
+        lambda { 133270576282382, 10, -14 },
+        k { 620991117264206, 10, -15 },
+        h { 112409184650114, 10, -14 },
+        gapped FALSE
+      },
+      {
+        lambda { 128, 10, -2 },
+        k { 46, 10, -2 },
+        h { 85, 10, -2 },
+        gapped TRUE
+      }
+    },
+    search-stats {
+      "Effective search space: 278705387453244",
+      "Effective search space used: 278705387453244",
+      "Length adjustment: 36"
+    }
+  }
+}

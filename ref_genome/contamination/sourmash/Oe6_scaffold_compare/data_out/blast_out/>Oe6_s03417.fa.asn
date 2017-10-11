@@ -1,0 +1,155 @@
+Blast4-archive ::= {
+  request {
+    ident "2.2.31+",
+    body queue-search {
+      program "blastn",
+      service "megablast",
+      queries bioseq-set {
+        seq-set {
+          seq {
+            id {
+              local str "Query_1"
+            },
+            descr {
+              user {
+                type str "CFastaReader",
+                data {
+                  {
+                    label str "DefLine",
+                    data str ">Oe6_s03417"
+                  }
+                }
+              },
+              title "Oe6_s03417"
+            },
+            inst {
+              repr raw,
+              mol na,
+              length 1605,
+              seq-data ncbi2na '5D8122DA7A7A569F883004A56238E240BB93BFA565E561
+AA882022800D0079894FE77DDAD6DADADEF109F1CA5002C7DBA79C9979CF6814F5C135559F087D
+55A5FE59FAEB2DA9E7F79293F24A397B5567447975A87B977B62E4A39A79FF07929DFA4A1CBE76
+5FE42D07F7B9887DE764A369A738D25DD6596FD037966F403D5F571EA3D831AF6FF918D94EF109
+F1CA5002C7DBA79C9979CF6814F5C12B6B6B6767A41614987A62622260D425A694B7B9A965596B
+41FBEF999985F6EFE4F6607466A7298A42D8861861A965E4E42208BA82257622D8E9803CF96561
+769C96A5A9191E86859839E577B621F98429A58862766A581DA3D9992B93FEB655963734D5A529
+9A94EE694FB98B9B9EE7556967AF1C321F90A8888BFEA48F2F73FFBB98BB98695AC89A65903111
+19A5A84BFAA3BB851412D38289049A4ADF4CF4264AF9D91DFC412622FB5B597AD5161DDD65655B
+9188253F81DB56449119D9990774276666844409F9F378E54CC215DD8B7755086DA5AD04A6A6A6
+A4369037763DB6F769DB555765B49B6FDA33F02E9505EE67EEEEEEC0'H
+            }
+          }
+        }
+      },
+      subject database "/home/ubuntu/nt_db/nt",
+      algorithm-options {
+        {
+          name "EvalueThreshold",
+          value cutoff e-value { 1, 10, 1 }
+        },
+        {
+          name "MaskAtHash",
+          value boolean TRUE
+        },
+        {
+          name "DustFilteringLevel",
+          value integer 20
+        },
+        {
+          name "DustFilteringWindow",
+          value integer 64
+        },
+        {
+          name "DustFilteringLinker",
+          value integer 1
+        },
+        {
+          name "UngappedMode",
+          value boolean FALSE
+        },
+        {
+          name "HitlistSize",
+          value integer 500
+        },
+        {
+          name "EffectiveSearchSpace",
+          value big-integer 246725992204420
+        }
+      },
+      program-options {
+        {
+          name "LCaseMask",
+          value query-mask {
+            locations {
+              packed-int {
+                {
+                  from 1536,
+                  to 1542,
+                  id local str "Query_1"
+                },
+                {
+                  from 1536,
+                  to 1542,
+                  id local str "Query_1"
+                },
+                {
+                  from 1592,
+                  to 1604,
+                  id local str "Query_1"
+                },
+                {
+                  from 1592,
+                  to 1604,
+                  id local str "Query_1"
+                }
+              }
+            },
+            frame plus1
+          }
+        }
+      }
+    }
+  },
+  results {
+    alignments {
+    },
+    masks {
+      {
+        locations {
+          packed-int {
+            {
+              from 1536,
+              to 1542,
+              id local str "Query_1"
+            },
+            {
+              from 1592,
+              to 1604,
+              id local str "Query_1"
+            }
+          }
+        },
+        frame plus1
+      }
+    },
+    ka-blocks {
+      {
+        lambda { 133270576282382, 10, -14 },
+        k { 620991117264206, 10, -15 },
+        h { 112409184650114, 10, -14 },
+        gapped FALSE
+      },
+      {
+        lambda { 128, 10, -2 },
+        k { 46, 10, -2 },
+        h { 85, 10, -2 },
+        gapped TRUE
+      }
+    },
+    search-stats {
+      "Effective search space: 246725992204420",
+      "Effective search space used: 246725992204420",
+      "Length adjustment: 35"
+    }
+  }
+}

@@ -1,0 +1,166 @@
+Blast4-archive ::= {
+  request {
+    ident "2.2.31+",
+    body queue-search {
+      program "blastn",
+      service "megablast",
+      queries bioseq-set {
+        seq-set {
+          seq {
+            id {
+              local str "Query_1"
+            },
+            descr {
+              user {
+                type str "CFastaReader",
+                data {
+                  {
+                    label str "DefLine",
+                    data str ">Oe6_s09371"
+                  }
+                }
+              },
+              title "Oe6_s09371"
+            },
+            inst {
+              repr raw,
+              mol na,
+              length 922,
+              seq-data ncbi2na '45829F33BF26F0099C594A4489C3B583C4AB8740904ABB
+54030298747F89AE4694EA19566660125A9FBC8FE89CBC9E9BCA82D952796669349E3F76266A69
+3E5B59A696646936203625991A596E8690E4959A5B94F6693E5A9A477A9C65B6E653085795EC70
+0B9666693FA5779139BA0E5999A4C10962A496E6936396C69E591A6DE5C4B9A49968BEE6E2EE59
+99A450001639666691FF2C4A973A6A93626219D8E599A49EA61F5727A6F123F7FFF80F699DCBED
+784401D15378E0BD99316CFEB78F6923AA2AE78640CA186288A25E4208913DAEC83D8160EE4CCC
+CCE44F63333333333333333330'H
+            }
+          }
+        }
+      },
+      subject database "/home/ubuntu/nt_db/nt",
+      algorithm-options {
+        {
+          name "EvalueThreshold",
+          value cutoff e-value { 1, 10, 1 }
+        },
+        {
+          name "MaskAtHash",
+          value boolean TRUE
+        },
+        {
+          name "DustFilteringLevel",
+          value integer 20
+        },
+        {
+          name "DustFilteringWindow",
+          value integer 64
+        },
+        {
+          name "DustFilteringLinker",
+          value integer 1
+        },
+        {
+          name "UngappedMode",
+          value boolean FALSE
+        },
+        {
+          name "HitlistSize",
+          value integer 500
+        },
+        {
+          name "EffectiveSearchSpace",
+          value big-integer 139392328079822
+        }
+      },
+      program-options {
+        {
+          name "LCaseMask",
+          value query-mask {
+            locations {
+              packed-int {
+                {
+                  from 570,
+                  to 576,
+                  id local str "Query_1"
+                },
+                {
+                  from 570,
+                  to 576,
+                  id local str "Query_1"
+                },
+                {
+                  from 687,
+                  to 693,
+                  id local str "Query_1"
+                },
+                {
+                  from 687,
+                  to 693,
+                  id local str "Query_1"
+                },
+                {
+                  from 865,
+                  to 921,
+                  id local str "Query_1"
+                },
+                {
+                  from 865,
+                  to 921,
+                  id local str "Query_1"
+                }
+              }
+            },
+            frame plus1
+          }
+        }
+      }
+    }
+  },
+  results {
+    alignments {
+    },
+    masks {
+      {
+        locations {
+          packed-int {
+            {
+              from 570,
+              to 576,
+              id local str "Query_1"
+            },
+            {
+              from 687,
+              to 693,
+              id local str "Query_1"
+            },
+            {
+              from 865,
+              to 921,
+              id local str "Query_1"
+            }
+          }
+        },
+        frame plus1
+      }
+    },
+    ka-blocks {
+      {
+        lambda { 133270576282382, 10, -14 },
+        k { 620991117264207, 10, -15 },
+        h { 112409184650115, 10, -14 },
+        gapped FALSE
+      },
+      {
+        lambda { 128, 10, -2 },
+        k { 46, 10, -2 },
+        h { 85, 10, -2 },
+        gapped TRUE
+      }
+    },
+    search-stats {
+      "Effective search space: 139392328079822",
+      "Effective search space used: 139392328079822",
+      "Length adjustment: 35"
+    }
+  }
+}

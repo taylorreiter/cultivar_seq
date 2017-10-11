@@ -1,0 +1,100 @@
+Blast4-archive ::= {
+  request {
+    ident "2.2.31+",
+    body queue-search {
+      program "blastn",
+      service "megablast",
+      queries bioseq-set {
+        seq-set {
+          seq {
+            id {
+              local str "Query_1"
+            },
+            descr {
+              user {
+                type str "CFastaReader",
+                data {
+                  {
+                    label str "DefLine",
+                    data str ">Oe6_s07596"
+                  }
+                }
+              },
+              title "Oe6_s07596"
+            },
+            inst {
+              repr raw,
+              mol na,
+              length 626,
+              seq-data ncbi2na 'CAC5E5CE3ECAC5E5CE3ECAC5E5CE382B179730FB2B1797
+38ECAC5E5CE3B2B179730FB2B179730FB23179738ECEC5E5CE3B2B179730FB2B179730FB231797
+38ECAC5E5CC3ECAB179730FB2B179738ECAC5E5CE3E4AC5EDCE3EC8C5EDCE3FCBC5EFCE3ECAC5E
+5DC3EC8C5E5CE3B2B179738F92B17B738FB2B17B738FF2F17BF38FB2B179738ECAC5E5CE3B2B17
+9738F92B17B738FB2317B738FF2F17BF30'H
+            }
+          }
+        }
+      },
+      subject database "/home/ubuntu/nt_db/nt",
+      algorithm-options {
+        {
+          name "EvalueThreshold",
+          value cutoff e-value { 1, 10, 1 }
+        },
+        {
+          name "MaskAtHash",
+          value boolean TRUE
+        },
+        {
+          name "DustFilteringLevel",
+          value integer 20
+        },
+        {
+          name "DustFilteringWindow",
+          value integer 64
+        },
+        {
+          name "DustFilteringLinker",
+          value integer 1
+        },
+        {
+          name "UngappedMode",
+          value boolean FALSE
+        },
+        {
+          name "HitlistSize",
+          value integer 500
+        },
+        {
+          name "EffectiveSearchSpace",
+          value big-integer 93059438286752
+        }
+      }
+    }
+  },
+  results {
+    alignments {
+    },
+    masks {
+    },
+    ka-blocks {
+      {
+        lambda { 133270576282382, 10, -14 },
+        k { 620991117264207, 10, -15 },
+        h { 112409184650115, 10, -14 },
+        gapped FALSE
+      },
+      {
+        lambda { 128, 10, -2 },
+        k { 46, 10, -2 },
+        h { 85, 10, -2 },
+        gapped TRUE
+      }
+    },
+    search-stats {
+      "Effective search space: 93059438286752",
+      "Effective search space used: 93059438286752",
+      "Length adjustment: 34"
+    }
+  }
+}

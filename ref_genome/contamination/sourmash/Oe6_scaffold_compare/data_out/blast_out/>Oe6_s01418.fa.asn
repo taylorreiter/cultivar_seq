@@ -1,0 +1,207 @@
+Blast4-archive ::= {
+  request {
+    ident "2.2.31+",
+    body queue-search {
+      program "blastn",
+      service "megablast",
+      queries bioseq-set {
+        seq-set {
+          seq {
+            id {
+              local str "Query_1"
+            },
+            descr {
+              user {
+                type str "CFastaReader",
+                data {
+                  {
+                    label str "DefLine",
+                    data str ">Oe6_s01418"
+                  }
+                }
+              },
+              title "Oe6_s01418"
+            },
+            inst {
+              repr raw,
+              mol na,
+              length 2079,
+              seq-data ncbi2na 'AE598B976926A6B92BA64AF49749A9A649A83943A9071F
+6A94405435DC522143BD9295A99AB264926976966A590986D29269EB965DABAF7A67AE69A79289
+67AD92822109259AB9A5D89A28968AA59649689E4A1901B2129762E59679A5DA92826484269E4A
+66976AEBDEB9EB9A69E4A279AB6406594A4924A65909AA8A35966A249E49AB64A0994269249299
+64268A36A2BD669E6A279A86C26484249A69A8924D2BAF5A68A25964929964AD909B65292696B9
+64DA9A34A299269A4A269686406484A5925AE4989A28DA8AE5928966966AD901B6529A49A99A7D
+A9A28A37964AA49A59AB64209942492692896426AA36AEB9E69E6A2792864264A427967AE5936A
+6BDABA259249A9924AD90996D29A49A9925D28A76AE49CB9649E4AD909B2109659E9926D2BAF4A
+EB9E7AE792C96A6426C84A6926A2796B6426DB4A6965AE49F6A2BDEB926AE79249E86420884269
+E7A67974AE8A09DA796B9679A9642648425924A66937A6BDA8A249649A8966A590196D092696B9
+A5D28A29DA59289E69A86C26484A7967AE5976AE9DA9D249699269A6A19282212966928924D2BA
+76A2B964AE59A592828A0884259A5AE6974A29D68A2496596B964AD90996D09A49AB924D2BAE8D
+25929924926A592022129A59EB964DA9AF6A689649A4AE592B64265B4269E4A65934A68A29DA79
+289249A4A082806509A69699A4D2BA76AE89659E4AE59A86426484A490'H
+            }
+          }
+        }
+      },
+      subject database "/home/ubuntu/nt_db/nt",
+      algorithm-options {
+        {
+          name "EvalueThreshold",
+          value cutoff e-value { 1, 10, 1 }
+        },
+        {
+          name "MaskAtHash",
+          value boolean TRUE
+        },
+        {
+          name "DustFilteringLevel",
+          value integer 20
+        },
+        {
+          name "DustFilteringWindow",
+          value integer 64
+        },
+        {
+          name "DustFilteringLinker",
+          value integer 1
+        },
+        {
+          name "UngappedMode",
+          value boolean FALSE
+        },
+        {
+          name "HitlistSize",
+          value integer 500
+        },
+        {
+          name "EffectiveSearchSpace",
+          value big-integer 320966801897958
+        }
+      }
+    }
+  },
+  results {
+    alignments {
+      {
+        type partial,
+        dim 2,
+        score {
+          {
+            id str "score",
+            value int 28
+          },
+          {
+            id str "blast_score",
+            value int 28
+          },
+          {
+            id str "e_value",
+            value real { 40188677523737, 10, -15 }
+          },
+          {
+            id str "bit_score",
+            value real { 528264844991782, 10, -13 }
+          },
+          {
+            id str "num_ident",
+            value int 28
+          },
+          {
+            id str "hsp_percent_coverage",
+            value real { 184680134680135, 10, -14 }
+          }
+        },
+        segs denseg {
+          dim 2,
+          numseg 1,
+          ids {
+            local str "Query_1",
+            gi 365804155
+          },
+          starts {
+            964,
+            3666740
+          },
+          lens {
+            28
+          },
+          strands {
+            plus,
+            plus
+          }
+        }
+      },
+      {
+        type partial,
+        dim 2,
+        score {
+          {
+            id str "score",
+            value int 28
+          },
+          {
+            id str "blast_score",
+            value int 28
+          },
+          {
+            id str "e_value",
+            value real { 40188677523737, 10, -15 }
+          },
+          {
+            id str "bit_score",
+            value real { 528264844991782, 10, -13 }
+          },
+          {
+            id str "num_ident",
+            value int 28
+          },
+          {
+            id str "hsp_percent_coverage",
+            value real { 184680134680135, 10, -14 }
+          }
+        },
+        segs denseg {
+          dim 2,
+          numseg 1,
+          ids {
+            local str "Query_1",
+            gi 337764029
+          },
+          starts {
+            964,
+            3666933
+          },
+          lens {
+            28
+          },
+          strands {
+            plus,
+            plus
+          }
+        }
+      }
+    },
+    masks {
+    },
+    ka-blocks {
+      {
+        lambda { 133270576282382, 10, -14 },
+        k { 620991117264206, 10, -15 },
+        h { 112409184650114, 10, -14 },
+        gapped FALSE
+      },
+      {
+        lambda { 128, 10, -2 },
+        k { 46, 10, -2 },
+        h { 85, 10, -2 },
+        gapped TRUE
+      }
+    },
+    search-stats {
+      "Effective search space: 320966801897958",
+      "Effective search space used: 320966801897958",
+      "Length adjustment: 36"
+    }
+  }
+}

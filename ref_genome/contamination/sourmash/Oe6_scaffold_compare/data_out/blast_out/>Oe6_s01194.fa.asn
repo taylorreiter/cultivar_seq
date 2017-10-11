@@ -1,0 +1,265 @@
+Blast4-archive ::= {
+  request {
+    ident "2.2.31+",
+    body queue-search {
+      program "blastn",
+      service "megablast",
+      queries bioseq-set {
+        seq-set {
+          seq {
+            id {
+              local str "Query_1"
+            },
+            descr {
+              user {
+                type str "CFastaReader",
+                data {
+                  {
+                    label str "DefLine",
+                    data str ">Oe6_s01194"
+                  }
+                }
+              },
+              title "Oe6_s01194"
+            },
+            inst {
+              repr raw,
+              mol na,
+              length 4765,
+              seq-data ncbi2na '459E2CB03534D2262E2F1D000007EC6869440AF977E978
+F539B4A54AEC9015D76208AA517E0743AB5442BEDE7FD37648874943EC2099B73FE3C200638300
+D1E3922F9D7F8BB9EFF0F789AFFCC400C7EDE6F190A25E94A596A36DB6034FDDDF263D98A228C7
+8061050B566A8835DA7D7E96917C563873CF957AEE5FBEE1E0D627EE7D599CA51D0B4A50580376
+00BE223E9698860DD565AB66277D37BC9F3BFCCF5577DE95F777A526AE838D4FB3E55F03B56D0B
+5BFB7D4D374FECF64E3F0FFC0C0C89277EBE7EEEEEEEEEEEEEEEEFAEEEAEE00ED5F9A9F8800BC4
+7D0D0DBDFBED7BE5921F9DB5E025BFF6F6FBD92D0FC5EC487A6A6D8D30C341295626A977687576
+21011876CAEA485FE9A9485AD9F33147E9A22ED964BB44AA69B6E19654523F9450B61779A65E47
+967FAB85D91AA7695B94974F9551E96E9650F85A691DDFA6F5E1D3883B6D8E03EDB4DBFBBFBA00
+3E779162D7D7DE9849497BE576556991EBD9B624BE5409EFBEFBEFBEFBE9B725EB9DB963ADD9BE
+79D75D5FE74D6598AAE4063F89076261FF9679E79E78DBCD1FBE9BD6DD9DB9F8D10EBDAD1AE79E
+79E79AF9A95985161299DBDD99D49D6639927537AE4667DD41D753B1D7FF7F6D9875E6588DFBDF
+8DF9978DF7D262675D61F9D26A07FE683E8C15D26389B5E6F5D76B49345B7A56DEA47FD4B5E9D8
+8D2618627A986295474E949861862544515B89E383218618618B93D47D65BD2F93EFA604A01618
+86A61889BA24AEB62BAE48FB8EF9DBAD8AEB92BA98026607659218618229D4795BA38A50A24A28
+9D1E28987D6A6661499619D8E1876D0AEBAEBD8618A29259A696600497E260A6E517B20F9EB652
+25B95E828B649E166A6EB4AD42F4EF587A6565EBDEF993E7BE71634E2918A22BE7C9F5869E7698
+4AE67D82749E79845FA7B7667AE7A28DF6129E06EA7A56640654DD8FFEB0FD9B99EF5B98B98BFE
+DB9B8ADAADEEAF2E67AD79DAFAE67B9AFA4AE9946A13E54AE67B42E9A5921F80437A5FA9611099
+DF66A780B756218667E96600A22616A662F6410D01476565E7E6E0839D969A5F0E9386C3665A6F
+9E419344D5A6959AA8F8DB698B687E1E1B6216348D5DF86A6989344A58B77777777777465795E5
+7918AA828E667A94680DBD371662876458D20F8D0D0BD6565696D779B998A97F82B69A69E89FA9
+9EF660599644E74AE25D51EA56262186A5A68A8D6000DA50CFE582F49E60CEF903FF2D4F641BD9
+E564C0D7BD59596648940BC3F3A618636FE9666B4FE4E5A96A589625852ED3EEEE91D0D7FB7626
+969A87676A99038656969129169912912BB9179566435EE453D79DA9A4375A646476D1D9595A74
+F36E6565A6AB920AA80896A5A4A041042E9E7A67D7A5A9D9DBDBF8F514258B6AD8E07A5A4999AC
+0E641659E5D47965965A9410410042D5668440147FA409A6F9D9099AF555A52D905F81F86066A0
+29F977676F3B9A769DA2783F9A761D4769DA761DAFE9BDA6F69DA9A23DD083D95A58BA9F9BDD9B
+96248B4F69A583A6004198951A66589EF7E691D0D8A965264A605B9A988E6598C2585A6412B965
+9E95B99659941D8A566600BBE76F27E694F9B03E696BAA6C02E257655969E02D35A38765965965
+965962E95B999F694A02FD9810BDD9A98077676FF53668CBD99620899898ADA190D16DA5AB80'H
+            }
+          }
+        }
+      },
+      subject database "/home/ubuntu/nt_db/nt",
+      algorithm-options {
+        {
+          name "EvalueThreshold",
+          value cutoff e-value { 1, 10, 1 }
+        },
+        {
+          name "MaskAtHash",
+          value boolean TRUE
+        },
+        {
+          name "DustFilteringLevel",
+          value integer 20
+        },
+        {
+          name "DustFilteringWindow",
+          value integer 64
+        },
+        {
+          name "DustFilteringLinker",
+          value integer 1
+        },
+        {
+          name "UngappedMode",
+          value boolean FALSE
+        },
+        {
+          name "HitlistSize",
+          value integer 500
+        },
+        {
+          name "EffectiveSearchSpace",
+          value big-integer 742584154134768
+        }
+      },
+      program-options {
+        {
+          name "LCaseMask",
+          value query-mask {
+            locations {
+              packed-int {
+                {
+                  from 44,
+                  to 53,
+                  id local str "Query_1"
+                },
+                {
+                  from 44,
+                  to 53,
+                  id local str "Query_1"
+                },
+                {
+                  from 790,
+                  to 837,
+                  id local str "Query_1"
+                },
+                {
+                  from 790,
+                  to 837,
+                  id local str "Query_1"
+                },
+                {
+                  from 1432,
+                  to 1457,
+                  id local str "Query_1"
+                },
+                {
+                  from 1432,
+                  to 1457,
+                  id local str "Query_1"
+                },
+                {
+                  from 1644,
+                  to 1661,
+                  id local str "Query_1"
+                },
+                {
+                  from 1644,
+                  to 1661,
+                  id local str "Query_1"
+                },
+                {
+                  from 2049,
+                  to 2065,
+                  id local str "Query_1"
+                },
+                {
+                  from 2049,
+                  to 2065,
+                  id local str "Query_1"
+                },
+                {
+                  from 3173,
+                  to 3196,
+                  id local str "Query_1"
+                },
+                {
+                  from 3173,
+                  to 3196,
+                  id local str "Query_1"
+                },
+                {
+                  from 4196,
+                  to 4257,
+                  id local str "Query_1"
+                },
+                {
+                  from 4196,
+                  to 4257,
+                  id local str "Query_1"
+                },
+                {
+                  from 4600,
+                  to 4625,
+                  id local str "Query_1"
+                },
+                {
+                  from 4600,
+                  to 4625,
+                  id local str "Query_1"
+                }
+              }
+            },
+            frame plus1
+          }
+        }
+      }
+    }
+  },
+  results {
+    alignments {
+    },
+    masks {
+      {
+        locations {
+          packed-int {
+            {
+              from 44,
+              to 53,
+              id local str "Query_1"
+            },
+            {
+              from 790,
+              to 837,
+              id local str "Query_1"
+            },
+            {
+              from 1432,
+              to 1457,
+              id local str "Query_1"
+            },
+            {
+              from 1644,
+              to 1661,
+              id local str "Query_1"
+            },
+            {
+              from 2049,
+              to 2065,
+              id local str "Query_1"
+            },
+            {
+              from 3173,
+              to 3196,
+              id local str "Query_1"
+            },
+            {
+              from 4196,
+              to 4257,
+              id local str "Query_1"
+            },
+            {
+              from 4600,
+              to 4625,
+              id local str "Query_1"
+            }
+          }
+        },
+        frame plus1
+      }
+    },
+    ka-blocks {
+      {
+        lambda { 133270576282382, 10, -14 },
+        k { 620991117264207, 10, -15 },
+        h { 112409184650115, 10, -14 },
+        gapped FALSE
+      },
+      {
+        lambda { 128, 10, -2 },
+        k { 46, 10, -2 },
+        h { 85, 10, -2 },
+        gapped TRUE
+      }
+    },
+    search-stats {
+      "Effective search space: 742584154134768",
+      "Effective search space used: 742584154134768",
+      "Length adjustment: 37"
+    }
+  }
+}

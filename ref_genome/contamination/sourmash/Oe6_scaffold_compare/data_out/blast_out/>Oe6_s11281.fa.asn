@@ -1,0 +1,136 @@
+Blast4-archive ::= {
+  request {
+    ident "2.2.31+",
+    body queue-search {
+      program "blastn",
+      service "megablast",
+      queries bioseq-set {
+        seq-set {
+          seq {
+            id {
+              local str "Query_1"
+            },
+            descr {
+              user {
+                type str "CFastaReader",
+                data {
+                  {
+                    label str "DefLine",
+                    data str ">Oe6_s11281"
+                  }
+                }
+              },
+              title "Oe6_s11281"
+            },
+            inst {
+              repr raw,
+              mol na,
+              length 944,
+              seq-data ncbi2na 'FF6D662F67F68F620F68A48F42D620E627764B6D5AB676
+DA0350FE4FD3F8966569776E66E6660D66AA618043C3093CDAD6572C2EFF9A5DE4B6B19DA1BA52
+699284605139D85E09636A66A8FEBF6E436A66555FFBBDE666F987644079655390F9C20D3CBA53
+D3659668BCEC35949FB6F623D983E6254181E42951D81EFBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+BBC1D8480C076652DB59E5975D1E381903D0FBAD00B926662F5206011096779FEEFDD97676C66F
+46F46A58B9A6243800E15D962E9D9B6E79599866247F958B59476E69B0FBD55939F2B52606A63F
+E57606581929580AE46E2623E641049A79AE'H
+            }
+          }
+        }
+      },
+      subject database "/home/ubuntu/nt_db/nt",
+      algorithm-options {
+        {
+          name "EvalueThreshold",
+          value cutoff e-value { 1, 10, 1 }
+        },
+        {
+          name "MaskAtHash",
+          value boolean TRUE
+        },
+        {
+          name "DustFilteringLevel",
+          value integer 20
+        },
+        {
+          name "DustFilteringWindow",
+          value integer 64
+        },
+        {
+          name "DustFilteringLinker",
+          value integer 1
+        },
+        {
+          name "UngappedMode",
+          value boolean FALSE
+        },
+        {
+          name "HitlistSize",
+          value integer 500
+        },
+        {
+          name "EffectiveSearchSpace",
+          value big-integer 142849634976954
+        }
+      },
+      program-options {
+        {
+          name "LCaseMask",
+          value query-mask {
+            locations {
+              packed-int {
+                {
+                  from 497,
+                  to 563,
+                  id local str "Query_1"
+                },
+                {
+                  from 497,
+                  to 563,
+                  id local str "Query_1"
+                }
+              }
+            },
+            frame plus1
+          }
+        }
+      }
+    }
+  },
+  results {
+    alignments {
+    },
+    masks {
+      {
+        locations {
+          packed-int {
+            {
+              from 497,
+              to 563,
+              id local str "Query_1"
+            }
+          }
+        },
+        frame plus1
+      }
+    },
+    ka-blocks {
+      {
+        lambda { 133270576282382, 10, -14 },
+        k { 620991117264206, 10, -15 },
+        h { 112409184650114, 10, -14 },
+        gapped FALSE
+      },
+      {
+        lambda { 128, 10, -2 },
+        k { 46, 10, -2 },
+        h { 85, 10, -2 },
+        gapped TRUE
+      }
+    },
+    search-stats {
+      "Effective search space: 142849634976954",
+      "Effective search space used: 142849634976954",
+      "Length adjustment: 35"
+    }
+  }
+}

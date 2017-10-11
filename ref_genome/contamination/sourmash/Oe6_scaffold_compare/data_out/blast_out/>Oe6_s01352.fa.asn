@@ -1,0 +1,113 @@
+Blast4-archive ::= {
+  request {
+    ident "2.2.31+",
+    body queue-search {
+      program "blastn",
+      service "megablast",
+      queries bioseq-set {
+        seq-set {
+          seq {
+            id {
+              local str "Query_1"
+            },
+            descr {
+              user {
+                type str "CFastaReader",
+                data {
+                  {
+                    label str "DefLine",
+                    data str ">Oe6_s01352"
+                  }
+                }
+              },
+              title "Oe6_s01352"
+            },
+            inst {
+              repr raw,
+              mol na,
+              length 2700,
+              seq-data ncbi2na '0C513E85EFE09A516ED9E18296658D0A360D9A1973203C
+5DB333518A285E52F8EEE6083F665787846F876ED8D689E6698635BE6671AD6423B50418E580D9
+E6D66B6F68EF6A96FD9898E9EED91884389149580181BAC59E466946A7825D66692CD5C92A12D5
+99C3018B43537E0F63AED5266CBB7D38665E99F8E936189999D354B6185D35948D6D245FAB16A9
+79896029F4E244169F787A5EA6C490780AD24ED7988553029D84A90D145DC6AA6379F99057D7DE
+A5D7ED94D6A6B9DA9F9DB3E6B2080F5A99FD88C76085640C34D9EDF544AEAE18105A3A8FA5E613
+8AAE479A763E5C636992DD9109B669E601E0969699B569CC839AAFE230A058C6E69E76DCC13D9C
+6712B16B5F5FD3797F95A66A71799241642B5D8693C587D3594624D68EEB6974D8AD845AF535B1
+693AE05296244F96988DA51CF51BF4B90B1AC6AB5B4107DB153EE6424A5064F5ED67593B91A606
+7D471F6316934265E34F89D89D8E1BBBBBD7AE45ED5E03D651652CD27D9D5E46378FB90D94096B
+4FBE5AE1F411BDEA819188DCFEF4E6A496A7992650759A9795DFD5A668559BBE27A1F4D7AE260A
+4F82D161F59B958EE67DD634DA55EBBB8FD46E596A669F460A1A4926C383841A45D35E80B60023
+961DADB7A786361095064DA506F7B6251B1E6E27A119D7A659E19085459A9AD36D375A42089AFF
+B65AA584D0A0F45A4D141BA082BF5974F467A528AD78161D8A479AE541AE9A4351AFD9BEAABA1D
+89E95E9B967166C96D0E18827B67687D582E41EA4D4D7A3DA6A18D6F5B1A74DA6E66598E80E39E
+1A90967D89610A479B76A7AE8407AD5A68527D99A694088F93E4A45655914965FD2606AEF8BE96
+32E6EAF4D2A801E8264AD97602761B8D2CD5956C6538D85EEA60E9A03DB38A682463636649DF5D
+25413464976D66EC5E7128D978099DAE90A9A168AD011BD1BAFA26AE'H
+            }
+          }
+        }
+      },
+      subject database "/home/ubuntu/nt_db/nt",
+      algorithm-options {
+        {
+          name "EvalueThreshold",
+          value cutoff e-value { 1, 10, 1 }
+        },
+        {
+          name "MaskAtHash",
+          value boolean TRUE
+        },
+        {
+          name "DustFilteringLevel",
+          value integer 20
+        },
+        {
+          name "DustFilteringWindow",
+          value integer 64
+        },
+        {
+          name "DustFilteringLinker",
+          value integer 1
+        },
+        {
+          name "UngappedMode",
+          value boolean FALSE
+        },
+        {
+          name "HitlistSize",
+          value integer 500
+        },
+        {
+          name "EffectiveSearchSpace",
+          value big-integer 418529398069584
+        }
+      }
+    }
+  },
+  results {
+    alignments {
+    },
+    masks {
+    },
+    ka-blocks {
+      {
+        lambda { 133270576282382, 10, -14 },
+        k { 620991117264207, 10, -15 },
+        h { 112409184650115, 10, -14 },
+        gapped FALSE
+      },
+      {
+        lambda { 128, 10, -2 },
+        k { 46, 10, -2 },
+        h { 85, 10, -2 },
+        gapped TRUE
+      }
+    },
+    search-stats {
+      "Effective search space: 418529398069584",
+      "Effective search space used: 418529398069584",
+      "Length adjustment: 36"
+    }
+  }
+}

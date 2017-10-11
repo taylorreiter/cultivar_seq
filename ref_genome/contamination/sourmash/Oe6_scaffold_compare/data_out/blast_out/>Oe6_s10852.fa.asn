@@ -1,0 +1,201 @@
+Blast4-archive ::= {
+  request {
+    ident "2.2.31+",
+    body queue-search {
+      program "blastn",
+      service "megablast",
+      queries bioseq-set {
+        seq-set {
+          seq {
+            id {
+              local str "Query_1"
+            },
+            descr {
+              user {
+                type str "CFastaReader",
+                data {
+                  {
+                    label str "DefLine",
+                    data str ">Oe6_s10852"
+                  }
+                }
+              },
+              title "Oe6_s10852"
+            },
+            inst {
+              repr raw,
+              mol na,
+              length 4054,
+              seq-data ncbi2na '45756F65FE1ABF59A952DBBA5FB652AA565921169947D6
+9666A6EC3E0F301A96AA9AA6E299F000BF0DE5C26AA59887036963F93E6A6A5E5789EB699149D0
+627E59145959B98E40C0B91A5891EEA52A7769599844C0250FD0FBB5278FE38B64A76951557DBB
+F7779A8199962A1C109A599AA65FFF5E498A426650BF606A518A0A8266363A00D54DA10363D811
+E94514555DDA7053742FCFEFF3F54A57A501026D92958623881FD8A569601D9E87E81E6DA12003
+BFD37F66E8D80F663D98BA5969D007E6761FAEE5742624075559A62D596BF47DA95641DBF96963
+63E98B6660D98B79A9660660665958660D89DB0307F9625AB740F6D5DA7F9EA508DAA940CED43F
+A0C0C0FDB8BA776FDAE43DA5D90E2376E50A9D9980DF25918BAAA624AE96262E95980E46440E27
+674A70D62963FFB400575409C6225654A4ABA90500046467050503F97018181818181819006070
+0589294A698A76E6657658A1402A959E9875119BAD9AD969484360FD0ED4F2AA62FBE5591891B5
+26947ED29A642E99A5D81D81DA69E189818C37A640AC243664268F40E27672A6588F2BD89DA4E4
+2526681C356614BA3E0FE6F5595070590361F57FBD9906506E0594066046046046066046076046
+0760460760616101008E941678940E076199F8A7494A69019892DE14FF9295259A7A18A40F18B9
+99F9E82E99652649E79764A62628821914BD09D29E76E55665D995F62F579A1992BE9382B5E745
+E7695D8A949258DDBDBBAF9984140D3625B6A462E2D4108E96981A2EE9767694AE4D2410FA5842
+F657B6991DA534BFA9488DA5C6E78FAEBA524AA525B9218690AA698767618A359FA28BE2A76846
+5576A190BA9BA6990015014404A19296596592548624E41DDA1DB53D93D94A7863C763DED4D815
+762782476A59C47E7695206296666E25127649DD4F06BCB38D9299BBBBA74A989A80BA53FA7D76
+D6DB6DB4A80075D7A9D98295527A9AA96262FF3C0008A651545B2564811C1581DB554362619125
+5951BD1AE8966A1A767AD2694B636E762E66976A5255A586789E9D6A522B0BFB75AD5963D79287
+666EE0C556966E650E3E3DDA479D469638B559628B9602E613FC09DA5EE3D2E498B774DD98B599
+87677C78199891E47AEA5AB96FD997FBED9984767676767A5695A580DA5996300171C003FB346E
+FA69294A5294A7CE7AD99BA769A7603465676BBFB7F7BFA5E5A9A69A696F81AD252765B0EE52FE
+9895D3F89657819AAA459621621A26119A6215DA699B0E23F66647509AA9DA969A9AFD33800CCF
+3F2ED476A55D479494948E95D0DD95A5A577E1F8FE3CCF066A6A54866674C0FA7D5E369A529D99
+A9C07576AEA476965965765BD9BE0E9692A294FFB4189666043D64F46251E940EAA9AA259606D0
+9D02B6FBFDA7C526A26B960041999700'H
+            }
+          }
+        }
+      },
+      subject database "/home/ubuntu/nt_db/nt",
+      algorithm-options {
+        {
+          name "EvalueThreshold",
+          value cutoff e-value { 1, 10, 1 }
+        },
+        {
+          name "MaskAtHash",
+          value boolean TRUE
+        },
+        {
+          name "DustFilteringLevel",
+          value integer 20
+        },
+        {
+          name "DustFilteringWindow",
+          value integer 64
+        },
+        {
+          name "DustFilteringLinker",
+          value integer 1
+        },
+        {
+          name "UngappedMode",
+          value boolean FALSE
+        },
+        {
+          name "HitlistSize",
+          value integer 500
+        },
+        {
+          name "EffectiveSearchSpace",
+          value big-integer 630913821311202
+        }
+      },
+      program-options {
+        {
+          name "LCaseMask",
+          value query-mask {
+            locations {
+              packed-int {
+                {
+                  from 878,
+                  to 941,
+                  id local str "Query_1"
+                },
+                {
+                  from 878,
+                  to 941,
+                  id local str "Query_1"
+                },
+                {
+                  from 1299,
+                  to 1336,
+                  id local str "Query_1"
+                },
+                {
+                  from 1299,
+                  to 1336,
+                  id local str "Query_1"
+                },
+                {
+                  from 1735,
+                  to 1840,
+                  id local str "Query_1"
+                },
+                {
+                  from 1735,
+                  to 1840,
+                  id local str "Query_1"
+                },
+                {
+                  from 2823,
+                  to 2829,
+                  id local str "Query_1"
+                },
+                {
+                  from 2823,
+                  to 2829,
+                  id local str "Query_1"
+                }
+              }
+            },
+            frame plus1
+          }
+        }
+      }
+    }
+  },
+  results {
+    alignments {
+    },
+    masks {
+      {
+        locations {
+          packed-int {
+            {
+              from 878,
+              to 941,
+              id local str "Query_1"
+            },
+            {
+              from 1299,
+              to 1336,
+              id local str "Query_1"
+            },
+            {
+              from 1735,
+              to 1840,
+              id local str "Query_1"
+            },
+            {
+              from 2823,
+              to 2829,
+              id local str "Query_1"
+            }
+          }
+        },
+        frame plus1
+      }
+    },
+    ka-blocks {
+      {
+        lambda { 133270576282382, 10, -14 },
+        k { 620991117264207, 10, -15 },
+        h { 112409184650115, 10, -14 },
+        gapped FALSE
+      },
+      {
+        lambda { 128, 10, -2 },
+        k { 46, 10, -2 },
+        h { 85, 10, -2 },
+        gapped TRUE
+      }
+    },
+    search-stats {
+      "Effective search space: 630913821311202",
+      "Effective search space used: 630913821311202",
+      "Length adjustment: 37"
+    }
+  }
+}

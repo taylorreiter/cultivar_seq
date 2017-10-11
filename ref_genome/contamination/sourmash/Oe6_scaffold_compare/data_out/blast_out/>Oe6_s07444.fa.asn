@@ -1,0 +1,102 @@
+Blast4-archive ::= {
+  request {
+    ident "2.2.31+",
+    body queue-search {
+      program "blastn",
+      service "megablast",
+      queries bioseq-set {
+        seq-set {
+          seq {
+            id {
+              local str "Query_1"
+            },
+            descr {
+              user {
+                type str "CFastaReader",
+                data {
+                  {
+                    label str "DefLine",
+                    data str ">Oe6_s07444"
+                  }
+                }
+              },
+              title "Oe6_s07444"
+            },
+            inst {
+              repr raw,
+              mol na,
+              length 932,
+              seq-data ncbi2na 'D5879698022834E158BBE405B5EF9E279DA59A53A5A465
+B53D41A078459599B98A7AEF80193945A664ADC45E429658E1A42F50EAEF909168E743E461642A
+E5B0DA9247D96B545E82442868250B0D9429E6953B21D16865935B55EBEF9C9A616B446AE2AEEF
+750AE2493D260F0450A9A42575907B52EE36F50A0A4648D64B573925871C7FC65A6BE3F9794698
+57827663594A9FA6A96F7059D1D69982064D99960A1DB96249096975699B4678E250D411FD7859
+62F1B779D6924620948DD5910E269F6B51D0D9F41DA96E6D95D844AD34B5445BC55A98D1768309
+2B594F8EB8E946E746A913E7E4351D'H
+            }
+          }
+        }
+      },
+      subject database "/home/ubuntu/nt_db/nt",
+      algorithm-options {
+        {
+          name "EvalueThreshold",
+          value cutoff e-value { 1, 10, 1 }
+        },
+        {
+          name "MaskAtHash",
+          value boolean TRUE
+        },
+        {
+          name "DustFilteringLevel",
+          value integer 20
+        },
+        {
+          name "DustFilteringWindow",
+          value integer 64
+        },
+        {
+          name "DustFilteringLinker",
+          value integer 1
+        },
+        {
+          name "UngappedMode",
+          value boolean FALSE
+        },
+        {
+          name "HitlistSize",
+          value integer 500
+        },
+        {
+          name "EffectiveSearchSpace",
+          value big-integer 140963831214882
+        }
+      }
+    }
+  },
+  results {
+    alignments {
+    },
+    masks {
+    },
+    ka-blocks {
+      {
+        lambda { 133270576282382, 10, -14 },
+        k { 620991117264207, 10, -15 },
+        h { 112409184650115, 10, -14 },
+        gapped FALSE
+      },
+      {
+        lambda { 128, 10, -2 },
+        k { 46, 10, -2 },
+        h { 85, 10, -2 },
+        gapped TRUE
+      }
+    },
+    search-stats {
+      "Effective search space: 140963831214882",
+      "Effective search space used: 140963831214882",
+      "Length adjustment: 35"
+    }
+  }
+}

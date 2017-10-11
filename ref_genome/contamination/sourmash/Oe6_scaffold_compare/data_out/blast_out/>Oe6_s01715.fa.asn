@@ -1,0 +1,259 @@
+Blast4-archive ::= {
+  request {
+    ident "2.2.31+",
+    body queue-search {
+      program "blastn",
+      service "megablast",
+      queries bioseq-set {
+        seq-set {
+          seq {
+            id {
+              local str "Query_1"
+            },
+            descr {
+              user {
+                type str "CFastaReader",
+                data {
+                  {
+                    label str "DefLine",
+                    data str ">Oe6_s01715"
+                  }
+                }
+              },
+              title "Oe6_s01715"
+            },
+            inst {
+              repr raw,
+              mol na,
+              length 859,
+              seq-data ncbi2na 'E15098250D09A5968E02E22D88A888888BA6496367EF66
+56DE665DD94EAD8B7A9A6A410BA5965B6DB6D8FBD96DA76D09E999047F965D6796DF64569FA737
+627374D0CE8F226A69E94929A56469A92929A4A4A4A527BDD1FD1FD9BD3D9CBA46464646464646
+44626A6A666F765E6443665E89434A6EE35E2D99D9D9E25D999F96595959E25D66667D5962AA78
+D36D3CF3CD34F3CF3EF3CD85A919E18A96561E7A9E998958958958B58B58B58B58B58B52BDABD2
+BD2BDA666A5E6A923999111919A6701F29595298999987EDA56D9E2D99B587955767A764'H
+            }
+          }
+        }
+      },
+      subject database "/home/ubuntu/nt_db/nt",
+      algorithm-options {
+        {
+          name "EvalueThreshold",
+          value cutoff e-value { 1, 10, 1 }
+        },
+        {
+          name "MaskAtHash",
+          value boolean TRUE
+        },
+        {
+          name "DustFilteringLevel",
+          value integer 20
+        },
+        {
+          name "DustFilteringWindow",
+          value integer 64
+        },
+        {
+          name "DustFilteringLinker",
+          value integer 1
+        },
+        {
+          name "UngappedMode",
+          value boolean FALSE
+        },
+        {
+          name "HitlistSize",
+          value integer 500
+        },
+        {
+          name "EffectiveSearchSpace",
+          value big-integer 129491858328944
+        }
+      },
+      program-options {
+        {
+          name "LCaseMask",
+          value query-mask {
+            locations {
+              packed-int {
+                {
+                  from 41,
+                  to 66,
+                  id local str "Query_1"
+                },
+                {
+                  from 41,
+                  to 66,
+                  id local str "Query_1"
+                },
+                {
+                  from 275,
+                  to 337,
+                  id local str "Query_1"
+                },
+                {
+                  from 275,
+                  to 337,
+                  id local str "Query_1"
+                },
+                {
+                  from 375,
+                  to 409,
+                  id local str "Query_1"
+                },
+                {
+                  from 375,
+                  to 409,
+                  id local str "Query_1"
+                },
+                {
+                  from 478,
+                  to 549,
+                  id local str "Query_1"
+                },
+                {
+                  from 478,
+                  to 549,
+                  id local str "Query_1"
+                },
+                {
+                  from 568,
+                  to 602,
+                  id local str "Query_1"
+                },
+                {
+                  from 568,
+                  to 602,
+                  id local str "Query_1"
+                },
+                {
+                  from 647,
+                  to 701,
+                  id local str "Query_1"
+                },
+                {
+                  from 647,
+                  to 701,
+                  id local str "Query_1"
+                }
+              }
+            },
+            frame plus1
+          }
+        }
+      }
+    }
+  },
+  results {
+    alignments {
+      {
+        type partial,
+        dim 2,
+        score {
+          {
+            id str "score",
+            value int 28
+          },
+          {
+            id str "blast_score",
+            value int 28
+          },
+          {
+            id str "e_value",
+            value real { 162138467453898, 10, -16 }
+          },
+          {
+            id str "bit_score",
+            value real { 528264844991782, 10, -13 }
+          },
+          {
+            id str "num_ident",
+            value int 28
+          },
+          {
+            id str "hsp_percent_coverage",
+            value real { 375960419091967, 10, -14 }
+          }
+        },
+        segs denseg {
+          dim 2,
+          numseg 1,
+          ids {
+            local str "Query_1",
+            gi 593693711
+          },
+          starts {
+            703,
+            57
+          },
+          lens {
+            28
+          },
+          strands {
+            plus,
+            plus
+          }
+        }
+      }
+    },
+    masks {
+      {
+        locations {
+          packed-int {
+            {
+              from 41,
+              to 66,
+              id local str "Query_1"
+            },
+            {
+              from 275,
+              to 337,
+              id local str "Query_1"
+            },
+            {
+              from 375,
+              to 409,
+              id local str "Query_1"
+            },
+            {
+              from 478,
+              to 549,
+              id local str "Query_1"
+            },
+            {
+              from 568,
+              to 602,
+              id local str "Query_1"
+            },
+            {
+              from 647,
+              to 701,
+              id local str "Query_1"
+            }
+          }
+        },
+        frame plus1
+      }
+    },
+    ka-blocks {
+      {
+        lambda { 133270576282382, 10, -14 },
+        k { 620991117264207, 10, -15 },
+        h { 112409184650115, 10, -14 },
+        gapped FALSE
+      },
+      {
+        lambda { 128, 10, -2 },
+        k { 46, 10, -2 },
+        h { 85, 10, -2 },
+        gapped TRUE
+      }
+    },
+    search-stats {
+      "Effective search space: 129491858328944",
+      "Effective search space used: 129491858328944",
+      "Length adjustment: 35"
+    }
+  }
+}

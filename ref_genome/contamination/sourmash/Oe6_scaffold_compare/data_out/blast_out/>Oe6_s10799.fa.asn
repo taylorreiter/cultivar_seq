@@ -1,0 +1,363 @@
+Blast4-archive ::= {
+  request {
+    ident "2.2.31+",
+    body queue-search {
+      program "blastn",
+      service "megablast",
+      queries bioseq-set {
+        seq-set {
+          seq {
+            id {
+              local str "Query_1"
+            },
+            descr {
+              user {
+                type str "CFastaReader",
+                data {
+                  {
+                    label str "DefLine",
+                    data str ">Oe6_s10799"
+                  }
+                }
+              },
+              title "Oe6_s10799"
+            },
+            inst {
+              repr raw,
+              mol na,
+              length 4768,
+              seq-data ncbi2na 'F4F96ED042DDB3D13D3FD920B5388DDCD09C99A84DF40F
+B9D62453240D4F98667A04235E74FEBFE5704A1E57823EA05DF52F87C5E04CF42D0DDBD71DDA9F
+8574FB81C4E6787FC6A9E65588E99D5362D8B00BE50541DBDBF9D691BED479925D1081999CDEF6
+A3AA2850617BBEDEA7E61521E376B485DD1F51FF1182B80E57DDFBDDBC807542F3FBEEF7629C28
+0B080FE5D434F434ED8104262D6235B84E269BB4522F01349898889069EDDAA92611767A50F98D
+8890A250598B4239D09962AA49981AE485965DD99A1D45D898B97C4BEDEE325898646290983B8D
+DA5A6057B40BB42FFB59E807EFB7FBE8E75808BF5E4B660D4D49D9A636368A249E3D9A465B6269
+2E920014D8A2B80464000745482E3D7D961528E27624837CF9418AEA2742BA228143FC8A0BED72
+18961112039A59619740F40529857421492505B58E7FE5D97865648A6080FB8C00E4040453E9B5
+3534816369F6A4AE49621D1A610901A399831362D9D2BE1582526A59718A4A9A7B143DF42D4660
+589EB65E5D77D25E36FEF1DFE349E427A59452451742DF4260D3412406188AA987ED9630626266
+CFD0F5D8626509A17436F404079275176D16A76E966767BA519D192BBDA55B89A6547E79424DD9
+E91DC5E0A944D25A99B78DD317A6990D9DAE5F5EA6F91FFAB7DD189D92B86146346B69995895F1
+62F56BA5FD0601F5146AFDB6656D19E9A6BAC05224619979A76E80336069A69A6982EE0FF83F99
+593625EA480D1041A566A684380D896594A66A5F3601EB869DA69A6B269A694686605240A95258
+99843FE3B63E2852A62662766A426D99994595EA45D8061851451498A6A5603F8E9D3FAA50F52A
+8FBCD86576AA6A963FDA66035B6D929D6620E1E40851861963C9893CD03969A3D4624A859652B8
+64263839894AE65612390199D7A4A07D01589EAA55242A4D243CB8EB9676E0E80C37E250618998
+9AE9249F97546490864A6276299549659E019861861861486A63F835648D2034105147185D8514
+514566655929E78064209B19A490A6516498B074D064665918904658B5B99B9CC6E0DE7967A579
+586234ED89876B99979799A61D004104104104599A190D296DA349D9254797E8D750692523BF37
+D43E76619EBAD0FE9737A606E85665912176BC40D1DD8DA9D971F5E991F9E95D076A69F79A4B56
+E49E3E677D93ED55276497066410A1282F8BA4768BAF4DF5E3EE55EBEAA5DF4994CD918B13E3F4
+6DA66432A1092791F9A675F7FD9E8E176626AA6E9669A5DA5DA5699E7606588991D891D92989E5
+E8627929945974A49A66007855A518D96908E189052451410F21D9EA5A4A62D9482675DA5A629F
+5D9E945989245176261869079D8EA6407625E7467488764A5A69A6253E024149A751B41A645E67
+98470E2A2F283F919268566859D009A09A556BAD9B1E69BA4269A6A56B98929990BD493FE761D8
+1FFE3C9E69AE9A69A69A69A69A69A69A6990790345989E49291905145A43D3B91894BD3B8A9547
+FB644766E661E403AA9A692492462959262426A62D00B953C94F7965AE6E6AEA75F55D62224A72
+99A5C38E566239A588C98D989948E025B47E27625E55AA9A5233833999DD2FA9D295AD23658655
+67842F43E6261C62492DA9A7A90C014302F9F9F9F999B533534A6BA6B48A2E8BB5599BFB7E55'H
+            }
+          }
+        }
+      },
+      subject database "/home/ubuntu/nt_db/nt",
+      algorithm-options {
+        {
+          name "EvalueThreshold",
+          value cutoff e-value { 1, 10, 1 }
+        },
+        {
+          name "MaskAtHash",
+          value boolean TRUE
+        },
+        {
+          name "DustFilteringLevel",
+          value integer 20
+        },
+        {
+          name "DustFilteringWindow",
+          value integer 64
+        },
+        {
+          name "DustFilteringLinker",
+          value integer 1
+        },
+        {
+          name "UngappedMode",
+          value boolean FALSE
+        },
+        {
+          name "HitlistSize",
+          value integer 500
+        },
+        {
+          name "EffectiveSearchSpace",
+          value big-integer 743055336973686
+        }
+      },
+      program-options {
+        {
+          name "LCaseMask",
+          value query-mask {
+            locations {
+              packed-int {
+                {
+                  from 1063,
+                  to 1069,
+                  id local str "Query_1"
+                },
+                {
+                  from 1063,
+                  to 1069,
+                  id local str "Query_1"
+                },
+                {
+                  from 2080,
+                  to 2096,
+                  id local str "Query_1"
+                },
+                {
+                  from 2080,
+                  to 2096,
+                  id local str "Query_1"
+                },
+                {
+                  from 2214,
+                  to 2243,
+                  id local str "Query_1"
+                },
+                {
+                  from 2214,
+                  to 2243,
+                  id local str "Query_1"
+                },
+                {
+                  from 2817,
+                  to 2835,
+                  id local str "Query_1"
+                },
+                {
+                  from 2817,
+                  to 2835,
+                  id local str "Query_1"
+                },
+                {
+                  from 3110,
+                  to 3131,
+                  id local str "Query_1"
+                },
+                {
+                  from 3110,
+                  to 3131,
+                  id local str "Query_1"
+                },
+                {
+                  from 4163,
+                  to 4216,
+                  id local str "Query_1"
+                },
+                {
+                  from 4163,
+                  to 4216,
+                  id local str "Query_1"
+                }
+              }
+            },
+            frame plus1
+          }
+        }
+      }
+    }
+  },
+  results {
+    alignments {
+      {
+        type partial,
+        dim 2,
+        score {
+          {
+            id str "score",
+            value int 30
+          },
+          {
+            id str "blast_score",
+            value int 30
+          },
+          {
+            id str "e_value",
+            value real { 719235117914769, 10, -17 }
+          },
+          {
+            id str "bit_score",
+            value real { 565197838038539, 10, -13 }
+          },
+          {
+            id str "num_ident",
+            value int 42
+          },
+          {
+            id str "hsp_percent_coverage",
+            value real { 146476510067114, 10, -14 }
+          }
+        },
+        segs denseg {
+          dim 2,
+          numseg 7,
+          ids {
+            local str "Query_1",
+            gi 520999024
+          },
+          starts {
+            3655,
+            9117686,
+            3654,
+            -1,
+            3648,
+            9117690,
+            -1,
+            9117696,
+            3643,
+            9117697,
+            3642,
+            -1,
+            3613,
+            9117702
+          },
+          lens {
+            4,
+            1,
+            6,
+            1,
+            5,
+            1,
+            29
+          },
+          strands {
+            minus,
+            plus,
+            minus,
+            plus,
+            minus,
+            plus,
+            minus,
+            plus,
+            minus,
+            plus,
+            minus,
+            plus,
+            minus,
+            plus
+          }
+        }
+      },
+      {
+        type partial,
+        dim 2,
+        score {
+          {
+            id str "score",
+            value int 29
+          },
+          {
+            id str "blast_score",
+            value int 29
+          },
+          {
+            id str "e_value",
+            value real { 258682959711677, 10, -16 }
+          },
+          {
+            id str "bit_score",
+            value real { 54673134151516, 10, -12 }
+          },
+          {
+            id str "num_ident",
+            value int 29
+          },
+          {
+            id str "hsp_percent_coverage",
+            value real { 110822147651007, 10, -14 }
+          }
+        },
+        segs denseg {
+          dim 2,
+          numseg 1,
+          ids {
+            local str "Query_1",
+            gi 161158851
+          },
+          starts {
+            3613,
+            7371296
+          },
+          lens {
+            29
+          },
+          strands {
+            minus,
+            plus
+          }
+        }
+      }
+    },
+    masks {
+      {
+        locations {
+          packed-int {
+            {
+              from 1063,
+              to 1069,
+              id local str "Query_1"
+            },
+            {
+              from 2080,
+              to 2096,
+              id local str "Query_1"
+            },
+            {
+              from 2214,
+              to 2243,
+              id local str "Query_1"
+            },
+            {
+              from 2817,
+              to 2835,
+              id local str "Query_1"
+            },
+            {
+              from 3110,
+              to 3131,
+              id local str "Query_1"
+            },
+            {
+              from 4163,
+              to 4216,
+              id local str "Query_1"
+            }
+          }
+        },
+        frame plus1
+      }
+    },
+    ka-blocks {
+      {
+        lambda { 133270576282382, 10, -14 },
+        k { 620991117264207, 10, -15 },
+        h { 112409184650115, 10, -14 },
+        gapped FALSE
+      },
+      {
+        lambda { 128, 10, -2 },
+        k { 46, 10, -2 },
+        h { 85, 10, -2 },
+        gapped TRUE
+      }
+    },
+    search-stats {
+      "Effective search space: 743055336973686",
+      "Effective search space used: 743055336973686",
+      "Length adjustment: 37"
+    }
+  }
+}

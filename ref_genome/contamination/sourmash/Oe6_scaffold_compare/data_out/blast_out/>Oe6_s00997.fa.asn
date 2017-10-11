@@ -1,0 +1,473 @@
+Blast4-archive ::= {
+  request {
+    ident "2.2.31+",
+    body queue-search {
+      program "blastn",
+      service "megablast",
+      queries bioseq-set {
+        seq-set {
+          seq {
+            id {
+              local str "Query_1"
+            },
+            descr {
+              user {
+                type str "CFastaReader",
+                data {
+                  {
+                    label str "DefLine",
+                    data str ">Oe6_s00997"
+                  }
+                }
+              },
+              title "Oe6_s00997"
+            },
+            inst {
+              repr raw,
+              mol na,
+              length 11441,
+              seq-data ncbi2na '6AA411764AE0763BD95516AC30FBDD9587E39A99A9A79D
+9A812D092F9D29212921A9298290982222222222212206122FD0BEBDBDAA6AEBE727BBCBFBADB9
+7AD966333A72992BAAF1A84AC26AA7709C2ABD8AFFEABFD88A03622000878880DE365BD7928199
+8766980E67958B66282D94745F81B92BE3CD39D37DAB6B9D17A476C9DB9EDBD1BD1B5F8FD8A352
+DAE795E76F4E89E3D98B558EC2EC7F5E4B4A3F6F7666A6494A21792B689A96E0EDB69A6AEE4BFB
+99BDAE6D365299AD92EFBF6BB88FFEEF2F4FE9A692492476FEAA5766E98E05E2BD66832FF74026
+9D55254952545DD2B49278ACE4002EDD9E6BF9D977640D8C25679897666A9A54F29A95A5AD70DD
+995AA95D989559897425BBCED3A91F5A5E666993C9A595A52A5E9E6A664F1FB9996F66E233E27B
+59A99682EA58D30B699A7DA9A97930969A99B9D8BBB9DA779DE779D9AF6E0D99810B980FCF47C0
+BD88BBDD456FE6B831DD96A9599A498CFDDB56E48B79126718726646770184BFEE24F525A99192
+010040B5D9D999A854269245D81E5695990353164591E9555555517DE3E7E6D37BF94F5A556ADA
+8CE0F46BF90C0B99616E233A62DB02E64FD987653D8AD09A69A69E4560554B96343C9D99E2FD59
+01ED46E56DD9C38F83FE5D9519AB68FF98FD175998966AA56419970D73C3DD9DA550D6B66A4AF6
+7CDB9679649D25A089809040BE9665C276030347A5E94726641A6A24E6A5F9B8BB5D9F66099805
+901387FED9566B7637E981E658189E618968A69A666180DBEFF60F4000075A55176A4ACFCDB958
+AEE5E6A52589268467618AE526A55D87627645E95966E1C03F8C7FD76D5DD96A6D59E7662509FE
+6E62EE6AAE6A6A69551FB84360260375A65547E9598AAB9A5939A14F07A966EEE21DA56399ABD6
+30926426A76469669658B799E79E79E79E7BF9FBF42E59A39F2756449661B7A76E64958AAA4747
+A980BB800C380066B94807CD96626E65666EFC641D0F1E8520591F85969ABFBB9BA976950A5039
+99B98CEA96662B59E6B74AFE3E955AA4A5843C34DB6DB6DB6E7963D034A958360D5E95E95EB6C0
+785BF666F560697A562D99550BB664303F0FE5C3D629999889228A676A699CE8035A569840FE03
+F54D99924969A69A69A663C6412959F82D998898C02666D99CB59514B8AA648E6A5AAA3C9F6AF9
+904A959899B6C1D33F643600E9B66B957556E7A88077656FBAE71861861861861874344599AA8E
+002E5861D95A7666060EFED648F6476595766669540EB4369BC22D95881CDE2765E768864069A6
+94BC2E9898949958A95D076269A62E42E76437B70F8FE7D8775BDE5E523B775976DBA95DDA76DD
+90649A961FD8961C18848A88888890776625966589E780F8DE662F66524165889E5D65989A953D
+007660AF4F7641D6D98B6600B8900B7659621FF9588527E258F00D99EA02F69501B9A9560AE2DB
+EA602E2403FE35D1D960256E66667564519190983A7D9A81E06965A9420F4BD017595A71C9A643
+0D6769E30F30E2595A68989943D8FA6010F011FE9ED95A5ADE643A69A65BF955D62A170A7218B9
+AE9D864CF409695B6D976FF539666634BD0607ED6E769B9823D7D5BE5A52219919A3449A591DE6
+4680033FD65559577991A5883D01A4040EA5DF7479942E51DA256481D6188592949485A54A65C3
+88A63C7402DD8C3C9DA56F97E5577BA076769ADA76279F82F62D9D82780FF874003A031001FE94
+745B7ED95276045F92B4AEA5B7E589D4678EF59E8EF62582CA9679FA14B5E9EA598A9A752FE795
+886641DBE3E934A29D7A6EDB6F976666D77AD47E64DD6963DAB6279659679EF9668E70975D9D8A
+B5596A6E2E89E769EEE22436FD9AFF83880E1B99AF2FF5FBFBDE77FFBDDD9D63F64FB8F9A626AF
+EEEEEEEEEF66D9F340F30165A62EE581E556A993D58A646A580CF41BFEAA53640FA38F651D1DA1
+13D9F8E69E67A3699E8DA6419839F24DA62E65166A5D981E4FE70F012769A6F695A2237998A76D
+62F6559A95F60F698D19999A92B6966643540D2E66EEFEE5D651D37BBF97FFBDFEFD69198B662D
+982162FE576A97758A9A988E67FF989465A7640F818D8D8D979B9B9B9B9B979BBAA40440762ADF
+8A97662D9876624B6AE24042600D23402EDE6A91D9BE62F620D99762348D89760D88A56648DA72
+8783E1D569639C3CB3D5A61ADD898B988F48C21DE693220222F88CF03FD967E8837D9E2BD93DE2
+0F99BDB7526260FC0FE5990A96591B95F9EEE62D4F919880043985559576EF5E07740F48777817
+057A56959633C06160563F86563D933E4595A97496245AAF99860710E9587A25298A9A6706249A
+9503EDEFBE4D30FBD9405369AA503ED7667EEFBBB6EEDBBBEDFF6FBDBEF6FBD955869A6DBB4D94
+44F6D9A79876E525749EBEBEBF938B228B9262A36978E36DA9903FE495766EA52622EA581D41D4
+1D418708618A94A6A9F64D0B43C3EFF42695FEF8BE014A9A6AFA66E5E5D9D8BE65FE54661DEE1F
+E53A80CEA07E45BBB9EE622D1102A941EAA9D765059E96A9A9803CD076D09A9658465462CBEE91
+759097552989D922D946A2A949A983BF7662DBFA3D00053DB6962A41077EA670D6159421DA5AAA
+1007F90A50FCBF8BF8BF8BF9BF8BF9BF6F9A9998010E862FD921999874FA0F4498A9625965A526
+41018962E6443C259285919DA59DA619D795A5695A59C3E3D0FA538023E1276184104A52F9998B
+79B99020430D2E00BA4072562045FD6960E3F35E50F366617B6AA9B66834D9CA133D6A464A7A9E
+43DBDD3C9DAA6666A98921D98A542629A27AE48E6A60D566AA54664670E0A9640A8E59438002E9
+4F29E16264858BD9758B65562156EA669D892A52AAAAAA59D8C30F8FA7D65A9A5BA5ADDA6A5BE6
+41F0D37A04264DB61BCABA91600E3AF6698CDD10B980F2115A5A51D75D795762649E57A1E209D9
+DB6972E59A69E680B6E665925859E16660AE26662223DBF987662E5AA799B769AE589E98F0ED41
+269A69A69A6BA6FA9012103FF4DE5596762A77665DA57622FE66E05D9594A540F83F9917856961
+F67042101FD7402E2591D99D1F444D076F99795BAAE650D8960E350C26A5A6503E52B98BA20966
+5657A99C00D9996596596350F5268288D640427519798B49298B79A9298B790988B7E413004440
+4861911289E2B9355A49476789A628875F16769BCC0FD59A5959E963658BE7669D9A7662E31036
+2E2F9905146962A47629D8BA62593F790F790F695F665A522397A9C8AA6298A6262A9800A88265
+9898A5BD00F40606184A76F89B65D8B8F9963E3D7E99D872FE9D358365011DA58B67360CD1D92B
+856666139593A595A695F18858524913626A62F3A94FEDA598E67D65459A59FBF5AF674BA543FB
+D509625896258962A7E781FD8BFD9016DDA6007F8BA55649F6E91D9891B959F869A11656AA9266
+66234766E63086696B6B6B6BA662FB641D99459AA94769A94D5766A62E9DD9B94B56237CDD466A
+5AFC4E3E1F7B7EFB96DD27442F5969FE669FEE9999A975E65C4B5662E533FED4E6A5662295D9A9
+E12984659A85965A540C8D00D06269690A883D785596F6224222220E20E297A6BD958865D0BE9D
+59F6211969DA556A8981DA607DD98199BA9A661B9A959679659658245946A408F0F2DA96AEDE65
+8B4101DA64857EECBF91FED3F6969DAEAA681DFFF99D842393F4D3260D983620F6465F67429A66
+642E602E65656DEFE5FA579606AA5959E1A541AA58AA6800C30D0353C9F8F3E39965B5E5B6A5B6
+8DB6DA42686BA9659658E389818B87E661FE0E635758BA6EE9D969A9818906346218626408A947
+F467F664044F967695480C0F66694D8DA7E9D929E63D9263E6FAD911295A56959903EE6510E101
+18E2E596186A413D01EDFB5B5B99765959C3ED696A5FEE64AE566A6E9B8F5018C1FD956765E662
+A625A2A6545D09B50DBDBDBDB5BDBDBDA38BC61D996A654E03074DA667E3E66603769596D96D97
+AEE4E6426666A54F80E6651636829E966643B00E40D9D96949342A2E9640'H
+            }
+          }
+        }
+      },
+      subject database "/home/ubuntu/nt_db/nt",
+      algorithm-options {
+        {
+          name "EvalueThreshold",
+          value cutoff e-value { 1, 10, 1 }
+        },
+        {
+          name "MaskAtHash",
+          value boolean TRUE
+        },
+        {
+          name "DustFilteringLevel",
+          value integer 20
+        },
+        {
+          name "DustFilteringWindow",
+          value integer 64
+        },
+        {
+          name "DustFilteringLinker",
+          value integer 1
+        },
+        {
+          name "UngappedMode",
+          value boolean FALSE
+        },
+        {
+          name "HitlistSize",
+          value integer 500
+        },
+        {
+          name "EffectiveSearchSpace",
+          value big-integer 1790456443636518
+        }
+      },
+      program-options {
+        {
+          name "LCaseMask",
+          value query-mask {
+            locations {
+              packed-int {
+                {
+                  from 152,
+                  to 180,
+                  id local str "Query_1"
+                },
+                {
+                  from 152,
+                  to 180,
+                  id local str "Query_1"
+                },
+                {
+                  from 1587,
+                  to 1601,
+                  id local str "Query_1"
+                },
+                {
+                  from 1587,
+                  to 1601,
+                  id local str "Query_1"
+                },
+                {
+                  from 2229,
+                  to 2237,
+                  id local str "Query_1"
+                },
+                {
+                  from 2229,
+                  to 2237,
+                  id local str "Query_1"
+                },
+                {
+                  from 2630,
+                  to 2658,
+                  id local str "Query_1"
+                },
+                {
+                  from 2630,
+                  to 2658,
+                  id local str "Query_1"
+                },
+                {
+                  from 2980,
+                  to 2998,
+                  id local str "Query_1"
+                },
+                {
+                  from 2980,
+                  to 2998,
+                  id local str "Query_1"
+                },
+                {
+                  from 3232,
+                  to 3253,
+                  id local str "Query_1"
+                },
+                {
+                  from 3232,
+                  to 3253,
+                  id local str "Query_1"
+                },
+                {
+                  from 3472,
+                  to 3500,
+                  id local str "Query_1"
+                },
+                {
+                  from 3472,
+                  to 3500,
+                  id local str "Query_1"
+                },
+                {
+                  from 3880,
+                  to 3892,
+                  id local str "Query_1"
+                },
+                {
+                  from 3880,
+                  to 3892,
+                  id local str "Query_1"
+                },
+                {
+                  from 5396,
+                  to 5414,
+                  id local str "Query_1"
+                },
+                {
+                  from 5396,
+                  to 5414,
+                  id local str "Query_1"
+                },
+                {
+                  from 5963,
+                  to 5994,
+                  id local str "Query_1"
+                },
+                {
+                  from 5963,
+                  to 5994,
+                  id local str "Query_1"
+                },
+                {
+                  from 6713,
+                  to 6770,
+                  id local str "Query_1"
+                },
+                {
+                  from 6713,
+                  to 6770,
+                  id local str "Query_1"
+                },
+                {
+                  from 7444,
+                  to 7492,
+                  id local str "Query_1"
+                },
+                {
+                  from 7444,
+                  to 7492,
+                  id local str "Query_1"
+                },
+                {
+                  from 8127,
+                  to 8139,
+                  id local str "Query_1"
+                },
+                {
+                  from 8127,
+                  to 8139,
+                  id local str "Query_1"
+                },
+                {
+                  from 8517,
+                  to 8538,
+                  id local str "Query_1"
+                },
+                {
+                  from 8517,
+                  to 8538,
+                  id local str "Query_1"
+                },
+                {
+                  from 8822,
+                  to 8869,
+                  id local str "Query_1"
+                },
+                {
+                  from 8822,
+                  to 8869,
+                  id local str "Query_1"
+                },
+                {
+                  from 9250,
+                  to 9306,
+                  id local str "Query_1"
+                },
+                {
+                  from 9250,
+                  to 9306,
+                  id local str "Query_1"
+                },
+                {
+                  from 9613,
+                  to 9639,
+                  id local str "Query_1"
+                },
+                {
+                  from 9613,
+                  to 9639,
+                  id local str "Query_1"
+                },
+                {
+                  from 10167,
+                  to 10195,
+                  id local str "Query_1"
+                },
+                {
+                  from 10167,
+                  to 10195,
+                  id local str "Query_1"
+                },
+                {
+                  from 11202,
+                  to 11232,
+                  id local str "Query_1"
+                },
+                {
+                  from 11202,
+                  to 11232,
+                  id local str "Query_1"
+                }
+              }
+            },
+            frame plus1
+          }
+        }
+      }
+    }
+  },
+  results {
+    alignments {
+    },
+    masks {
+      {
+        locations {
+          packed-int {
+            {
+              from 152,
+              to 180,
+              id local str "Query_1"
+            },
+            {
+              from 1587,
+              to 1601,
+              id local str "Query_1"
+            },
+            {
+              from 2229,
+              to 2237,
+              id local str "Query_1"
+            },
+            {
+              from 2630,
+              to 2658,
+              id local str "Query_1"
+            },
+            {
+              from 2980,
+              to 2998,
+              id local str "Query_1"
+            },
+            {
+              from 3232,
+              to 3253,
+              id local str "Query_1"
+            },
+            {
+              from 3472,
+              to 3500,
+              id local str "Query_1"
+            },
+            {
+              from 3880,
+              to 3892,
+              id local str "Query_1"
+            },
+            {
+              from 5396,
+              to 5414,
+              id local str "Query_1"
+            },
+            {
+              from 5963,
+              to 5994,
+              id local str "Query_1"
+            },
+            {
+              from 6713,
+              to 6770,
+              id local str "Query_1"
+            },
+            {
+              from 7444,
+              to 7492,
+              id local str "Query_1"
+            },
+            {
+              from 8127,
+              to 8139,
+              id local str "Query_1"
+            },
+            {
+              from 8517,
+              to 8538,
+              id local str "Query_1"
+            },
+            {
+              from 8822,
+              to 8869,
+              id local str "Query_1"
+            },
+            {
+              from 9250,
+              to 9306,
+              id local str "Query_1"
+            },
+            {
+              from 9613,
+              to 9639,
+              id local str "Query_1"
+            },
+            {
+              from 10167,
+              to 10195,
+              id local str "Query_1"
+            },
+            {
+              from 11202,
+              to 11232,
+              id local str "Query_1"
+            }
+          }
+        },
+        frame plus1
+      }
+    },
+    ka-blocks {
+      {
+        lambda { 133270576282382, 10, -14 },
+        k { 620991117264207, 10, -15 },
+        h { 112409184650115, 10, -14 },
+        gapped FALSE
+      },
+      {
+        lambda { 128, 10, -2 },
+        k { 46, 10, -2 },
+        h { 85, 10, -2 },
+        gapped TRUE
+      }
+    },
+    search-stats {
+      "Effective search space: 1790456443636518",
+      "Effective search space used: 1790456443636518",
+      "Length adjustment: 38"
+    }
+  }
+}

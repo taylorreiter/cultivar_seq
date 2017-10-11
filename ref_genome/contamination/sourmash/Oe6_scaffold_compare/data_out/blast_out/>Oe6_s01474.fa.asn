@@ -1,0 +1,231 @@
+Blast4-archive ::= {
+  request {
+    ident "2.2.31+",
+    body queue-search {
+      program "blastn",
+      service "megablast",
+      queries bioseq-set {
+        seq-set {
+          seq {
+            id {
+              local str "Query_1"
+            },
+            descr {
+              user {
+                type str "CFastaReader",
+                data {
+                  {
+                    label str "DefLine",
+                    data str ">Oe6_s01474"
+                  }
+                }
+              },
+              title "Oe6_s01474"
+            },
+            inst {
+              repr raw,
+              mol na,
+              length 1735,
+              seq-data ncbi2na 'D9F81483DBFAB72B9BBBBBAAD239A1558010E58A0EFA2F
+C8C0009E9FAA8E77EFEFDEFBE79EF9EF9E1105AEE55EFBEF3EF9D99C30C3861ADA7EC0162868C3
+228A28A218A8888E38E3CE3CDA434BD7EE108F0E20E76446747C44F9474D2E2114111089116623
+4D898C7776D36E965976A786204306420520255D41FA5AE92EBE65E4441181A7456F99AFEEE662
+3999659B994BB9BB872999FB458ABD95D8676250A6250658E6DD9614129EB8861861861296FF48
+E069D6596DD556A596594F65DD6DE3663BA4892498EFEDFDB76667E40EEEE62691DD1166A469E1
+945977AFA07A3EED6BEBAEBEB269D966ADD9D5E38D089163ABAEFAE6622FFB9E5964BFEEFC6076
+06E647E6D1A866259451AA98542F9999B9D50F47FF662E3555D9295A768D8B9B9B9B9B99AA3F39
+8E52A9A6BFBFDD0DAE01509EE109E76602DDDFDAAA62E667F49F6A9D002905A7E73DDA9F7607DD
+90258E00BF5426969A62613DC850D957A422E66FEEE065866694A929495AA09D98DEBF8380FFA7
+7777777656BC6015E4475575E2A794A68D26BF84661A7F8FA599A7765A50766F47A0E66E952EB4
+BE5662D9989DBE3C244566626BB6A6224BAA0B9D98'H
+            }
+          }
+        }
+      },
+      subject database "/home/ubuntu/nt_db/nt",
+      algorithm-options {
+        {
+          name "EvalueThreshold",
+          value cutoff e-value { 1, 10, 1 }
+        },
+        {
+          name "MaskAtHash",
+          value boolean TRUE
+        },
+        {
+          name "DustFilteringLevel",
+          value integer 20
+        },
+        {
+          name "DustFilteringWindow",
+          value integer 64
+        },
+        {
+          name "DustFilteringLinker",
+          value integer 1
+        },
+        {
+          name "UngappedMode",
+          value boolean FALSE
+        },
+        {
+          name "HitlistSize",
+          value integer 500
+        },
+        {
+          name "EffectiveSearchSpace",
+          value big-integer 266922465210294
+        }
+      },
+      program-options {
+        {
+          name "LCaseMask",
+          value query-mask {
+            locations {
+              packed-int {
+                {
+                  from 97,
+                  to 103,
+                  id local str "Query_1"
+                },
+                {
+                  from 97,
+                  to 103,
+                  id local str "Query_1"
+                },
+                {
+                  from 123,
+                  to 196,
+                  id local str "Query_1"
+                },
+                {
+                  from 123,
+                  to 196,
+                  id local str "Query_1"
+                },
+                {
+                  from 248,
+                  to 277,
+                  id local str "Query_1"
+                },
+                {
+                  from 248,
+                  to 277,
+                  id local str "Query_1"
+                },
+                {
+                  from 539,
+                  to 603,
+                  id local str "Query_1"
+                },
+                {
+                  from 539,
+                  to 603,
+                  id local str "Query_1"
+                },
+                {
+                  from 684,
+                  to 701,
+                  id local str "Query_1"
+                },
+                {
+                  from 684,
+                  to 701,
+                  id local str "Query_1"
+                },
+                {
+                  from 1150,
+                  to 1172,
+                  id local str "Query_1"
+                },
+                {
+                  from 1150,
+                  to 1172,
+                  id local str "Query_1"
+                },
+                {
+                  from 1494,
+                  to 1510,
+                  id local str "Query_1"
+                },
+                {
+                  from 1494,
+                  to 1510,
+                  id local str "Query_1"
+                }
+              }
+            },
+            frame plus1
+          }
+        }
+      }
+    }
+  },
+  results {
+    alignments {
+    },
+    masks {
+      {
+        locations {
+          packed-int {
+            {
+              from 97,
+              to 103,
+              id local str "Query_1"
+            },
+            {
+              from 123,
+              to 196,
+              id local str "Query_1"
+            },
+            {
+              from 248,
+              to 277,
+              id local str "Query_1"
+            },
+            {
+              from 539,
+              to 603,
+              id local str "Query_1"
+            },
+            {
+              from 684,
+              to 701,
+              id local str "Query_1"
+            },
+            {
+              from 1150,
+              to 1172,
+              id local str "Query_1"
+            },
+            {
+              from 1494,
+              to 1510,
+              id local str "Query_1"
+            }
+          }
+        },
+        frame plus1
+      }
+    },
+    ka-blocks {
+      {
+        lambda { 133270576282382, 10, -14 },
+        k { 620991117264207, 10, -15 },
+        h { 112409184650115, 10, -14 },
+        gapped FALSE
+      },
+      {
+        lambda { 128, 10, -2 },
+        k { 46, 10, -2 },
+        h { 85, 10, -2 },
+        gapped TRUE
+      }
+    },
+    search-stats {
+      "Effective search space: 266922465210294",
+      "Effective search space used: 266922465210294",
+      "Length adjustment: 36"
+    }
+  }
+}

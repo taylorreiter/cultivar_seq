@@ -1,0 +1,153 @@
+Blast4-archive ::= {
+  request {
+    ident "2.2.31+",
+    body queue-search {
+      program "blastn",
+      service "megablast",
+      queries bioseq-set {
+        seq-set {
+          seq {
+            id {
+              local str "Query_1"
+            },
+            descr {
+              user {
+                type str "CFastaReader",
+                data {
+                  {
+                    label str "DefLine",
+                    data str ">Oe6_s05391"
+                  }
+                }
+              },
+              title "Oe6_s05391"
+            },
+            inst {
+              repr raw,
+              mol na,
+              length 1327,
+              seq-data ncbi2na '4FC0E9466EEC1D69DB8DA4249709666AA6A5B8A5B88159
+A968516A196386E4E3B4756961DBC1E599A80D66E3E5B40EAB2D0166850D28E4A5A5AA578725D5
+7F301A0E61E50B8FBFFB2E73C2FDBFDDAE0D91864D55907A65476B929E77E79DE49230A9862211
+3FD643FD3D5A15FE0BE996F1E466691A5250D5BA6D38A69996D434A25A407B95596E59BDE59665
+896A79030860DED223966E82FD7F8A244692AA77969DE5A77959994566A75A887D0CC7D9924808
+0303082890999B76894A9BC7119CFF3C06F22249667A7A7A79E8F5E836A659965391B9288675D4
+976259E19A286F65D87996A7E957A64E4A56584A9E66691E5C5652A94E0A2EC9668351D2B22665
+67904640100B613BD1FAFE3E1999111111D1E63D996F54A0FAAA06666BDA9815BEEEE694B58A52
+96A94A649A0116E58E5D82C18FA050DA6022A2A0AAE6EB8EABA9A269A869A66A5099A954'H
+            }
+          }
+        }
+      },
+      subject database "/home/ubuntu/nt_db/nt",
+      algorithm-options {
+        {
+          name "EvalueThreshold",
+          value cutoff e-value { 1, 10, 1 }
+        },
+        {
+          name "MaskAtHash",
+          value boolean TRUE
+        },
+        {
+          name "DustFilteringLevel",
+          value integer 20
+        },
+        {
+          name "DustFilteringWindow",
+          value integer 64
+        },
+        {
+          name "DustFilteringLinker",
+          value integer 1
+        },
+        {
+          name "UngappedMode",
+          value boolean FALSE
+        },
+        {
+          name "HitlistSize",
+          value integer 500
+        },
+        {
+          name "EffectiveSearchSpace",
+          value big-integer 203038205049752
+        }
+      },
+      program-options {
+        {
+          name "LCaseMask",
+          value query-mask {
+            locations {
+              packed-int {
+                {
+                  from 1083,
+                  to 1095,
+                  id local str "Query_1"
+                },
+                {
+                  from 1083,
+                  to 1095,
+                  id local str "Query_1"
+                },
+                {
+                  from 1264,
+                  to 1323,
+                  id local str "Query_1"
+                },
+                {
+                  from 1264,
+                  to 1323,
+                  id local str "Query_1"
+                }
+              }
+            },
+            frame plus1
+          }
+        }
+      }
+    }
+  },
+  results {
+    alignments {
+    },
+    masks {
+      {
+        locations {
+          packed-int {
+            {
+              from 1083,
+              to 1095,
+              id local str "Query_1"
+            },
+            {
+              from 1264,
+              to 1323,
+              id local str "Query_1"
+            }
+          }
+        },
+        frame plus1
+      }
+    },
+    ka-blocks {
+      {
+        lambda { 133270576282382, 10, -14 },
+        k { 620991117264207, 10, -15 },
+        h { 112409184650115, 10, -14 },
+        gapped FALSE
+      },
+      {
+        lambda { 128, 10, -2 },
+        k { 46, 10, -2 },
+        h { 85, 10, -2 },
+        gapped TRUE
+      }
+    },
+    search-stats {
+      "Effective search space: 203038205049752",
+      "Effective search space used: 203038205049752",
+      "Length adjustment: 35"
+    }
+  }
+}

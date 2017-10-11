@@ -1,0 +1,165 @@
+Blast4-archive ::= {
+  request {
+    ident "2.2.31+",
+    body queue-search {
+      program "blastn",
+      service "megablast",
+      queries bioseq-set {
+        seq-set {
+          seq {
+            id {
+              local str "Query_1"
+            },
+            descr {
+              user {
+                type str "CFastaReader",
+                data {
+                  {
+                    label str "DefLine",
+                    data str ">Oe6_s05559"
+                  }
+                }
+              },
+              title "Oe6_s05559"
+            },
+            inst {
+              repr raw,
+              mol na,
+              length 855,
+              seq-data ncbi2na '262D74FA5969A7AEED6646496BB9B9D99BBFB9BB99BBB9
+3BBBBBBBBA9A56E3EDD95AD4B9A5641B9C9811013EF69951459B7666250D34E40FEAD662444269
+D9C369890325962EA6A566660118F79B443CD9D99554F6D28D27E66661D03F385252982ED91584
+443DB7D53D9828666646FD2F4F434BD53D0198BC0FA2E2EA108164EF98FEEC3F88A661E3F3B99E
+96A66E7489E67A8899FE2162E4DD999935A9629A550357565647E8390801FB664614F8041FD917
+85596AEA6E9935611A998BD1999999901E765A8A3D9882ED96562889191A46AAA664D8'H
+            }
+          }
+        }
+      },
+      subject database "/home/ubuntu/nt_db/nt",
+      algorithm-options {
+        {
+          name "EvalueThreshold",
+          value cutoff e-value { 1, 10, 1 }
+        },
+        {
+          name "MaskAtHash",
+          value boolean TRUE
+        },
+        {
+          name "DustFilteringLevel",
+          value integer 20
+        },
+        {
+          name "DustFilteringWindow",
+          value integer 64
+        },
+        {
+          name "DustFilteringLinker",
+          value integer 1
+        },
+        {
+          name "UngappedMode",
+          value boolean FALSE
+        },
+        {
+          name "HitlistSize",
+          value integer 500
+        },
+        {
+          name "EffectiveSearchSpace",
+          value big-integer 128863257074920
+        }
+      },
+      program-options {
+        {
+          name "LCaseMask",
+          value query-mask {
+            locations {
+              packed-int {
+                {
+                  from 29,
+                  to 110,
+                  id local str "Query_1"
+                },
+                {
+                  from 29,
+                  to 110,
+                  id local str "Query_1"
+                },
+                {
+                  from 763,
+                  to 777,
+                  id local str "Query_1"
+                },
+                {
+                  from 763,
+                  to 777,
+                  id local str "Query_1"
+                },
+                {
+                  from 839,
+                  to 845,
+                  id local str "Query_1"
+                },
+                {
+                  from 839,
+                  to 845,
+                  id local str "Query_1"
+                }
+              }
+            },
+            frame plus1
+          }
+        }
+      }
+    }
+  },
+  results {
+    alignments {
+    },
+    masks {
+      {
+        locations {
+          packed-int {
+            {
+              from 29,
+              to 110,
+              id local str "Query_1"
+            },
+            {
+              from 763,
+              to 777,
+              id local str "Query_1"
+            },
+            {
+              from 839,
+              to 845,
+              id local str "Query_1"
+            }
+          }
+        },
+        frame plus1
+      }
+    },
+    ka-blocks {
+      {
+        lambda { 133270576282382, 10, -14 },
+        k { 620991117264206, 10, -15 },
+        h { 112409184650114, 10, -14 },
+        gapped FALSE
+      },
+      {
+        lambda { 128, 10, -2 },
+        k { 46, 10, -2 },
+        h { 85, 10, -2 },
+        gapped TRUE
+      }
+    },
+    search-stats {
+      "Effective search space: 128863257074920",
+      "Effective search space used: 128863257074920",
+      "Length adjustment: 35"
+    }
+  }
+}
